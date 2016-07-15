@@ -123,8 +123,9 @@ public class HitFrame extends Group {
         if(destroyed) return;
 
         if(allCirclesTouched()) {
+            this.scene.frameGroup.killFrame(this);
+            
             this.clearActions();
-            this.scene.aliveFrames.remove(this);
             this.addAction(Actions.sequence(
                     Actions.touchable(Touchable.disabled),
                     Actions.alpha(1),
