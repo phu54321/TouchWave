@@ -113,8 +113,25 @@ def draw_rounded_rect(x0, y0, x1, y1, r):
     ctx.arc(x0 + r, y0 + r, r, math.pi, 3 * math.pi / 2)
     ctx.close_path()
 
+basesize = 64
+
 startFrame("roundbutton", 4, 1)
-ctx.set_source_rgba(0.8, 0.8, 0.8, 1)
-draw_rounded_rect(0, 0, 4, 1, 0.3)
+ctx.set_source_rgba(1, 1, 1, 1)
+draw_rounded_rect(0.1, 0.1, 3.9, 0.9, 0.3)
 ctx.fill()
+ctx.set_source_rgba(0, 0, 0, 1)
+ctx.set_line_width(0.05)
+draw_rounded_rect(0.1, 0.1, 3.9, 0.9, 0.3)
+ctx.stroke()
+endFrame()
+
+
+startFrame("roundbox", 4, 4)
+ctx.set_source_rgba(1, 1, 1, 1)
+draw_rounded_rect(0.1, 0.1, 3.9, 3.9, 0.3)
+ctx.fill()
+ctx.set_source_rgba(0, 0, 0, 1)
+ctx.set_line_width(0.05)
+draw_rounded_rect(0.1, 0.1, 3.9, 3.9, 0.3)
+ctx.stroke()
 endFrame()

@@ -20,6 +20,7 @@ import java.util.ArrayList;
  */
 public class HitFrame extends Group {
     ArrayList<HitCircle> circles;
+    final int size;
     int touchedNum = 0;
     boolean destroyed;
 
@@ -56,6 +57,7 @@ public class HitFrame extends Group {
 
     public HitFrame(final GameScene scene, int count) {
         this.scene = scene;
+        this.size = count;
         final Color circleColor = hsvToRgb((float)Math.random(), 1f, 1f);
         final Color lineColor = colorTable[count];
         this.circles = new ArrayList<HitCircle>();
@@ -67,10 +69,11 @@ public class HitFrame extends Group {
         bg.setTouchable(Touchable.disabled);
         this.addActor(bg);
 
-        this.addActor(new HitCircleLines(this, lineColor));
 
         // Add circles
-        final float minDist = 30f;
+        this.addActor(new HitCircleLines(this, lineColor));
+
+        final float minDist = 30f;  // Minimum distances between circle pairs
 
         for(int i = 0 ; i < count ; i++) {
             float cx, cy;
@@ -104,16 +107,27 @@ public class HitFrame extends Group {
                         Actions.alpha(0),
                         Actions.fadeIn(0.3f),
                         Actions.touchable(Touchable.enabled),
-                        Actions.delay(14.7f),
+                        Actions.delay(0.7f),
                         new Action() {
                             @Override
                             public boolean act(float delta) {
-                                scene.gameCompleted = true;
+                                scene.issueGameComplete();
                                 return true;
                             }
                         }
                 )
         );
+    }
+
+
+    /**
+     * Check if all circles are touched.
+     */
+    public boolean allCirclesTouched() {
+        for(HitCircle circle: circles) {
+            if(!circle.touched) return false;
+        }
+        return true;
     }
 
     @Override
@@ -124,7 +138,7 @@ public class HitFrame extends Group {
 
         if(allCirclesTouched()) {
             this.scene.frameGroup.killFrame(this);
-            
+
             this.clearActions();
             this.addAction(Actions.sequence(
                     Actions.touchable(Touchable.disabled),
@@ -137,12 +151,5 @@ public class HitFrame extends Group {
             }
             this.destroyed = true;
         }
-    }
-
-    public boolean allCirclesTouched() {
-        for(HitCircle circle: circles) {
-            if(!circle.touched) return false;
-        }
-        return true;
     }
 }

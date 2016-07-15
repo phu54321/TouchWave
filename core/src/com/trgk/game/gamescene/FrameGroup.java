@@ -11,6 +11,7 @@ import java.util.ArrayList;
  */
 public class FrameGroup extends ScreenFillingGroup {
     ArrayList<HitFrame> aliveFrames;
+    int score = 0;
 
     public FrameGroup() {
         super(150, 100);
@@ -24,6 +25,7 @@ public class FrameGroup extends ScreenFillingGroup {
     public void addFrame(HitFrame frame) {
         addActorAt(0, frame);
         aliveFrames.add(frame);
+        score += frame.size;
     }
 
     /**
@@ -58,6 +60,7 @@ public class FrameGroup extends ScreenFillingGroup {
             frame.setTouchable(Touchable.disabled);
         }
     }
+
 
     @Override
     public void act(float delta) {

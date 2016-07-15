@@ -1,14 +1,10 @@
 package com.trgk.game.gamescene;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.trgk.game.menuscene.GameCompletedScene;
 import com.trgk.game.TGScene;
-import com.trgk.game.utils.ScreenFillingGroup;
-
-import java.util.ArrayList;
 
 
 public class GameScene extends TGScene {
@@ -27,17 +23,20 @@ public class GameScene extends TGScene {
     }
 
 
-    ArrayList<HitFrame> aliveFrames;
     boolean gameCompleted = false;
+
+    public int getScore() {
+        return frameGroup.score;
+    }
+    public void issueGameComplete() {
+        if(gameCompleted) return;
+        gameCompleted = true;
+        this.getSceneManager().setCurrentScene(new GameCompletedScene(this));
+        this.logicGroup.remove();
+    }
 
     @Override
     public void act(float dt) {
         super.act(dt);
-
-        if (gameCompleted && this.getSceneManager() != null) {
-            // Add new circles
-            this.getSceneManager().setCurrentScene(new GameCompletedScene(this));
-            this.logicGroup.remove();
-        }
     }
 }
