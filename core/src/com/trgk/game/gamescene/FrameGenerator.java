@@ -32,7 +32,9 @@ class FrameGenerator extends Actor {
 
         remainingTime -= dt;
         // To few frames -> Add more.
-        if (frameGroup.getAliveFrameCount()<= 3 && remainingTime >= 0.5f) remainingTime = 0.3f;
+        float maxRemainingTIme = getRandomCircleNum() * 0.1f;
+        if (frameGroup.getAliveFrameCount()<= 3 && remainingTime >= maxRemainingTIme)
+            remainingTime = maxRemainingTIme;
 
         while (remainingTime <= 0) {
             currentFrameIndex++;

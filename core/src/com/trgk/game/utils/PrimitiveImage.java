@@ -44,6 +44,21 @@ public class PrimitiveImage {
         return image;
     }
 
+    public static void drawDottedLine(Batch batch, float x0, float y0, float x1, float y1, float lineWidth, Color color) {
+        float dx = x1 - x0, dy = y1 - y0;
+        float lineLength = (float)Math.sqrt(dx * dx + dy * dy);
+        int segNum = (int)Math.floor((lineLength + lineWidth) / (4 * lineWidth));
+        if(segNum == 0) segNum = 1;
+
+        dx /= segNum; dy /= segNum;
+
+        for(int i = 0 ; i < segNum ; i++) {
+            drawLine(batch, x0, y0, x0 + dx / 2, y0 + dy / 2, lineWidth, color);
+            x0 += dx;
+            y0 += dy;
+        }
+    }
+
     public static void drawLine(Batch batch, float x0, float y0, float x1, float y1, float lineWidth, Color color) {
         if(rectTexture == null) createRectTexture();
 

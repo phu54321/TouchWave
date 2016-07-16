@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -47,19 +48,20 @@ public class HitCircle  extends Group {
         addActor(anim);
         anim.setPosition(5, 5, Align.center);
 
+        this.setScale(0.3f);
         this.addAction(Actions.sequence(
-                Actions.scaleTo(1.5f, 1.5f, 15f),
+                Actions.scaleTo(1, 1, 0.3f, Interpolation.exp10Out),
+                Actions.scaleTo(1.5f, 1.5f, 14.7f),
                 Actions.scaleTo(3f, 3f, 0.5f)
         ));
     }
 
     @Override
     public void act(float delta) {
-        if(!destroyed) super.act(delta);
+        super.act(delta);
 
         this.touched = false;
-
-        if(isTouchable()) {
+        if(!destroyed && isTouchable()) {
             Stage stage = this.getStage();
             if (stage != null) {
                 for (int i = 0; i < 20; i++) {

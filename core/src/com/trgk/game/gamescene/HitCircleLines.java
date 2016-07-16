@@ -18,9 +18,17 @@ class HitCircleLines extends Actor {
     final HitFrame parent;
     final Color lineColor;
 
-    HitCircleLines(HitFrame parent, Color lineColor) {
+    final static Color[] colorTable = {
+            new Color(0f, 0f, 1f, 1f),
+            new Color(0f, 1f, 0f, 1f),
+            new Color(1f, 0f, 0f, 1f),
+            new Color(1f, 0f, 1f, 1f),
+            new Color(1f, 1f, 0f, 1f),
+    };
+
+    HitCircleLines(HitFrame parent) {
         this.parent = parent;
-        this.lineColor = lineColor;
+        this.lineColor = colorTable[parent.size - 1];
     }
 
     @Override
@@ -40,7 +48,7 @@ class HitCircleLines extends Actor {
                         color.a = 0.3f * parentAlpha;
                     }
 
-                    PrimitiveImage.drawLine(batch,
+                    PrimitiveImage.drawDottedLine(batch,
                             p1.getX() + p1.getWidth() / 2,
                             p1.getY() + p1.getHeight() / 2,
                             p2.getX() + p2.getWidth() / 2,
