@@ -115,17 +115,18 @@ def draw_rounded_rect(x0, y0, x1, y1, r):
 
 basesize = 64
 
-startFrame("roundbutton", 4, 1)
+startFrame("roundbutton", 4, 1.5)
 ctx.set_source_rgba(1, 1, 1, 1)
-draw_rounded_rect(0.1, 0.1, 3.9, 0.9, 0.3)
+draw_rounded_rect(0.1, 0.1, 3.9, 1.4, 0.3)
 ctx.fill()
 ctx.set_source_rgba(0, 0, 0, 1)
 ctx.set_line_width(0.05)
-draw_rounded_rect(0.1, 0.1, 3.9, 0.9, 0.3)
+draw_rounded_rect(0.1, 0.1, 3.9, 1.4, 0.3)
 ctx.stroke()
 endFrame()
 
 
+basesize = 64
 startFrame("roundbox", 4, 4)
 ctx.set_source_rgba(1, 1, 1, 1)
 draw_rounded_rect(0.1, 0.1, 3.9, 3.9, 0.3)

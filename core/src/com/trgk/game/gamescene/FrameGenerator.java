@@ -3,11 +3,6 @@ package com.trgk.game.gamescene;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import java.awt.Frame;
-
-/**
- * Created by phu54 on 2016-07-16.
- */
 class FrameGenerator extends Actor {
     GameScene parent;
     public FrameGenerator(GameScene parent) {
@@ -15,16 +10,12 @@ class FrameGenerator extends Actor {
     }
 
     float remainingTime = 0;
-    int currentFrameIndex = 300;
+    int currentFrameIndex = 0;
 
-    /**
-     * Next remaining time
-     * @return times
-     */
     float nextRemainingTime() {
-        float circlePerSec = (float)Math.sqrt(currentFrameIndex + 16) / 4f;
-        float decFactor = currentFrameIndex / (currentFrameIndex + 200f);
-        return 1.0f + 0.6f / circlePerSec - 0.9f * decFactor;
+        float circlePerSec = (float)Math.sqrt(currentFrameIndex + 25) / 5f;
+        float decFactor = currentFrameIndex / (currentFrameIndex + 300f);
+        return 1.0f + 0.7f / circlePerSec - 0.9f * decFactor;
     }
 
     int getRandomCircleNum() {
@@ -40,6 +31,7 @@ class FrameGenerator extends Actor {
         FrameGroup frameGroup = parent.frameGroup;
 
         remainingTime -= dt;
+        // To few frames -> Add more.
         if (frameGroup.getAliveFrameCount()<= 3 && remainingTime >= 0.5f) remainingTime = 0.3f;
 
         while (remainingTime <= 0) {

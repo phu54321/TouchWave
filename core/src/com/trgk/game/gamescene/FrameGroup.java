@@ -1,14 +1,11 @@
 package com.trgk.game.gamescene;
 
-import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.trgk.game.utils.ScreenFillingGroup;
 
 import java.util.ArrayList;
 
-/**
- * Created by phu54 on 2016-07-16.
- */
+
 public class FrameGroup extends ScreenFillingGroup {
     ArrayList<HitFrame> aliveFrames;
     int score = 0;
@@ -25,7 +22,6 @@ public class FrameGroup extends ScreenFillingGroup {
     public void addFrame(HitFrame frame) {
         addActorAt(0, frame);
         aliveFrames.add(frame);
-        score += frame.size;
     }
 
     /**
@@ -34,6 +30,7 @@ public class FrameGroup extends ScreenFillingGroup {
      */
     public void killFrame(HitFrame frame) {
         aliveFrames.remove(frame);
+        score += frame.size;
     }
 
     /**
@@ -42,6 +39,10 @@ public class FrameGroup extends ScreenFillingGroup {
      */
     public int getAliveFrameCount() {
         return aliveFrames.size();
+    }
+
+    public int getScore() {
+        return score;
     }
 
     /**
