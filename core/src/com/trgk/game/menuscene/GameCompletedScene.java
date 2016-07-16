@@ -38,23 +38,36 @@ public class GameCompletedScene extends TGScene {
 
         final GameCompletedScene this2 = this;
 
-        wnd.addActor(new TGText("Game over", 7, 25, 40, new Color(0, 0, 0, 1)));
+        wnd.addActor(TGWindow.showAfter(
+                new TGText("Game over", 7, 25, 40, new Color(0, 0, 0, 1)),
+                0.5f
+        ));
+
         String scoreText = String.format(Locale.ENGLISH, "Score : %d", gameScene.getScore());
-        wnd.addActor(new TGText(scoreText, 5, 25, 25, new Color(0, 0, 0, 1)));
+        wnd.addActor(TGWindow.showAfter(
+                new TGText(scoreText, 5, 25, 25, new Color(0, 0, 0, 1)),
+                1.0f
+        ));
 
-        wnd.addActor(new TGButton("Retry", 4.5f, 13, 10, new Color(.8f, .8f, .8f, 1)) {
-            @Override
-            public void clicked() {
-                this2.getSceneManager().setCurrentScene(new GameScene());
-            }
-        });
+        wnd.addActor(TGWindow.showAfter(
+                new TGButton("Retry", 9f, 25, 17, new Color(.8f, .8f, .8f, 1)) {
+                    @Override
+                    public void clicked() {
+                        this2.getSceneManager().setCurrentScene(new GameScene());
+                    }
+                },
+                1.5f
+        ));
 
-        wnd.addActor(new TGButton("Quit", 4.5f, 37, 10, new Color(.8f, .8f, .8f, 1)) {
-            @Override
-            public void clicked() {
-                this2.getSceneManager().setCurrentScene(null);
-            }
-        });
+        wnd.addActor(TGWindow.showAfter(
+                new TGButton("Quit", 9f, 25, 7, new Color(.8f, .8f, .8f, 1)) {
+                    @Override
+                    public void clicked() {
+                        this2.getSceneManager().setCurrentScene(null);
+                    }
+                },
+                2.0f
+        ));
 
 
         g.setColor(1, 1, 1, 0);

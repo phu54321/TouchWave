@@ -21,7 +21,7 @@ class HitCircleLines extends Actor {
             new Color(0f, 1f, 0f, 1f),
             new Color(1f, 0f, 0f, 1f),
             new Color(1f, 0f, 1f, 1f),
-            new Color(1f, 1f, 0f, 1f),
+            new Color(0f, 1f, 1f, 1f),
     };
 
     HitCircleLines(HitFrame parent) {
@@ -43,15 +43,16 @@ class HitCircleLines extends Actor {
                     if (p1.touched && p2.touched) {
                         color.a = 0.8f * parentAlpha;
                     } else {
-                        color.a = 0.3f * parentAlpha;
+                        color.a = 0.4f * parentAlpha;
                     }
 
-                    PrimitiveImage.drawLine(batch,
+                    PrimitiveImage.drawDottedLine(batch,
                             p1.getX() + p1.getWidth() / 2,
                             p1.getY() + p1.getHeight() / 2,
                             p2.getX() + p2.getWidth() / 2,
                             p2.getY() + p2.getHeight() / 2,
                             1f,
+                            0.2f,
                             color
                     );
                 }

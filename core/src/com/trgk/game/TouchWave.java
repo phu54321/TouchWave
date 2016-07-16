@@ -17,7 +17,6 @@ public class TouchWave extends ApplicationAdapter {
 
 	@Override
 	public void create () {
-		Gdx.app.log("Init", "test");
 		logger = new FPSLogger();
 
 		sceneManager.setCurrentScene(new TestScene());

@@ -72,19 +72,13 @@ drawPlayerArc(
     1, 1, 1, 1,
     0, 360
 )
+drawPlayerArc(
+    ctx,
+    1.85, 2,
+    0, 0, 0, 1,
+    0, 360
+)
 endFrame()
-
-# Tiles
-
-void_color = (0.95, 0.97, 0.98)
-st_color = (0.50, 0.89, 0.75)
-ed_color = (0.82, 0.67, 0.97)
-floor_color = [
-    (0.89, 0.89, 0.89),
-    (1., 1., 1.),
-]
-wall_color = (0.34, 0.34, 0.42)
-
 
 # Countdown bar
 
@@ -115,13 +109,13 @@ def draw_rounded_rect(x0, y0, x1, y1, r):
 
 basesize = 64
 
-startFrame("roundbutton", 4, 1.5)
+startFrame("roundbutton", 4, 1)
 ctx.set_source_rgba(1, 1, 1, 1)
-draw_rounded_rect(0.1, 0.1, 3.9, 1.4, 0.3)
+draw_rounded_rect(0.1, 0.1, 3.9, 0.9, 0.3)
 ctx.fill()
 ctx.set_source_rgba(0, 0, 0, 1)
 ctx.set_line_width(0.05)
-draw_rounded_rect(0.1, 0.1, 3.9, 1.4, 0.3)
+draw_rounded_rect(0.1, 0.1, 3.9, 0.9, 0.3)
 ctx.stroke()
 endFrame()
 

@@ -38,7 +38,6 @@ class FrameGenerator extends Actor {
 
         while (remainingTime <= 0) {
             currentFrameIndex++;
-            Gdx.app.log("CurrentFrame", Integer.toString(currentFrameIndex));
 
             int circleNum = getRandomCircleNum();
             HitFrame frame = new HitFrame(parent, circleNum);

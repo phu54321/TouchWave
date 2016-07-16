@@ -1,11 +1,7 @@
 package com.trgk.game.gamescene;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.math.Interpolation;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
@@ -21,7 +17,6 @@ import java.util.ArrayList;
 public class HitFrame extends Group {
     ArrayList<HitCircle> circles;
     final int size;
-    int touchedNum = 0;
     boolean destroyed = false;
 
 
