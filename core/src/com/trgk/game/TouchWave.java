@@ -42,6 +42,8 @@ public class TouchWave extends ApplicationAdapter {
 
 		// -------
 
+		final float speedRatio = 15f;
+
 		// Clear background
 		Gdx.gl.glClearColor(1f, 1f, 1f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -58,7 +60,7 @@ public class TouchWave extends ApplicationAdapter {
 				return;
 			}
 
-			currentScene.act(stepTime);
+			currentScene.act(stepTime * speedRatio);
 
 			frameN--;
 		}
