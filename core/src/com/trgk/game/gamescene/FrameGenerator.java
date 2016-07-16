@@ -10,7 +10,7 @@ class FrameGenerator extends Actor {
     }
 
     float remainingTime = 0;
-    int currentFrameIndex = 0;
+    int currentFrameIndex = 500;
 
     float nextRemainingTime() {
         float circlePerSec = (float)Math.sqrt(currentFrameIndex + 25) / 5f;

@@ -11,9 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 
-/**
- * Created by 박현우 on 2016-01-05.
- */
+
 public class PrimitiveImage {
     public static Image circleImage(float radius, Color color) {
         Image image = new Image(TGResources.getInstance().getAtlasSprite("circle_general"));
@@ -44,18 +42,34 @@ public class PrimitiveImage {
         return image;
     }
 
-    public static void drawDottedLine(Batch batch, float x0, float y0, float x1, float y1, float lineWidth, Color color) {
+    public static void drawDottedLine(
+            Batch batch,
+            float x0, float y0, float x1, float y1,
+            float lineWidth, float spaceRatio,
+            Color color
+    ) {
         float dx = x1 - x0, dy = y1 - y0;
         float lineLength = (float)Math.sqrt(dx * dx + dy * dy);
-        int segNum = (int)Math.floor((lineLength + lineWidth) / (4 * lineWidth));
+        float baseLineDotLength = 10 * lineWidth;
+
+        // bldl * (snum + (snum - 1) * sr) = length
+        // (length + bldl * sr) / (1 + sr) / bldl = snum
+
+        int segNum = (int)Math.floor(
+                (lineLength + baseLineDotLength * spaceRatio) /
+                        (1 + spaceRatio) / baseLineDotLength);
         if(segNum == 0) segNum = 1;
 
-        dx /= segNum; dy /= segNum;
+        // pdx =
+        float segDx = dx / (segNum + (segNum - 1) * spaceRatio);
+        float segDy = dy / (segNum + (segNum - 1) * spaceRatio);
+        float patternDx = segDx * (1 + spaceRatio);
+        float patternDy = segDy * (1 + spaceRatio);
 
         for(int i = 0 ; i < segNum ; i++) {
-            drawLine(batch, x0, y0, x0 + dx / 2, y0 + dy / 2, lineWidth, color);
-            x0 += dx;
-            y0 += dy;
+            drawLine(batch, x0, y0, x0 + segDx, y0 + segDy, lineWidth, color);
+            x0 += patternDx;
+            y0 += patternDy;
         }
     }
 

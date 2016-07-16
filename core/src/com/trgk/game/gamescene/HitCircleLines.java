@@ -11,9 +11,7 @@ import com.trgk.game.utils.TGResources;
 
 import java.util.ArrayList;
 
-/**
- * Created by phu54 on 2016-07-14.
- */
+
 class HitCircleLines extends Actor {
     final HitFrame parent;
     final Color lineColor;
@@ -48,7 +46,7 @@ class HitCircleLines extends Actor {
                         color.a = 0.3f * parentAlpha;
                     }
 
-                    PrimitiveImage.drawDottedLine(batch,
+                    PrimitiveImage.drawLine(batch,
                             p1.getX() + p1.getWidth() / 2,
                             p1.getY() + p1.getHeight() / 2,
                             p2.getX() + p2.getWidth() / 2,
