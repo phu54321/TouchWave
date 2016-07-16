@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
  * Screen filling group. Centered & Fills screen with aspect ratio preserved.
  */
 public class ScreenFillingGroup extends Group {
-    float logicalWorldWidth, logicalWorldHeight;
+    float worldWidth, worldHeight;
     float screenWidth, screenHeight;
     float groupScale;
     float logicalScreenWidth, logicalScreenHeight;
@@ -30,12 +30,12 @@ public class ScreenFillingGroup extends Group {
 
     /**
      * Reset logical size of the group.
-     * @param logicalWorldWidth New logical width of the group.
-     * @param logicalWorldHeight New logical height of the group.
+     * @param worldWidth New logical width of the group.
+     * @param worldHeight New logical height of the group.
      */
-    public void setWorldDimension(float logicalWorldWidth, float logicalWorldHeight) {
-        this.logicalWorldWidth = logicalWorldWidth;
-        this.logicalWorldHeight = logicalWorldHeight;
+    public void setWorldDimension(float worldWidth, float worldHeight) {
+        this.worldWidth = worldWidth;
+        this.worldHeight = worldHeight;
         this.logicalScreenWidth = screenWidth / groupScale;
         this.logicalScreenHeight = screenHeight / groupScale;
     }
@@ -46,8 +46,8 @@ public class ScreenFillingGroup extends Group {
      * @param screenHeight Real screen height.
      */
     void updateScreenSize(int screenWidth, int screenHeight) {
-        float scaleNeededX = screenWidth / logicalWorldWidth;
-        float scaleNeededY = screenHeight / logicalWorldHeight;
+        float scaleNeededX = screenWidth / worldWidth;
+        float scaleNeededY = screenHeight / worldHeight;
         float groupScale = Math.min(scaleNeededX, scaleNeededY);
 
         this.screenWidth = screenWidth;
@@ -56,9 +56,9 @@ public class ScreenFillingGroup extends Group {
         this.logicalScreenWidth = screenWidth / groupScale;
         this.logicalScreenHeight = screenHeight / groupScale;
 
-        this.setSize(logicalWorldWidth, logicalWorldHeight);
+        this.setSize(worldWidth, worldHeight);
         this.setScale(groupScale);
-        this.setPosition((screenWidth - logicalWorldWidth * groupScale) / 2, (screenHeight - logicalWorldHeight * groupScale) / 2);
+        this.setPosition((screenWidth - worldWidth * groupScale) / 2, (screenHeight - worldHeight * groupScale) / 2);
     }
 
     //////////////////////////////
@@ -72,19 +72,19 @@ public class ScreenFillingGroup extends Group {
     }
 
     public Vector2 getlogicalScreenTopLeft() {
-        return new Vector2(-logicalScreenWidth / 2, logicalScreenHeight / 2);
+        return new Vector2((worldWidth - logicalScreenWidth) / 2, (worldHeight + logicalScreenHeight) / 2);
     }
 
     public Vector2 getlogicalScreenTopRight() {
-        return new Vector2(logicalScreenWidth / 2, logicalScreenHeight / 2);
+        return new Vector2((worldWidth + logicalScreenWidth) / 2, (worldHeight + logicalScreenHeight) / 2);
     }
 
     public Vector2 getlogicalScreenBottomLeft() {
-        return new Vector2(-logicalScreenWidth / 2, -logicalScreenHeight / 2);
+        return new Vector2((worldWidth - logicalScreenWidth) / 2, (worldHeight - logicalScreenHeight) / 2);
     }
 
     public Vector2 getlogicalScreenBottomRight() {
-        return new Vector2(logicalScreenWidth / 2, -logicalScreenHeight / 2);
+        return new Vector2((worldWidth + logicalScreenWidth) / 2, (worldHeight - logicalScreenHeight) / 2);
     }
 
     //////////////////////////////

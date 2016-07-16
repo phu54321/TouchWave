@@ -10,14 +10,12 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.Align;
 import com.trgk.game.utils.PrimitiveImage;
-import com.trgk.game.utils.TGResources;
 
 import java.util.ArrayList;
 
-/**
- * Created by phu54 on 2016-07-14.
- */
+
 public class HitFrame extends Group {
     ArrayList<HitCircle> circles;
     final int size;
@@ -101,20 +99,26 @@ public class HitFrame extends Group {
         }
 
         // Simple alpha animations
+        this.setSize(150, 100);
         this.setTouchable(Touchable.disabled);
+        this.setColor(1, 1, 1, 0);
+        this.setOrigin(Align.center);
+        this.setScale(0.8f);
         this.addAction(
-                Actions.sequence(
-                        Actions.alpha(0),
-                        Actions.fadeIn(0.3f),
-                        Actions.touchable(Touchable.enabled),
-                        Actions.delay(0.7f),
-                        new Action() {
-                            @Override
-                            public boolean act(float delta) {
-                                scene.issueGameComplete();
-                                return true;
-                            }
-                        }
+                Actions.parallel(
+                        Actions.sequence(
+                                Actions.fadeIn(0.3f),
+                                Actions.touchable(Touchable.enabled),
+                                Actions.delay(14.7f),
+                                new Action() {
+                                    @Override
+                                    public boolean act(float delta) {
+                                        scene.issueGameComplete();
+                                        return true;
+                                    }
+                                }
+                        ),
+                        Actions.scaleTo(1, 1, 15f)
                 )
         );
     }

@@ -40,6 +40,7 @@ public class TGText extends Actor {
         drawCache = new BitmapFontCache(font);
         setText(content);
         setScale(size);
+        this.setOrigin(Align.center);
     }
 
     public TGText(String content, float size, float x, float y, Color color) {
@@ -53,7 +54,6 @@ public class TGText extends Actor {
         glyphLayout.setText(font, text);
         drawCache.setText(glyphLayout, 0, glyphLayout.height);
         this.setSize(glyphLayout.width / baseFontSize, glyphLayout.height / baseFontSize);
-        this.setOrigin(Align.center);
         this.text = text;
     }
 

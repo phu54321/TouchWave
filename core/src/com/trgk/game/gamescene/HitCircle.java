@@ -59,19 +59,21 @@ public class HitCircle  extends Group {
 
         this.touched = false;
 
-        Stage stage = this.getStage();
-        if(stage != null) {
-            for (int i = 0; i < 20; i++) {
-                if (Gdx.input.isTouched(i)) {
-                    float touchX = Gdx.input.getX(i);
-                    float touchY = Gdx.input.getY(i);
-                    Vector2 touchCoord = new Vector2(touchX, touchY);
-                    stage.screenToStageCoordinates(touchCoord);
-                    this.stageToLocalCoordinates(touchCoord);
-                    touchX = touchCoord.x;
-                    touchY = touchCoord.y;
+        if(isTouchable()) {
+            Stage stage = this.getStage();
+            if (stage != null) {
+                for (int i = 0; i < 20; i++) {
+                    if (Gdx.input.isTouched(i)) {
+                        float touchX = Gdx.input.getX(i);
+                        float touchY = Gdx.input.getY(i);
+                        Vector2 touchCoord = new Vector2(touchX, touchY);
+                        stage.screenToStageCoordinates(touchCoord);
+                        this.stageToLocalCoordinates(touchCoord);
+                        touchX = touchCoord.x;
+                        touchY = touchCoord.y;
 
-                    if (hit(touchX, touchY, true) == this) this.touched = true;
+                        if (hit(touchX, touchY, true) == this) this.touched = true;
+                    }
                 }
             }
         }
