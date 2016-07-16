@@ -59,7 +59,7 @@ public class TGText extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        Matrix4 oldTransform = batch.getTransformMatrix();
+        Matrix4 oldTransform = new Matrix4(batch.getTransformMatrix());
         Affine2 localTransform = new Affine2();
         localTransform.setToTrnScl(
                 getX() + getOriginX(),

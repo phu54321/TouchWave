@@ -38,8 +38,6 @@ public class GameCompletedScene extends TGScene {
 
         final GameCompletedScene this2 = this;
 
-
-
         wnd.addActor(new TGText("Game over", 7, 25, 40, new Color(0, 0, 0, 1)));
         String scoreText = String.format(Locale.ENGLISH, "Score : %d", gameScene.getScore());
         wnd.addActor(new TGText(scoreText, 5, 25, 25, new Color(0, 0, 0, 1)));
