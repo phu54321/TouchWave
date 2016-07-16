@@ -20,14 +20,14 @@ import com.trgk.game.utils.PrimitiveImage;
 
 public class HitCircle  extends Group {
     final HitFrame parent;
+    final GameScene gameScene;
     final Image innerImage;
     boolean touched;
-    boolean destroyed;
 
     public HitCircle(HitFrame frame, float x, float y, Color innerColor) {
         this.parent = frame;
+        this.gameScene = frame.scene;
         this.touched = false;
-        this.destroyed = false;
 
         // Position actor in frame
         setSize(10, 10);
@@ -61,7 +61,7 @@ public class HitCircle  extends Group {
         super.act(delta);
 
         this.touched = false;
-        if(!destroyed && isTouchable()) {
+        if(!gameScene.gameCompleted && isTouchable()) {
             Stage stage = this.getStage();
             if (stage != null) {
                 for (int i = 0; i < 20; i++) {

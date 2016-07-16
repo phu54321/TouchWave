@@ -7,8 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.trgk.game.menuscene.GameCompletedScene;
 import com.trgk.game.TGScene;
+import com.trgk.game.menuscene.GameoverScene;
 import com.trgk.game.ui.TGText;
 import com.trgk.game.utils.ScreenFillingGroup;
 
@@ -54,7 +54,7 @@ public class GameScene extends TGScene {
     public void issueGameComplete() {
         if(gameCompleted) return;
         gameCompleted = true;
-        this.getSceneManager().setCurrentScene(new GameCompletedScene(this));
+        this.getSceneManager().setCurrentScene(new GameoverScene(this));
         this.logicGroup.remove();
         this.frameGroup.setTouchable(Touchable.disabled);
     }

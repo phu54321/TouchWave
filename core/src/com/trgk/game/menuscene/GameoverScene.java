@@ -1,8 +1,6 @@
 package com.trgk.game.menuscene;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -18,9 +16,9 @@ import com.trgk.game.ui.TGText;
 
 import java.util.Locale;
 
-public class GameCompletedScene extends TGScene {
+public class GameoverScene extends TGScene {
     final GameScene gameScene;
-    public GameCompletedScene(GameScene gameScene) {
+    public GameoverScene(GameScene gameScene) {
         super(new Stage(new ScreenViewport()));
         this.gameScene = gameScene;
         gameScene.ref();
@@ -36,7 +34,7 @@ public class GameCompletedScene extends TGScene {
         wnd.setPosition(75, 50, Align.center);
         g.addActor(wnd);
 
-        final GameCompletedScene this2 = this;
+        final GameoverScene this2 = this;
 
         wnd.addActor(TGWindow.showAfter(
                 new TGText("Game over", 7, 25, 40, new Color(0, 0, 0, 1)),

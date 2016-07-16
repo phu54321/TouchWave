@@ -29,6 +29,7 @@ public class PrimitiveImage {
         map.setColor(1, 1, 1, 1);
         map.fill();
         rectTexture = new Texture(map);
+        rectTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         rectTextureRegion = new TextureRegion(rectTexture);
     }
 

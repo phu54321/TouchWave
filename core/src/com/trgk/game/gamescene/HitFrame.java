@@ -74,7 +74,8 @@ public class HitFrame extends Group {
 
         this.addAction(
                 Actions.sequence(
-                        Actions.fadeIn(0.3f),
+                        Actions.fadeIn(0.1f),
+                        Actions.delay(0.2f),
                         Actions.touchable(Touchable.enabled),
                         Actions.scaleTo(1, 1, 14.7f),
                         new Action() {
@@ -108,9 +109,6 @@ public class HitFrame extends Group {
         // All touched -> remove
         if(allCirclesTouched()) {
             this.scene.frameGroup.killFrame(this);
-            for(HitCircle circle: circles) {
-                circle.destroyed = true;
-            }
             this.destroyed = true;
 
             // Destroy animations
@@ -125,7 +123,7 @@ public class HitFrame extends Group {
             for(HitCircle circle: circles) {
                 circle.clearActions();
                 circle.addAction(
-                        Actions.scaleTo(2f, 2f, 0.3f, Interpolation.circleIn)
+                        Actions.scaleTo(3f, 3f, 0.3f, Interpolation.circleIn)
                 );
             }
         }
