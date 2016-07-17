@@ -29,13 +29,15 @@ public class HitCircle  extends Group {
         this.gameScene = frame.scene;
         this.touched = false;
 
+        final float baseSize = 1.5f;
+
         // Position actor in frame
         setSize(10, 10);
         this.setOrigin(Align.center);
         setPosition(x, y, Align.center);
 
         // Create color core
-        Image inner = PrimitiveImage.circleImage(4.5f, innerColor);
+        Image inner = PrimitiveImage.circleImage(5, innerColor);
         this.innerImage = inner;
         addActor(inner);
         inner.setPosition(5, 5, Align.center);
@@ -48,11 +50,11 @@ public class HitCircle  extends Group {
         addActor(anim);
         anim.setPosition(5, 5, Align.center);
 
-        this.setScale(0.3f);
+        this.setScale(baseSize * 0.3f);
         this.addAction(Actions.sequence(
-                Actions.scaleTo(1, 1, 0.3f, Interpolation.exp10Out),
-                Actions.scaleTo(1.5f, 1.5f, 14.7f),
-                Actions.scaleTo(3f, 3f, 0.5f)
+                Actions.scaleTo(baseSize, baseSize, 0.3f, Interpolation.exp10Out),
+                Actions.scaleTo(baseSize * 1.5f, baseSize * 1.5f, 14.7f),
+                Actions.scaleTo(baseSize * 3f, baseSize * 3f, 0.5f)
         ));
     }
 
@@ -87,7 +89,7 @@ public class HitCircle  extends Group {
 
         final float cx = getWidth() / 2;
         final float cy = getHeight() / 2;
-        final float r = 10f;
+        final float r = 7f * getScaleX();
         float dx = x - cx, dy = y - cy;
         if(dx * dx + dy * dy <= r * r) return this;
         else return null;

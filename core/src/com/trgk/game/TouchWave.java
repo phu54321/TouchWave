@@ -42,7 +42,7 @@ public class TouchWave extends ApplicationAdapter {
 
 		// -------
 
-		final float speedRatio = 15f;
+		final float speedRatio = 1f;
 
 		// Clear background
 		Gdx.gl.glClearColor(1f, 1f, 1f, 1);

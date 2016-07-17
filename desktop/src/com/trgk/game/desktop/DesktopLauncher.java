@@ -48,7 +48,7 @@ public class DesktopLauncher {
         String oldHash = "";
         try {
             BufferedReader fin_buf = new BufferedReader(
-                    new FileReader("C:\\gitclones\\TouchWave\\Graphics\\img\\dirhash.dat")
+                    new FileReader("../../Graphics/dirhash.dat")
             );
             oldHash = fin_buf.readLine();
             fin_buf.close();
@@ -56,11 +56,11 @@ public class DesktopLauncher {
         catch(FileNotFoundException e) {}
         catch(IOException e) {}
 
-        String newHash = Long.toString(hashModDate("C:\\gitclones\\TouchWave\\Graphics\\img"));
+        String newHash = Long.toString(hashModDate("../../Graphics/img"));
         if(newHash.compareTo(oldHash) != 0) {
             try {
                 BufferedWriter fout = new BufferedWriter(
-                        new FileWriter("C:\\gitclones\\TouchWave\\Graphics\\img\\dirhash.dat")
+                        new FileWriter("../../Graphics/dirhash.dat")
                 );
                 fout.write(newHash);
                 fout.close();
@@ -74,8 +74,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.samples = 2;
-		config.width = 960;
-		config.height = 540;
+		config.width = 480;
+		config.height = 320;
 
         if(dirChanged()) {  // Set to true if graphics had changed.
             TexturePacker.Settings settings = new TexturePacker.Settings();
@@ -86,7 +86,7 @@ public class DesktopLauncher {
             settings.fast = true;
             settings.filterMin = Texture.TextureFilter.MipMapLinearLinear;
             settings.filterMag = Texture.TextureFilter.Linear;
-            TexturePacker.process(settings, "C:\\gitclones\\TouchWave\\Graphics\\img", "img", "dptextures");
+            TexturePacker.process(settings, "../../Graphics/img", "img", "dptextures");
         }
 
 		new LwjglApplication(new TouchWave(), config);
