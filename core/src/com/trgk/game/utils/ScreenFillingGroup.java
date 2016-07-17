@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.utils.Align;
 
 
 /**
@@ -24,6 +25,7 @@ public class ScreenFillingGroup extends Group {
         screenWidth = logicalWorldWidth;
         screenHeight = logicalWorldHeight;
         groupScale = 1;
+        this.setOrigin(Align.center);
         setWorldDimension(logicalWorldWidth, logicalWorldHeight);
         updateScreenSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
@@ -58,7 +60,7 @@ public class ScreenFillingGroup extends Group {
 
         this.setSize(worldWidth, worldHeight);
         this.setScale(groupScale);
-        this.setPosition((screenWidth - worldWidth * groupScale) / 2, (screenHeight - worldHeight * groupScale) / 2);
+        this.setPosition(logicalScreenWidth / 2, logicalScreenHeight / 2, Align.center);
     }
 
     //////////////////////////////

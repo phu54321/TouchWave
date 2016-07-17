@@ -63,11 +63,14 @@ public class HitCircle  extends Group {
         super.act(delta);
 
         this.touched = false;
+
+        int processedTouchNum = 0;
         if(!gameScene.gameCompleted && isTouchable()) {
             Stage stage = this.getStage();
             if (stage != null) {
                 for (int i = 0; i < 20; i++) {
                     if (Gdx.input.isTouched(i)) {
+                        processedTouchNum++;
                         float touchX = Gdx.input.getX(i);
                         float touchY = Gdx.input.getY(i);
                         Vector2 touchCoord = new Vector2(touchX, touchY);
@@ -77,6 +80,8 @@ public class HitCircle  extends Group {
                         touchY = touchCoord.y;
 
                         if (hit(touchX, touchY, true) == this) this.touched = true;
+
+                        if(processedTouchNum >= 5) break;
                     }
                 }
             }

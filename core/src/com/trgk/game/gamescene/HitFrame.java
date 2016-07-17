@@ -35,7 +35,7 @@ public class HitFrame extends Group {
         this.addActor(new HitCircleLines(this));
 
         // Add circles
-        final float minDist = 40f;  // Minimum distances between circle pairs
+        final float minDist = 30f;  // Minimum distances between circle pairs
 
         final Color circleColor = HSVRGB.hsvToRgb((float)Math.random(), 1f, 1f);
         this.circles = new ArrayList<HitCircle>();
