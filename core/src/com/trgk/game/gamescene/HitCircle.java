@@ -53,7 +53,7 @@ public class HitCircle  extends Group {
         this.setScale(baseSize * 0.3f);
         this.addAction(Actions.sequence(
                 Actions.scaleTo(baseSize, baseSize, 0.3f, Interpolation.exp10Out),
-                Actions.scaleTo(baseSize * 1.5f, baseSize * 1.5f, 14.7f),
+                Actions.scaleTo(baseSize * 1.5f, baseSize * 1.5f, 6.7f),
                 Actions.scaleTo(baseSize * 3f, baseSize * 3f, 0.5f)
         ));
     }
@@ -94,7 +94,7 @@ public class HitCircle  extends Group {
 
         final float cx = getWidth() / 2;
         final float cy = getHeight() / 2;
-        final float r = 7f * getScaleX();
+        final float r = 6f * getScaleX();
         float dx = x - cx, dy = y - cy;
         if(dx * dx + dy * dy <= r * r) return this;
         else return null;

@@ -25,7 +25,6 @@ public class ScreenFillingGroup extends Group {
         screenWidth = logicalWorldWidth;
         screenHeight = logicalWorldHeight;
         groupScale = 1;
-        this.setOrigin(Align.center);
         setWorldDimension(logicalWorldWidth, logicalWorldHeight);
         updateScreenSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
@@ -59,8 +58,9 @@ public class ScreenFillingGroup extends Group {
         this.logicalScreenHeight = screenHeight / groupScale;
 
         this.setSize(worldWidth, worldHeight);
+        this.setOrigin(Align.center);
+        this.setPosition(screenWidth / 2, screenHeight / 2, Align.center);
         this.setScale(groupScale);
-        this.setPosition(logicalScreenWidth / 2, logicalScreenHeight / 2, Align.center);
     }
 
     //////////////////////////////

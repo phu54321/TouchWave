@@ -14,21 +14,38 @@ class FrameGenerator extends Actor {
     float remainingTime = 0;
     int currentFrameIndex = 0;
 
-    float currentHue;
 
     float nextRemainingTime() {
         float circlePerSec = (float)Math.sqrt(currentFrameIndex + 25) / 5f;
-        float decFactor = currentFrameIndex / (currentFrameIndex + 300f);
+        float decFactor = currentFrameIndex / (currentFrameIndex + 200f);
         return 1.0f + 0.7f / circlePerSec - 0.9f * decFactor;
     }
 
-    int getRandomCircleNum() {
+
+
+    ///////
+
+    float getMinCircleNum() {
         float minCircleNum = (float)Math.sqrt(currentFrameIndex + 100f) / 5f - 1;
-        if(minCircleNum > 2.6f) minCircleNum = 2.6f;
-        float maxCirclePerNum = (float)Math.sqrt(currentFrameIndex + 20.25f) / 4.5f + 1;
-        if(maxCirclePerNum > 5.6f) maxCirclePerNum = 4.6f;
-        return (int)Math.floor(Math.random() * (maxCirclePerNum - minCircleNum) + minCircleNum);
+        if(minCircleNum > 2.3f) minCircleNum = 2.3f;
+        return minCircleNum;
     }
+
+    float getMaxCircleNum() {
+        float maxCirclePerNum = (float)Math.sqrt(currentFrameIndex + 20.25f) / 4.5f + 1;
+        if(maxCirclePerNum > 5.6f) maxCirclePerNum = 5.6f;
+        return maxCirclePerNum;
+    }
+
+    int getRandomCircleNum() {
+        float minCircleNum = getMinCircleNum();
+        float maxCircleNum = getMaxCircleNum();
+        return (int)Math.floor(Math.random() * (maxCircleNum - minCircleNum) + minCircleNum);
+    }
+
+    ///////
+
+    float currentHue;
 
     public Color getNextCircleColor() {
         final Color circleColor = HSVRGB.hsvToRgb(currentHue, 0.5f, 0.95f);
@@ -45,7 +62,7 @@ class FrameGenerator extends Actor {
 
         remainingTime -= dt;
         // To few frames -> Add more.
-        float maxRemainingTIme = getRandomCircleNum() * 0.1f;
+        float maxRemainingTIme = getMaxCircleNum() * 0.03f + 0.07f;
         if (frameGroup.getAliveFrameCount()<= 3 && remainingTime >= maxRemainingTIme)
             remainingTime = maxRemainingTIme;
 

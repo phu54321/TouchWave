@@ -7,9 +7,7 @@ import com.trgk.game.utils.TGResources;
 import java.util.ArrayList;
 import java.util.Locale;
 
-/**
- * Created by phu54 on 2016-07-14.
- */
+
 public class CountdownAnim {
     static CountdownAnim inst = null;
     static public CountdownAnim getInstance() {
@@ -20,7 +18,7 @@ public class CountdownAnim {
     // -------
 
     public Animation countdownAnimation;
-    final public float countdownTIme = 15f;
+    final public float countdownTIme = 7f;
 
     private CountdownAnim() {
         ArrayList<TextureRegion> countdowns = new ArrayList<TextureRegion>();

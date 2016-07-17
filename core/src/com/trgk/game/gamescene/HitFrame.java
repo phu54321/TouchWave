@@ -75,7 +75,7 @@ public class HitFrame extends Group {
                         Actions.fadeIn(0.1f),
                         Actions.delay(0.2f),
                         Actions.touchable(Touchable.enabled),
-                        Actions.scaleTo(1, 1, 14.7f),
+                        Actions.scaleTo(1, 1, 6.7f),
                         new Action() {
                             @Override
                             public boolean act(float delta) {
