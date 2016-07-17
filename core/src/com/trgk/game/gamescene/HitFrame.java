@@ -22,7 +22,7 @@ public class HitFrame extends Group {
 
     final GameScene scene;
 
-    public HitFrame(final GameScene scene, int count) {
+    public HitFrame(final GameScene scene, int count, Color circleColor) {
         this.scene = scene;
         this.size = count;
 
@@ -36,8 +36,6 @@ public class HitFrame extends Group {
 
         // Add circles
         final float minDist = 30f;  // Minimum distances between circle pairs
-
-        final Color circleColor = HSVRGB.hsvToRgb((float)Math.random(), 1f, 1f);
         this.circles = new ArrayList<HitCircle>();
 
         for(int i = 0 ; i < count ; i++) {

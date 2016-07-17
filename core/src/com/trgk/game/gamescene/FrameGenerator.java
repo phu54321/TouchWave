@@ -1,16 +1,20 @@
 package com.trgk.game.gamescene;
 
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.trgk.game.utils.HSVRGB;
 
 class FrameGenerator extends Actor {
     GameScene parent;
     public FrameGenerator(GameScene parent) {
         this.parent = parent;
+        this.currentHue = (float)Math.random();
     }
 
     float remainingTime = 0;
     int currentFrameIndex = 0;
+
+    float currentHue;
 
     float nextRemainingTime() {
         float circlePerSec = (float)Math.sqrt(currentFrameIndex + 25) / 5f;
@@ -22,8 +26,15 @@ class FrameGenerator extends Actor {
         float minCircleNum = (float)Math.sqrt(currentFrameIndex + 100f) / 5f - 1;
         if(minCircleNum > 2.6f) minCircleNum = 2.6f;
         float maxCirclePerNum = (float)Math.sqrt(currentFrameIndex + 20.25f) / 4.5f + 1;
-        if(maxCirclePerNum > 4.6f) maxCirclePerNum = 4.6f;
+        if(maxCirclePerNum > 5.6f) maxCirclePerNum = 4.6f;
         return (int)Math.floor(Math.random() * (maxCirclePerNum - minCircleNum) + minCircleNum);
+    }
+
+    public Color getNextCircleColor() {
+        final Color circleColor = HSVRGB.hsvToRgb(currentHue, 0.5f, 0.95f);
+        currentHue += 0.618033988749895f;
+        if(currentHue >= 1) currentHue -= 1;
+        return circleColor;
     }
 
     @Override
@@ -42,7 +53,8 @@ class FrameGenerator extends Actor {
             currentFrameIndex++;
 
             int circleNum = getRandomCircleNum();
-            HitFrame frame = new HitFrame(parent, circleNum);
+
+            HitFrame frame = new HitFrame(parent, circleNum, getNextCircleColor());
             frameGroup.addFrame(frame);
             frame.act(-remainingTime);
 

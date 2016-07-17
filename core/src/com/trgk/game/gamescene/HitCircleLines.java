@@ -17,11 +17,11 @@ class HitCircleLines extends Actor {
     final Color lineColor;
 
     final static Color[] colorTable = {
-            new Color(0f, 0f, 1f, 1f),
-            new Color(0f, 1f, 0f, 1f),
-            new Color(1f, 0f, 0f, 1f),
-            new Color(1f, 0f, 1f, 1f),
-            new Color(0f, 1f, 1f, 1f),
+            new Color(0.5f, 0.5f, 1.0f, 1f),
+            new Color(0.5f, 1.0f, 0.5f, 1f),
+            new Color(1.0f, 0.5f, 0.5f, 1f),
+            new Color(1.0f, 0.5f, 1.0f, 1f),
+            new Color(0.5f, 1.0f, 1.0f, 1f),
     };
 
     HitCircleLines(HitFrame parent) {
