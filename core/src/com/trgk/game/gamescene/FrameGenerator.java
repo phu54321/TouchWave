@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.trgk.game.utils.HSVRGB;
 
+import java.util.Locale;
+
 class FrameGenerator extends Actor {
     GameScene parent;
     public FrameGenerator(GameScene parent) {
@@ -16,7 +18,7 @@ class FrameGenerator extends Actor {
 
 
     float nextRemainingTime() {
-        float circlePerSec = (float)Math.sqrt(currentFrameIndex + 25) / 5f;
+        float circlePerSec = (float)Math.sqrt(currentFrameIndex + 36) / 6f;
         float decFactor = currentFrameIndex / (currentFrameIndex + 200f);
         return 1.0f + 0.7f / circlePerSec - 0.9f * decFactor;
     }
@@ -26,13 +28,11 @@ class FrameGenerator extends Actor {
     ///////
 
     float getMinCircleNum() {
-        float minCircleNum = (float)Math.sqrt(currentFrameIndex + 100f) / 5f - 1;
-        if(minCircleNum > 2.3f) minCircleNum = 2.3f;
-        return minCircleNum;
+        return 1.5f;
     }
 
     float getMaxCircleNum() {
-        float maxCirclePerNum = (float)Math.sqrt(currentFrameIndex + 30f) / 4f;
+        float maxCirclePerNum = 1.8f + currentFrameIndex / 70f;
         if(maxCirclePerNum > 8.6f) maxCirclePerNum = 8.6f;
         return maxCirclePerNum;
     }
@@ -41,6 +41,19 @@ class FrameGenerator extends Actor {
         float minCircleNum = getMinCircleNum();
         float maxCircleNum = getMaxCircleNum();
         return (int)Math.floor(Math.random() * (maxCircleNum - minCircleNum) + minCircleNum);
+    }
+
+    public static void main(String[] args) {
+        FrameGenerator generator = new FrameGenerator(null);
+        int score = 0;
+        for(int i = 0 ; i < 300 ; i++) {
+            generator.currentFrameIndex = i;
+            int cnum = generator.getRandomCircleNum();
+            score += cnum * cnum;
+            System.out.println(String.format(Locale.ENGLISH,
+                    "%4d %5d %.2f %.2f", i, score, generator.getMaxCircleNum(), generator.getMinCircleNum()
+            ));
+        }
     }
 
     ///////

@@ -34,7 +34,7 @@ public class GameoverScene extends TGScene {
         wnd.setPosition(75, 50, Align.center);
         g.addActor(wnd);
         wnd.setOrigin(Align.center);
-        wnd.setScale(1.3f);
+        wnd.setScale(1.6f);
 
         final GameoverScene this2 = this;
 
@@ -63,7 +63,7 @@ public class GameoverScene extends TGScene {
                 new TGButton("Retry", 8f, 23, 7, new Color(.40f, .67f, .93f, 1)) {
                     @Override
                     public void clicked() {
-                        this2.getSceneManager().setCurrentScene(null);
+                        this2.getSceneManager().setCurrentScene(new GameScene());
                     }
                 },
                 2.0f
