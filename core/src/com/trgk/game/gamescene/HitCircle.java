@@ -3,31 +3,29 @@ package com.trgk.game.gamescene;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.trgk.game.utils.AnimatedImage;
 import com.trgk.game.utils.PrimitiveImage;
 
 public class HitCircle  extends Group {
-    final HitFrame parent;
-    final GameScene gameScene;
-    final Image innerImage;
-    boolean touched;
+    private final GameScene gameScene;
+    private float timeSinceLastTouch;
+    private final Image innerImage;
+    private final Color baseColor;
+    private final Color touchedColor;
 
     public HitCircle(HitFrame frame, float x, float y, Color innerColor) {
-        this.parent = frame;
         this.gameScene = frame.scene;
-        this.touched = false;
+        this.timeSinceLastTouch = 1000;
+
 
         final float baseSize = 1.5f;
 
@@ -41,6 +39,15 @@ public class HitCircle  extends Group {
         this.innerImage = inner;
         addActor(inner);
         inner.setPosition(5, 5, Align.center);
+
+        // Set color
+        this.baseColor = innerColor;
+        Color touchedColor = new Color();
+        touchedColor.r = (innerColor.r + 1) / 2;
+        touchedColor.g = (innerColor.g + 1) / 2;
+        touchedColor.b = (innerColor.b + 1) / 2;
+        touchedColor.a = 1;
+        this.touchedColor = touchedColor;
 
         // Create countdown timer anim
         Animation countdownAnimation = CountdownAnim.getInstance().countdownAnimation;
@@ -58,11 +65,15 @@ public class HitCircle  extends Group {
         ));
     }
 
+    public boolean isTouched() {
+        return timeSinceLastTouch < 0.3f;
+    }
+
     @Override
     public void act(float delta) {
         super.act(delta);
 
-        this.touched = false;
+        timeSinceLastTouch += delta;
 
         int processedTouchNum = 0;
         if(!gameScene.gameCompleted && isTouchable()) {
@@ -79,7 +90,16 @@ public class HitCircle  extends Group {
                         touchX = touchCoord.x;
                         touchY = touchCoord.y;
 
-                        if (hit(touchX, touchY, true) == this) this.touched = true;
+                        if (hit(touchX, touchY, true) == this) {
+                            timeSinceLastTouch = 0;
+                            innerImage.clearActions();
+
+                            innerImage.addAction(Actions.sequence(
+                                    Actions.color(touchedColor),
+                                    Actions.color(baseColor, 0.3f)
+                            ));
+                            break;
+                        }
 
                         if(processedTouchNum >= 5) break;
                     }

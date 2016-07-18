@@ -40,7 +40,7 @@ class HitCircleLines extends Actor {
                     HitCircle p2 = circles.get(j);
 
                     Color color = new Color(lineColor);
-                    if (p1.touched && p2.touched) {
+                    if (p1.isTouched() && p2.isTouched()) {
                         color.a = 0.8f * parentAlpha;
                     } else {
                         color.a = 0.4f * parentAlpha;

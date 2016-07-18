@@ -81,8 +81,8 @@ public class DesktopLauncher {
             TexturePacker.Settings settings = new TexturePacker.Settings();
             settings.maxWidth = 1024;
             settings.maxHeight = 1024;
-            settings.duplicatePadding = true;
-            settings.edgePadding = true;
+            settings.duplicatePadding = false;
+            settings.edgePadding = false;
             settings.fast = true;
             settings.filterMin = Texture.TextureFilter.MipMapLinearLinear;
             settings.filterMag = Texture.TextureFilter.Linear;

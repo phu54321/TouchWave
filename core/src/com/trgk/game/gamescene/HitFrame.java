@@ -93,7 +93,7 @@ public class HitFrame extends Group {
      */
     public boolean allCirclesTouched() {
         for(HitCircle circle: circles) {
-            if(!circle.touched) return false;
+            if(!circle.isTouched()) return false;
         }
         return true;
     }
