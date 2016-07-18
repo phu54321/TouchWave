@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.trgk.game.utils.PrimitiveImage;
 import com.trgk.game.utils.TGResources;
 
@@ -27,6 +28,7 @@ class HitCircleLines extends Actor {
     HitCircleLines(HitFrame parent) {
         this.parent = parent;
         this.lineColor = colorTable[parent.size - 1];
+        this.setTouchable(Touchable.disabled);
     }
 
     @Override
