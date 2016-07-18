@@ -1,5 +1,6 @@
 package com.trgk.game;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.FPSLogger;
@@ -17,8 +18,9 @@ public class TouchWave extends ApplicationAdapter {
 
 	@Override
 	public void create () {
-		logger = new FPSLogger();
+		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 
+		logger = new FPSLogger();
 		sceneManager.setCurrentScene(new TestScene());
 	}
 
@@ -42,7 +44,7 @@ public class TouchWave extends ApplicationAdapter {
 
 		// -------
 
-		final float speedRatio = 1f;
+		final float speedRatio = 15f;
 
 		// Clear background
 		Gdx.gl.glClearColor(1f, 1f, 1f, 1);

@@ -74,8 +74,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.samples = 2;
-		config.width = 480;
-		config.height = 320;
+		config.width = 960;
+		config.height = 640;
 
         if(dirChanged()) {  // Set to true if graphics had changed.
             TexturePacker.Settings settings = new TexturePacker.Settings();

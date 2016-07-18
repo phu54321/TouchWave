@@ -30,7 +30,7 @@ public class GameoverScene extends TGScene {
         background.setPosition(75, 50, Align.center);
         g.addActor(background);
 
-        TGWindow wnd = new TGWindow(50);
+        TGWindow wnd = new TGWindow(46);
         wnd.setPosition(75, 50, Align.center);
         g.addActor(wnd);
         wnd.setOrigin(Align.center);
@@ -39,18 +39,18 @@ public class GameoverScene extends TGScene {
         final GameoverScene this2 = this;
 
         wnd.addActor(TGWindow.showAfter(
-                new TGText("Game over", 7, 25, 39, new Color(0, 0, 0, 1)),
+                new TGText("Game over", 7, 23, 39, new Color(0, 0, 0, 1)),
                 0.5f
         ));
 
         String scoreText = String.format(Locale.ENGLISH, "Score : %d", gameScene.getScore());
         wnd.addActor(TGWindow.showAfter(
-                new TGText(scoreText, 5, 25, 29, new Color(0, 0, 0, 1)),
+                new TGText(scoreText, 5, 23, 28, new Color(0, 0, 0, 1)),
                 1.0f
         ));
 
         wnd.addActor(TGWindow.showAfter(
-                new TGButton("Retry", 8f, 25, 16, new Color(.8f, .8f, .8f, 1)) {
+                new TGButton("Share", 8f, 23, 16, new Color(.40f, .67f, .93f, 1)) {
                     @Override
                     public void clicked() {
                         this2.getSceneManager().setCurrentScene(new GameScene());
@@ -60,7 +60,7 @@ public class GameoverScene extends TGScene {
         ));
 
         wnd.addActor(TGWindow.showAfter(
-                new TGButton("Quit", 8f, 25, 7, new Color(.8f, .8f, .8f, 1)) {
+                new TGButton("Retry", 8f, 23, 7, new Color(.40f, .67f, .93f, 1)) {
                     @Override
                     public void clicked() {
                         this2.getSceneManager().setCurrentScene(null);

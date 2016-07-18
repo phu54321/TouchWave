@@ -20,9 +20,9 @@ class HitCircleLines extends Actor {
 
     HitCircleLines(HitFrame parent) {
         this.parent = parent;
-        float hue = 0.618033988749895f * parent.size;
+        float hue = 0.618033988749895f * (2 * parent.size - parent.size / 3);
         hue -= Math.floor(hue);
-        this.lineColor = HSVRGB.hsvToRgb(hue, 0.5f, 0.95f);
+        this.lineColor = HSVRGB.hsvToRgb(hue, 0.9f, 0.95f);
         this.setTouchable(Touchable.disabled);
     }
 

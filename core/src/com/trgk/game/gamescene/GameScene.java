@@ -65,45 +65,10 @@ public class GameScene extends TGScene {
 
     ///////
 
-    public void untouchAllCircles() {
-        for(HitFrame frame : frameGroup.aliveFrames) {
-            for(HitCircle circle : frame.circles) {
-                circle.touched = false;
-            }
-        }
-    }
-
-    public void touchCircles() {
-        int processedTouchNum = 0;
-        Stage stage = getStage();
-
-        for (int i = 0; i < 20; i++) {
-            if (Gdx.input.isTouched(i)) {
-                processedTouchNum++;
-                float touchX = Gdx.input.getX(i);
-                float touchY = Gdx.input.getY(i);
-
-                Vector2 touchCoord = new Vector2(touchX, touchY);
-                stage.screenToStageCoordinates(touchCoord);
-                touchX = touchCoord.x;
-                touchY = touchCoord.y;
-
-                Actor hitObject = stage.hit(touchX, touchY, true);
-                if(hitObject instanceof HitCircle) {
-                    ((HitCircle) hitObject).touched = true;
-                }
-                if(processedTouchNum >= 5) break;
-            }
-        }
-    }
-
     @Override
     public void act(float dt) {
         super.act(dt);
         if(gameCompleted) return;
-
-        untouchAllCircles();
-        touchCircles();
 
         elapsedTime += dt;
         String scoreString = String.format(Locale.ENGLISH, "Score : %d    Time : %.2f", getScore(), elapsedTime);
