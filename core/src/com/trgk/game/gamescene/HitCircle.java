@@ -66,7 +66,7 @@ public class HitCircle  extends Group {
     }
 
     public boolean isTouched() {
-        return timeSinceLastTouch < 0.3f;
+        return timeSinceLastTouch < 0.2f;
     }
 
     @Override
