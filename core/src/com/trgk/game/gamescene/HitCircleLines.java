@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.trgk.game.utils.HSVRGB;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.trgk.game.utils.PrimitiveImage;
 import com.trgk.game.utils.TGResources;
 
@@ -17,20 +18,12 @@ class HitCircleLines extends Actor {
     final HitFrame parent;
     final Color lineColor;
 
-    final static Color[] colorTable = {
-            new Color(0.5f, 0.5f, 1.0f, 1f),
-            new Color(0.5f, 1.0f, 0.5f, 1f),
-            new Color(1.0f, 0.5f, 0.5f, 1f),
-            new Color(1.0f, 0.5f, 1.0f, 1f),
-            new Color(0.5f, 1.0f, 1.0f, 1f),
-    };
-
     HitCircleLines(HitFrame parent) {
         this.parent = parent;
-
         float hue = 0.618033988749895f * parent.size;
         hue -= Math.floor(hue);
         this.lineColor = HSVRGB.hsvToRgb(hue, 0.5f, 0.95f);
+        this.setTouchable(Touchable.disabled);
     }
 
     @Override

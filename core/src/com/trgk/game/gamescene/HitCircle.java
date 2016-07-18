@@ -21,6 +21,7 @@ public class HitCircle  extends Group {
     private final Image innerImage;
     private final Color baseColor;
     private final Color touchedColor;
+    boolean touched;
 
     public HitCircle(HitFrame frame, float x, float y, Color innerColor) {
         this.gameScene = frame.scene;
@@ -74,37 +75,16 @@ public class HitCircle  extends Group {
         super.act(delta);
 
         timeSinceLastTouch += delta;
+        if (this.touched) {
+            timeSinceLastTouch = 0;
+            innerImage.clearActions();
 
-        int processedTouchNum = 0;
-        if(!gameScene.gameCompleted && isTouchable()) {
-            Stage stage = this.getStage();
-            if (stage != null) {
-                for (int i = 0; i < 20; i++) {
-                    if (Gdx.input.isTouched(i)) {
-                        processedTouchNum++;
-                        float touchX = Gdx.input.getX(i);
-                        float touchY = Gdx.input.getY(i);
-                        Vector2 touchCoord = new Vector2(touchX, touchY);
-                        stage.screenToStageCoordinates(touchCoord);
-                        this.stageToLocalCoordinates(touchCoord);
-                        touchX = touchCoord.x;
-                        touchY = touchCoord.y;
-
-                        if (hit(touchX, touchY, true) == this) {
-                            timeSinceLastTouch = 0;
-                            innerImage.clearActions();
-
-                            innerImage.addAction(Actions.sequence(
-                                    Actions.color(touchedColor),
-                                    Actions.color(baseColor, 0.3f)
-                            ));
-                            break;
-                        }
-
-                        if(processedTouchNum >= 5) break;
-                    }
-                }
-            }
+            innerImage.addAction(Actions.sequence(
+                    Actions.color(touchedColor),
+                    Actions.color(baseColor, 0.3f)
+            ));
+        } else {
+            timeSinceLastTouch += delta;
         }
     }
 

@@ -1,14 +1,16 @@
 package com.trgk.game.gamescene;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
-import com.trgk.game.utils.HSVRGB;
 import com.trgk.game.utils.PrimitiveImage;
 
 import java.util.ArrayList;
@@ -75,9 +77,9 @@ public class HitFrame extends Group {
         this.addAction(
                 Actions.sequence(
                         Actions.fadeIn(0.1f),
-                        Actions.delay(0.2f),
+                        Actions.delay(0.4f),
                         Actions.touchable(Touchable.enabled),
-                        Actions.scaleTo(1, 1, 6.7f),
+                        Actions.scaleTo(1, 1, 6.5f),
                         new Action() {
                             @Override
                             public boolean act(float delta) {
@@ -113,11 +115,16 @@ public class HitFrame extends Group {
 
             // Destroy animations
             this.clearActions();
-            this.addAction(Actions.sequence(
-                    Actions.touchable(Touchable.disabled),
-                    Actions.alpha(1),
-                    Actions.fadeOut(0.3f, Interpolation.exp10Out),
-                    Actions.removeActor()
+            this.addAction(Actions.parallel(
+                    Actions.sequence(
+                            Actions.delay(0.1f),
+                            Actions.touchable(Touchable.disabled)
+                    ),
+                    Actions.sequence(
+                            Actions.alpha(1),
+                            Actions.fadeOut(0.3f, Interpolation.exp10Out),
+                            Actions.removeActor()
+                    )
             ));
 
             for(HitCircle circle: circles) {
@@ -127,5 +134,18 @@ public class HitFrame extends Group {
                 );
             }
         }
+    }
+
+    @Override
+    public Actor hit(float x, float y, boolean touchable) {
+        if(touchable && getTouchable() != Touchable.enabled) return null;
+
+        Vector2 point = new Vector2();
+        for(HitCircle circle : circles) {
+            circle.parentToLocalCoordinates(point.set(x, y));
+            Actor hit = circle.hit(point.x, point.y, touchable);
+            if(hit != null) return hit;
+        }
+        return null;
     }
 }
