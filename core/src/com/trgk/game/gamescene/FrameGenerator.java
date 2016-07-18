@@ -33,14 +33,17 @@ class FrameGenerator extends Actor {
 
     float getMaxCircleNum() {
         float maxCirclePerNum = (float)Math.sqrt(currentFrameIndex + 20.25f) / 4.5f + 1;
-        if(maxCirclePerNum > 10.6f) maxCirclePerNum = 5.6f;
+        if(maxCirclePerNum > 8.6f) maxCirclePerNum = 8.6f;
         return maxCirclePerNum;
     }
 
     int getRandomCircleNum() {
+        return 8;
+        /*
         float minCircleNum = getMinCircleNum();
         float maxCircleNum = getMaxCircleNum();
         return (int)Math.floor(Math.random() * (maxCircleNum - minCircleNum) + minCircleNum);
+        */
     }
 
     ///////

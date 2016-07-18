@@ -35,11 +35,12 @@ public class HitFrame extends Group {
         this.addActor(new HitCircleLines(this));
 
         // Add circles
-        final float minDist = 30f;  // Minimum distances between circle pairs
+        final float desiredMinDist = 30f;  // Minimum distances between circle pairs
         this.circles = new ArrayList<HitCircle>();
 
         for(int i = 0 ; i < count ; i++) {
             float cx, cy;
+            float minDist = desiredMinDist;
             do {
                 cx = (float) Math.random() * 110 + 20;
                 cy = (float) Math.random() * 60 + 20;
@@ -56,6 +57,7 @@ public class HitFrame extends Group {
                     }
                 }
                 if (!tooClose) break;
+                minDist -= 0.3f;
             } while(true);
 
             HitCircle hitCircle = new HitCircle(this, cx, cy, circleColor);

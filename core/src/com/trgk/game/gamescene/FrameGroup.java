@@ -31,7 +31,7 @@ public class FrameGroup extends Group {
      */
     public void killFrame(HitFrame frame) {
         aliveFrames.remove(frame);
-        score += frame.size;
+        score += frame.size * frame.size;
     }
 
     /**
