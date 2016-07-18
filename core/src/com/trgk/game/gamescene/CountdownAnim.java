@@ -18,20 +18,22 @@ public class CountdownAnim {
     // -------
 
     public Animation countdownAnimation;
-    final public float countdownTIme = 7f;
+    final public float countdownTime = 7f;
 
     private CountdownAnim() {
-        ArrayList<TextureRegion> countdowns = new ArrayList<TextureRegion>();
+        ArrayList<TextureRegion> countdownImgList = new ArrayList<TextureRegion>();
         TGResources res = TGResources.getInstance();
 
         for(int i = 360 ; i >= 0 ; i -= 3) {
             String imgPath = String.format(Locale.ENGLISH, "countdown_a%d", i);
-            countdowns.add(res.getAtlastRegion(imgPath));
+            countdownImgList.add(res.getAtlastRegion(imgPath));
         }
 
+        TextureRegion[] countdownImgArray = new TextureRegion[countdownImgList.size()];
+        countdownImgList.toArray(countdownImgArray);
         countdownAnimation  = new Animation(
-                countdownTIme / 120f,
-                countdowns.toArray(new TextureRegion[]{})
+                countdownTime / 120f,
+                countdownImgArray
         );
         countdownAnimation.setPlayMode(Animation.PlayMode.NORMAL);
     }
