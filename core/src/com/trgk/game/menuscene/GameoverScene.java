@@ -6,22 +6,22 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.trgk.game.TGPopupScene;
 import com.trgk.game.TGScene;
 import com.trgk.game.gamescene.GameScene;
 import com.trgk.game.ui.TGButton;
 import com.trgk.game.ui.TGWindow;
+import com.trgk.game.utils.MessageBox;
 import com.trgk.game.utils.PrimitiveImage;
 import com.trgk.game.utils.ScreenFillingGroup;
 import com.trgk.game.ui.TGText;
 
 import java.util.Locale;
 
-public class GameoverScene extends TGScene {
-    final GameScene gameScene;
+public class GameoverScene extends TGPopupScene {
     public GameoverScene(GameScene gameScene) {
-        super(new Stage(new ScreenViewport()));
-        this.gameScene = gameScene;
-        gameScene.ref();
+        super(gameScene, new Stage(new ScreenViewport()));
+        MessageBox.alert("Test", "Test message");
 
         ScreenFillingGroup g = new ScreenFillingGroup(150, 100);
         this.getStage().addActor(g);
@@ -74,23 +74,5 @@ public class GameoverScene extends TGScene {
         g.addAction(Actions.sequence(
                 Actions.fadeIn(.5f)
         ));
-    }
-
-    @Override
-    protected void onZeroRef() {
-        gameScene.unref();
-        super.onZeroRef();
-    }
-
-    @Override
-    public void act(float dt) {
-        super.act(dt);
-        gameScene.act(dt);
-    }
-
-    @Override
-    public void draw() {
-        gameScene.draw();
-        super.draw();
     }
 }

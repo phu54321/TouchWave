@@ -6,6 +6,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 import com.trgk.game.TouchWave;
+import com.trgk.game.utils.MessageBox;
 
 import java.io.*;
 import java.util.*;
@@ -89,6 +90,7 @@ public class DesktopLauncher {
             TexturePacker.process(settings, "../../Graphics/img", "img", "dptextures");
         }
 
+        MessageBox.setImpl(new MessageBoxDesktop());
 		new LwjglApplication(new TouchWave(), config);
 	}
 }

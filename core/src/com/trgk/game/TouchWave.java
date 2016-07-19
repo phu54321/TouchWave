@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.GL20;
 public class TouchWave extends ApplicationAdapter {
 	TGSceneManager sceneManager;
 	FPSLogger logger;
+	static final String TAG = TouchWave.class.getSimpleName();
 
 	public TouchWave() {
 		sceneManager = new TGSceneManager();
