@@ -31,6 +31,7 @@ package com.trgk.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.trgk.game.facebook.FBService;
 import com.trgk.game.gamescene.GameScene;
 import com.trgk.game.menuscene.MenuScene;
 import com.trgk.game.menuscene.StatsScene;
@@ -48,6 +49,7 @@ public class TouchWave extends ApplicationAdapter {
 	@Override
 	public void create () {
 		GameLogger.getInstance(); // Init game log
+		FBService.getInstance().logoutFull();
 		sceneManager.setCurrentScene(new MenuScene());
 	}
 

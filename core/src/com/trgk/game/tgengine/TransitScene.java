@@ -39,12 +39,15 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.trgk.game.tgengine.ui.TGPrimitive;
 
 public class TransitScene extends TGScene {
+    TGScene before, after;
     TGScene backgroundScene;
     Image background;
 
 
     public TransitScene(final TGScene before, final TGScene after, float transitTime) {
         super(new Stage(new ScreenViewport()));
+        this.before = before;
+        this.after = after;
 
         before.ref();
         after.ref();
@@ -64,6 +67,7 @@ public class TransitScene extends TGScene {
                     @Override
                     public boolean act(float delta) {
                         this2.backgroundScene = after;
+                        this2.before = null;
                         before.unref();
                         return true;
                     }
@@ -73,6 +77,7 @@ public class TransitScene extends TGScene {
                     @Override
                     public boolean act(float delta) {
                         getSceneManager().setCurrentScene(after);
+                        this2.after = null;
                         after.unref();
                         return true;
                     }
@@ -81,9 +86,17 @@ public class TransitScene extends TGScene {
     }
 
     @Override
+    protected void onZeroRef() {
+        if(before != null) before.unref();
+        if(after != null) after.unref();
+        before = after = null;
+        super.onZeroRef();
+    }
+
+    @Override
     public void draw() {
         background.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        backgroundScene.draw();
+        if(backgroundScene != null) backgroundScene.draw();
         super.draw();
     }
 }

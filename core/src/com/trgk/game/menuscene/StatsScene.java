@@ -108,14 +108,21 @@ public class StatsScene extends TGScene {
         text = new TGText(
                 String.format(Locale.KOREAN, "최초 실행 시각 : %s", dayTime.format(new Date(inst.installTime))),
                 2.2f, 23, 28, Color.BLACK);
-        text.setPosition(4, 28, Align.left);
+        text.setPosition(4, 31, Align.left);
         text.setOrigin(Align.left);
         wnd.addActor(text);
 
         text = new TGText(
                 String.format(Locale.KOREAN, "총 플레이 시간 : %s", encodePlaytime(inst.totalPlayTime / 1000f)),
                 2.2f, 23, 28, Color.BLACK);
-        text.setPosition(4, 22, Align.left);
+        text.setPosition(4, 26f, Align.left);
+        text.setOrigin(Align.left);
+        wnd.addActor(text);
+
+        text = new TGText(
+                String.format(Locale.KOREAN, "최고 획득 점수 : %d", inst.maxScore),
+                2.2f, 23, 28, Color.BLACK);
+        text.setPosition(4, 21, Align.left);
         text.setOrigin(Align.left);
         wnd.addActor(text);
 

@@ -101,7 +101,7 @@ public class FBService {
     }
 
     public boolean isLogonRead() {
-        return isLogonReadPermission;
+        return fbHandle.isSignedIn();
     }
 
     public boolean isLogonPublish() {
@@ -173,6 +173,7 @@ public class FBService {
             @Override
             public void onSuccess(SignInResult result) {
                 lastActionResult = Result.SUCCESS;
+                updateUserInfo();
             }
 
             @Override
@@ -201,6 +202,18 @@ public class FBService {
         isLogonReadPermission = true;
         isLogonPublishPermission = false;
     }
+
+
+    /**
+     * Logout from FB
+     */
+    public void logoutFull() {
+        fbHandle.signOut(false);
+        isLogonReadPermission = true;
+        isLogonPublishPermission = false;
+    }
+
+
 
 
 

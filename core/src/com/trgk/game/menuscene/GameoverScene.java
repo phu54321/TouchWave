@@ -106,33 +106,33 @@ public class GameoverScene extends TGPopupScene {
 
         wnd.addActor(TGWindow.showAfter(
                 new TGText("게임 오버", 7, 23, 39, new Color(0, 0, 0, 1)),
-                0.5f
+                0.3f
         ));
 
         String scoreText = String.format(Locale.KOREAN, "점수 : %d", gameScene.getScore());
         wnd.addActor(TGWindow.showAfter(
                 new TGText(scoreText, 4, 23, 28.5f, new Color(0, 0, 0, 1)),
-                1.0f
+                0.6f
         ));
 
         wnd.addActor(TGWindow.showAfter(
-                new TGButton("페이스북 공유", 6f, 23, 19, new Color(.40f, .67f, .93f, 1)) {
+                new TGButton("페이스북 공유", 6f, 23, 19,new Color(.40f, .67f, .93f, 1)) {
                     @Override
                     public void clicked() {
                         this2.getSceneManager().setCurrentScene(new FBShareResult(this2, gameScene));
                     }
                 },
-                1.5f
+                0.9f
         ));
 
         wnd.addActor(TGWindow.showAfter(
                 new TGButton("재도전", 6f, 23, 12, new Color(.40f, .67f, .93f, 1)) {
                     @Override
                     public void clicked() {
-                        this2.getSceneManager().setCurrentScene(new GameScene());
+                        this2.getSceneManager().setCurrentScene(new TransitScene(this2, new GameScene(), 0.2f));
                     }
                 },
-                2.0f
+                1.2f
         ));
 
         wnd.addActor(TGWindow.showAfter(
@@ -142,7 +142,7 @@ public class GameoverScene extends TGPopupScene {
                         this2.getSceneManager().setCurrentScene(new TransitScene(this2, new MenuScene(), 0.2f));
                     }
                 },
-                2.5f
+                1.5f
         ));
 
         return wnd;

@@ -76,7 +76,7 @@ public class FBShareResult extends TGPopupScene {
         if(currentState == 2) {
             String username = fb.username;
             String shareString = String.format(Locale.ENGLISH,
-                    "%s has scored %d at TouchWave!", username, gameScene.getScore());
+                    "%s님이 TouchWave에서 %d점을 달성했습니다!", username, gameScene.getScore());
             fb.postPhotoToUserWall("TouchWave", shareString, null, Gdx.files.local("screenshot.png"));
             currentState = 3;
         }
