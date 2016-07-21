@@ -31,14 +31,10 @@ package com.trgk.game.gamescene;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Affine2;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.trgk.game.utils.HSVRGB;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.trgk.game.utils.PrimitiveImage;
-import com.trgk.game.utils.TGResources;
+import com.trgk.game.tgengine.ui.TGPrimitive;
 
 import java.util.ArrayList;
 
@@ -72,7 +68,7 @@ class HitCircleLines extends Actor {
                         color.a = 0.4f * parentAlpha;
                     }
 
-                    PrimitiveImage.drawDottedLine(batch,
+                    TGPrimitive.drawDottedLine(batch,
                             p1.getX() + p1.getWidth() / 2,
                             p1.getY() + p1.getHeight() / 2,
                             p2.getX() + p2.getWidth() / 2,

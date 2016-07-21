@@ -27,7 +27,7 @@
  * from your version.
  */
 
-package com.trgk.game;
+package com.trgk.game.tgengine;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -36,11 +36,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.trgk.game.utils.PrimitiveImage;
+import com.trgk.game.tgengine.ui.TGPrimitive;
 
-/**
- * Created by trgk on 16. 7. 19.
- */
 public class TGPopupScene extends TGScene {
     final TGScene parent;
     Image background;
@@ -71,7 +68,7 @@ public class TGPopupScene extends TGScene {
         this.parent = parent;
 
         // Add background image
-        background = PrimitiveImage.rectImage(0, 0, 1, 1, Color.BLACK);
+        background = TGPrimitive.rectImage(0, 0, 1, 1, Color.BLACK);
         background.setColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, 0);
         getStage().addActor(background);
         background.addAction(Actions.alpha(backgroundColor.a, 0.3f));

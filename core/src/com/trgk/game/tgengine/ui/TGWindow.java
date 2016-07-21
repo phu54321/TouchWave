@@ -27,17 +27,47 @@
  * from your version.
  */
 
-package com.trgk.game.utils;
+package com.trgk.game.tgengine.ui;
 
-/**
- * Created by 박현우 on 2015-11-24.
- */
-public class TGException extends Exception {
-    public TGException(String message) {
-        super(message);
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.trgk.game.tgengine.TGResources;
+
+
+public class TGWindow extends Group {
+    final Image background;
+    public TGWindow(float size) {
+        background = new Image(TGResources.getInstance().getAtlasSprite("roundbox"));
+        background.setScale(size / 256f);
+        this.addActor(background);
+        this.setSize(
+                size * background.getWidth() / 256f,
+                size * background.getHeight() / 256f
+        );
     }
 
-    public TGException(String message, Throwable e) {
-        super(message, e);
+    public static <T extends Actor> T showAfter(T actor, float time) {
+        actor.setVisible(false);
+        actor.setTouchable(Touchable.disabled);
+        actor.addAction(
+                Actions.sequence(
+                        Actions.alpha(0),
+                        Actions.delay(time),
+                        Actions.visible(true),
+                        Actions.fadeIn(0.5f),
+                        Actions.touchable(Touchable.enabled)
+                )
+        );
+        return actor;
+    }
+
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        background.setColor(getColor());
+        super.draw(batch, parentAlpha);
     }
 }

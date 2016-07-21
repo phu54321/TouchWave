@@ -29,7 +29,6 @@
 
 package com.trgk.game.gamescene;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Vector2;
@@ -40,7 +39,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
-import com.trgk.game.utils.PrimitiveImage;
+import com.trgk.game.tgengine.ui.TGPrimitive;
 
 import java.util.ArrayList;
 
@@ -58,7 +57,7 @@ public class HitFrame extends Group {
         this.size = count;
 
         // Add while translucent background
-        Image bg = PrimitiveImage.rectImage(-75f, 0, 300f, 100f, new Color(1, 1, 1, 0.4f));
+        Image bg = TGPrimitive.rectImage(-75f, 0, 300f, 100f, new Color(1, 1, 1, 0.4f));
         bg.setTouchable(Touchable.disabled);
         this.addActor(bg);
 

@@ -27,7 +27,7 @@
  * from your version.
  */
 
-package com.trgk.game;
+package com.trgk.game.tgengine;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;

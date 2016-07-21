@@ -29,19 +29,17 @@
 
 package com.trgk.game.gamescene;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.trgk.game.GameLogger;
-import com.trgk.game.TGScene;
+import com.trgk.game.tgengine.TGScene;
 import com.trgk.game.menuscene.GameoverScene;
-import com.trgk.game.ui.TGText;
+import com.trgk.game.tgengine.ui.TGText;
 import com.trgk.game.utils.ScreenFillingGroup;
 
 import java.util.Locale;

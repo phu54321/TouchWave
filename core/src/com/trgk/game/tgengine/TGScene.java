@@ -27,7 +27,7 @@
  * from your version.
  */
 
-package com.trgk.game;
+package com.trgk.game.tgengine;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -125,7 +125,7 @@ public class TGScene {
      * @param w Window width
      * @param h Window height
      */
-    void resize(int w, int h) {
+    public void resize(int w, int h) {
         stage.getViewport().update(w, h);
     }
 

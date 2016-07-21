@@ -32,9 +32,10 @@ package com.trgk.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.trgk.game.gamescene.GameScene;
+import com.trgk.game.tgengine.TGSceneManager;
 
 public class TouchWave extends ApplicationAdapter {
-	TGSceneManager sceneManager;
+	com.trgk.game.tgengine.TGSceneManager sceneManager;
 
 	public TouchWave() {
 		sceneManager = new TGSceneManager();
@@ -50,7 +51,7 @@ public class TouchWave extends ApplicationAdapter {
 
 	@Override
 	public void resize(int w, int h) {
-		TGScene scene = sceneManager.getCurrentScene();
+		com.trgk.game.tgengine.TGScene scene = sceneManager.getCurrentScene();
 		scene.resize(w, h);
 	}
 

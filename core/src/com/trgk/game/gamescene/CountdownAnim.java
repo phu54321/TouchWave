@@ -31,7 +31,7 @@ package com.trgk.game.gamescene;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.trgk.game.utils.TGResources;
+import com.trgk.game.tgengine.TGResources;
 
 import java.util.ArrayList;
 import java.util.Locale;

@@ -27,7 +27,7 @@
  * from your version.
  */
 
-package com.trgk.game.ui;
+package com.trgk.game.tgengine.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;

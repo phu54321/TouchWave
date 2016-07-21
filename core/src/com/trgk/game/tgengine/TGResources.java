@@ -27,7 +27,7 @@
  * from your version.
  */
 
-package com.trgk.game.utils;
+package com.trgk.game.tgengine;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -36,9 +36,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
-/**
- * Created by 박현우 on 2015-11-29.
- */
 public class TGResources {
     static TGResources inst = null;
     static public TGResources getInstance() {
@@ -62,7 +59,6 @@ public class TGResources {
      * Get atlas sprite.
      * @param fname atlas fname
      * @return Atlas sprite
-     * @throws TGException Unknwon srite
      */
     public Sprite getAtlasSprite(String fname) {
         Sprite sprite = textureAtlas.createSprite(fname);
@@ -74,7 +70,6 @@ public class TGResources {
      * Get atlas sprite.
      * @param fname atlas fname
      * @return Atlas sprite
-     * @throws TGException Unknwon srite
      */
     public TextureRegion getAtlastRegion(String fname) {
         TextureRegion region = textureAtlas.findRegion(fname);

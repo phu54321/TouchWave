@@ -27,7 +27,7 @@
  * from your version.
  */
 
-package com.trgk.game.utils;
+package com.trgk.game.tgengine.ui;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -36,14 +36,13 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Affine2;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 
 
-public class PrimitiveImage {
+public class TGPrimitive {
     public static Image circleImage(float radius, Color color) {
-        Image image = new Image(TGResources.getInstance().getAtlasSprite("circle_general"));
+        Image image = new Image(com.trgk.game.tgengine.TGResources.getInstance().getAtlasSprite("circle_general"));
         image.setOrigin(Align.center);
         image.setScale(radius / 64.0f);
         image.setColor(color);

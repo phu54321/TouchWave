@@ -34,8 +34,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.trgk.game.TGPopupScene;
-import com.trgk.game.TGScene;
+import com.trgk.game.tgengine.TGPopupScene;
+import com.trgk.game.tgengine.TGScene;
 import com.trgk.game.facebook.FBService;
 import com.trgk.game.gamescene.GameScene;
 
