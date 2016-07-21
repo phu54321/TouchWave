@@ -32,6 +32,8 @@ package com.trgk.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.trgk.game.gamescene.GameScene;
+import com.trgk.game.menuscene.MenuScene;
+import com.trgk.game.menuscene.StatsScene;
 import com.trgk.game.tgengine.TGSceneManager;
 
 public class TouchWave extends ApplicationAdapter {
@@ -46,7 +48,7 @@ public class TouchWave extends ApplicationAdapter {
 	@Override
 	public void create () {
 		GameLogger.getInstance(); // Init game log
-		sceneManager.setCurrentScene(new GameScene());
+		sceneManager.setCurrentScene(new MenuScene());
 	}
 
 	@Override
@@ -55,6 +57,11 @@ public class TouchWave extends ApplicationAdapter {
 		scene.resize(w, h);
 	}
 
+	@Override
+	public void pause() {
+		GameLogger.getInstance().saveGameLog();
+		super.pause();
+	}
 
 	@Override
 	public void render () {

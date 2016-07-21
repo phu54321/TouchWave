@@ -40,6 +40,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.trgk.game.tgengine.TGPopupScene;
 import com.trgk.game.gamescene.GameScene;
+import com.trgk.game.tgengine.TransitScene;
 import com.trgk.game.tgengine.ui.TGButton;
 import com.trgk.game.tgengine.ui.TGWindow;
 import com.trgk.game.utils.ScreenFillingGroup;
@@ -104,18 +105,18 @@ public class GameoverScene extends TGPopupScene {
         final GameoverScene this2 = this;
 
         wnd.addActor(TGWindow.showAfter(
-                new TGText("Game over", 7, 23, 39, new Color(0, 0, 0, 1)),
+                new TGText("게임 오버", 7, 23, 39, new Color(0, 0, 0, 1)),
                 0.5f
         ));
 
-        String scoreText = String.format(Locale.ENGLISH, "Score : %d", gameScene.getScore());
+        String scoreText = String.format(Locale.KOREAN, "점수 : %d", gameScene.getScore());
         wnd.addActor(TGWindow.showAfter(
-                new TGText(scoreText, 5, 23, 28, new Color(0, 0, 0, 1)),
+                new TGText(scoreText, 4, 23, 28.5f, new Color(0, 0, 0, 1)),
                 1.0f
         ));
 
         wnd.addActor(TGWindow.showAfter(
-                new TGButton("Share", 8f, 23, 16, new Color(.40f, .67f, .93f, 1)) {
+                new TGButton("페이스북 공유", 6f, 23, 19, new Color(.40f, .67f, .93f, 1)) {
                     @Override
                     public void clicked() {
                         this2.getSceneManager().setCurrentScene(new FBShareResult(this2, gameScene));
@@ -125,13 +126,23 @@ public class GameoverScene extends TGPopupScene {
         ));
 
         wnd.addActor(TGWindow.showAfter(
-                new TGButton("Retry", 8f, 23, 7, new Color(.40f, .67f, .93f, 1)) {
+                new TGButton("재도전", 6f, 23, 12, new Color(.40f, .67f, .93f, 1)) {
                     @Override
                     public void clicked() {
                         this2.getSceneManager().setCurrentScene(new GameScene());
                     }
                 },
                 2.0f
+        ));
+
+        wnd.addActor(TGWindow.showAfter(
+                new TGButton("돌아가기", 6f, 23, 5, new Color(.40f, .67f, .93f, 1)) {
+                    @Override
+                    public void clicked() {
+                        this2.getSceneManager().setCurrentScene(new TransitScene(this2, new MenuScene(), 0.2f));
+                    }
+                },
+                2.5f
         ));
 
         return wnd;

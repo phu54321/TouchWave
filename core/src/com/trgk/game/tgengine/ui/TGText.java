@@ -45,7 +45,7 @@ import com.badlogic.gdx.utils.Align;
 public class TGText extends Actor {
     GlyphLayout glyphLayout;
     BitmapFontCache drawCache;
-    final static float baseFontSize = 60;
+    final static float baseFontSize = 45;
     static BitmapFont font = null;
     String text;
 

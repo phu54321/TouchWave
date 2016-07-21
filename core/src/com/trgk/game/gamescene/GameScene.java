@@ -66,7 +66,7 @@ public class GameScene extends TGScene {
         frameGroup = new FrameGroup();
         uiGroup.addActor(frameGroup);
 
-        scoreText = new TGText("Score : 0        Time : 0.00s", 5, 0, 0, Color.BLACK);
+        scoreText = new TGText("점수 : 0        시간 : 0.00s", 5, 0, 0, Color.BLACK);
         uiGroup.addActor(scoreText);
         scoreText.setOrigin(Align.topLeft);
 
@@ -99,7 +99,7 @@ public class GameScene extends TGScene {
         if(gameCompleted) return;
 
         elapsedTime += dt;
-        String scoreString = String.format(Locale.ENGLISH, "Score : %d    Time : %.2f", getScore(), elapsedTime);
+        String scoreString = String.format(Locale.KOREAN, "점수 : %d    시간 : %.2f", getScore(), elapsedTime);
         scoreText.setText(scoreString);
     }
 

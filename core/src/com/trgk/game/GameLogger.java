@@ -64,7 +64,7 @@ public class GameLogger {
             JsonReader reader = new JsonReader();
             JsonValue content = reader.parse(gamelog);
             installTime = content.getLong("installTime", currentTime);
-            totalPlayTime = content.getLong("totalPlayTime", currentTime);
+            totalPlayTime = content.getLong("totalPlayTime", 0);
             lastAccessTime = content.getLong("lastAccessTime", currentTime);
             lastPlayTime = content.getLong("lastPlayTime", -1);
         }
