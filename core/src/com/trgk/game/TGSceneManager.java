@@ -30,6 +30,7 @@
 package com.trgk.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 
 public class TGSceneManager {
     TGScene currentScene;
@@ -68,6 +69,50 @@ public class TGSceneManager {
      */
     public TGScene getCurrentScene() {
         return currentScene;
+    }
+
+
+    public boolean render() {
+        // Note : unlike exit() in C, Gdx.app.exit is not guaranteed to immediately quit the
+        // target application. So we should check if scene stack is empty every frame and
+        // issue Gdx.app.exit() every time.
+        // This function will continuously return false after all scenes have been depleted.
+
+        TGScene currentScene = getCurrentScene();
+        if(currentScene == null) {
+            return false;
+        }
+
+        // -------
+
+        final float speedRatio = 1f;
+
+        // Divide timestep by step time.
+        final float baseStepTIme = 1.0f / 60.0f;
+        float dt = Gdx.graphics.getDeltaTime();
+        int frameN = (int)(dt / baseStepTIme + 1);
+        float stepTime = dt / frameN;
+        while(frameN > 0) {
+            currentScene = getCurrentScene();
+            if(currentScene == null) {
+                return false;
+            }
+
+            currentScene.act(stepTime * speedRatio);
+
+            frameN--;
+        }
+
+        currentScene = getCurrentScene();
+        if(currentScene == null) {
+            return false;
+        }
+
+        // Draw
+        Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        currentScene.draw();
+        return true;
     }
 }
 

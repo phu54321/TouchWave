@@ -29,6 +29,7 @@
 
 package com.trgk.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class TGScene {
@@ -79,6 +80,7 @@ public class TGScene {
      */
     void setSceneManager(TGSceneManager sceneManager) {
         this.sceneManager = sceneManager;
+        this.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
 
