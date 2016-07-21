@@ -38,10 +38,14 @@ public class FBManager {
     ////
     String userID = null, username = null;
 
+    boolean isReadLogon = false, isPublishLogon = false;
+
     /**
      * Login FB with read permission
      */
-    public void loginRead() {
+    public void loginRead(final Runnable onLoginSuccess, final Runnable onLoginFailure) {
+        if(isReadLogon) return;
+
         Array<String> fbReadPermissions = new Array<String>();
         fbReadPermissions.add("public_profile");
         fbReadPermissions.add("user_friends");
@@ -52,14 +56,17 @@ public class FBManager {
             @Override
             public void onSuccess(SignInResult result) {
                 // Login successful
-                this2.updateUserInfo();
+                updateUserInfo();
+                isReadLogon = true;
+                onLoginSuccess.run();
             }
 
             @Override
             public void onError(GDXFacebookError error) {
                 // Error handling
                 MessageBox.alert("Facebook Login Error", "Error logining to fb");
-                this2.logout();
+                logout();
+                onLoginFailure.run();
             }
 
             @Override
@@ -77,7 +84,9 @@ public class FBManager {
     }
 
 
-
+    /**
+     * Login FB with publish permission
+     */
     public void loginPublish() {
         Array<String> fbPublishPermissions = new Array<String>();
         fbPublishPermissions.add("publish_actions");
@@ -96,16 +105,13 @@ public class FBManager {
 
             @Override
             public void onFail(Throwable t) {
-                Gdx.app.error(TAG, "SIGN IN (publish permissions): Technical error occured:");
-                publishRequestText.setText("PUBLISH REQUEST EXCEPTION: view log output");
+                MessageBox.alert("Error", "Error on login for publishing.");
                 logout();
-                t.printStackTrace();
             }
 
             @Override
             public void onError(GDXFacebookError error) {
-                Gdx.app.error(TAG, "SIGN IN (publish permissions): Error login: " + error.getErrorMessage());
-                publishRequestText.setText("PUBLISH REQUEST ERROR: view log output");
+                MessageBox.alert("Error", "Error on login for publishing.");
                 logout();
             }
 
@@ -114,7 +120,7 @@ public class FBManager {
 
 
     /**
-     * Logout from fb
+     * Logout from FB
      */
     public void logout() {
         fbHandle.signOut();
@@ -164,13 +170,12 @@ public class FBManager {
     /**
      * Post message to user wall
      */
-    private void postToUserWall() {
-
+    private void postToUserWall(String caption, String message, String link) {
         GDXFacebookGraphRequest request = new GDXFacebookGraphRequest().setNode("me/feed").useCurrentAccessToken();
         request.setMethod(Net.HttpMethods.POST);
-        request.putField("message", FB_WALL_MESSAGE);
-        request.putField("link", FB_WALL_LINK);
-        request.putField("caption", FB_WALL_CAPTION);
+        request.putField("message", message);
+        request.putField("link", link);
+        request.putField("caption", caption);
         fbHandle.graph(request, new GDXFacebookCallback<JsonResult>() {
             @Override
             public void onFail(Throwable t) {
@@ -194,12 +199,5 @@ public class FBManager {
             }
 
         });
-
     }
-
-
-
-    /**
-     * Login FB with publish permission
-     */
 }
