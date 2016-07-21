@@ -21,7 +21,7 @@ public class TGButton extends Group {
                 size * background.getHeight() / 64f
         );
 
-        TGText text = new TGText(caption, size / 2f, getWidth() / 2, getHeight() / 2, new Color(0, 0, 0, 1));
+        TGText text = new TGText(caption, size / 2.5f, getWidth() / 2, getHeight() / 2, new Color(0, 0, 0, 1));
         this.addActor(text);
 
         final TGButton this2 = this;

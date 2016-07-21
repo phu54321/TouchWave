@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.GL20;
 public class TouchWave extends ApplicationAdapter {
 	TGSceneManager sceneManager;
 	FPSLogger logger;
-	static final String TAG = TouchWave.class.getSimpleName();
+	public static final String TAG = TouchWave.class.getSimpleName();
 
 	public TouchWave() {
 		sceneManager = new TGSceneManager();
@@ -47,10 +47,6 @@ public class TouchWave extends ApplicationAdapter {
 
 		final float speedRatio = 1f;
 
-		// Clear background
-		Gdx.gl.glClearColor(1f, 1f, 1f, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
 		// Divide timestep by step time.
 		final float baseStepTIme = 1.0f / 60.0f;
 		float dt = Gdx.graphics.getDeltaTime();
@@ -73,7 +69,11 @@ public class TouchWave extends ApplicationAdapter {
 			Gdx.app.exit();
 			return;
 		}
-		currentScene.draw();
+
+		// Draw
+        Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        currentScene.draw();
 
 		logger.log();
 	}

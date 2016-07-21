@@ -1,84 +1,127 @@
-package com.trgk.game;
+package com.trgk.game.facebook;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Net;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonValue;
-import com.badlogic.gdx.utils.JsonWriter;
-import com.trgk.game.utils.MessageBox;
 
 import de.tomgrill.gdxfacebook.core.GDXFacebook;
 import de.tomgrill.gdxfacebook.core.GDXFacebookCallback;
 import de.tomgrill.gdxfacebook.core.GDXFacebookConfig;
 import de.tomgrill.gdxfacebook.core.GDXFacebookError;
 import de.tomgrill.gdxfacebook.core.GDXFacebookGraphRequest;
+import de.tomgrill.gdxfacebook.core.GDXFacebookMultiPartRequest;
 import de.tomgrill.gdxfacebook.core.GDXFacebookSystem;
 import de.tomgrill.gdxfacebook.core.JsonResult;
 import de.tomgrill.gdxfacebook.core.SignInMode;
 import de.tomgrill.gdxfacebook.core.SignInResult;
 
 
-public class FBManager {
-    static FBManager inst = null;
-    public static FBManager getInstance() {
-        if(inst != null) inst = new FBManager();
+public class FBService {
+    // Singleton pattern
+    static FBService inst = null;
+
+    public static FBService getInstance() {
+        if(inst == null) inst = new FBService();
         return inst;
     }
 
-    ////
+
+    ///// Constructor
 
     final GDXFacebook fbHandle;
-    private FBManager() {
+    private FBService() {
         GDXFacebookConfig config = new GDXFacebookConfig();
-        config.APP_ID = "1791581581070293"; // required
-        config.PREF_FILENAME = ".facebookSessionData"; // optional
+        config.APP_ID = "1791581581070293";
+        config.PREF_FILENAME = ".facebookSessionData";
         fbHandle = GDXFacebookSystem.install(config);
     }
 
-    ////
-    String userID = null, username = null;
 
-    boolean isReadLogon = false, isPublishLogon = false;
+    ///////
+
+    // Basic interfaces
+    public enum Result {
+        WORKING,
+        SUCCESS,
+        FAILED,
+        CANCELED
+    };
+
+    Result lastActionResult = Result.SUCCESS;
+    boolean isLogonReadPermission = false, isLogonPublishPermission = false;
+
+    /**
+     * Whether last action has been successful or not
+     * @return One of WORKING, SUCCESS, CANCELED, FAILED
+     */
+    public Result getLastActionResult() {
+        return lastActionResult;
+    }
+
+
+    /**
+     * Check if service is busy running actions
+     */
+    public boolean isBusy() {
+        return lastActionResult == Result.WORKING;
+    }
+
+    public boolean isLogonRead() {
+        return isLogonReadPermission;
+    }
+
+    public boolean isLogonPublish() {
+        return isLogonPublishPermission;
+    }
+
+
+    ////////
+
+    public String username = null, userID = null;
+
+    /**
+     * Lock service for working.
+     */
+    void startWorking() {
+        if (isBusy()) throw new RuntimeException("Call to loginRead while running");
+        lastActionResult = Result.WORKING;
+    }
 
     /**
      * Login FB with read permission
      */
-    public void loginRead(final Runnable onLoginSuccess, final Runnable onLoginFailure) {
-        if(isReadLogon) return;
+    public void loginRead() {
+        startWorking();
 
         Array<String> fbReadPermissions = new Array<String>();
         fbReadPermissions.add("public_profile");
         fbReadPermissions.add("user_friends");
-        fbReadPermissions.add("email");
+        fbReadPermissions.add("email");;
 
-        final FBManager this2 = this;
         fbHandle.signIn(SignInMode.READ, fbReadPermissions, new GDXFacebookCallback<SignInResult>() {
             @Override
             public void onSuccess(SignInResult result) {
                 // Login successful
+                lastActionResult = Result.SUCCESS;
                 updateUserInfo();
-                isReadLogon = true;
-                onLoginSuccess.run();
             }
 
             @Override
             public void onError(GDXFacebookError error) {
                 // Error handling
-                MessageBox.alert("Facebook Login Error", "Error logining to fb");
-                logout();
-                onLoginFailure.run();
+                lastActionResult = Result.FAILED;
             }
 
             @Override
             public void onCancel() {
-                // When the user cancels the login process
+                lastActionResult = Result.CANCELED;
             }
 
             @Override
             public void onFail(Throwable t) {
-                // When the login fails
-                MessageBox.alert("Facebook Login Error", "Error logining to fb");
-                this2.logout();
+                lastActionResult = Result.FAILED;
             }
         });
     }
@@ -88,33 +131,31 @@ public class FBManager {
      * Login FB with publish permission
      */
     public void loginPublish() {
+        startWorking();
+
         Array<String> fbPublishPermissions = new Array<String>();
         fbPublishPermissions.add("publish_actions");
 
-        final FBManager this2 = this;
         fbHandle.signIn(SignInMode.PUBLISH, fbPublishPermissions, new GDXFacebookCallback<SignInResult>() {
-
             @Override
             public void onSuccess(SignInResult result) {
-                updateUserInfo();
+                lastActionResult = Result.SUCCESS;
             }
 
             @Override
             public void onCancel() {
+                lastActionResult = Result.CANCELED;
             }
 
             @Override
             public void onFail(Throwable t) {
-                MessageBox.alert("Error", "Error on login for publishing.");
-                logout();
+                lastActionResult = Result.FAILED;
             }
 
             @Override
             public void onError(GDXFacebookError error) {
-                MessageBox.alert("Error", "Error on login for publishing.");
-                logout();
+                lastActionResult = Result.FAILED;
             }
-
         });
     }
 
@@ -124,6 +165,8 @@ public class FBManager {
      */
     public void logout() {
         fbHandle.signOut();
+        isLogonReadPermission = true;
+        isLogonPublishPermission = false;
     }
 
 
@@ -131,8 +174,8 @@ public class FBManager {
     /**
      * Update user information.
      */
-    public void updateUserInfo() {
-        final FBManager this2 = this;
+    void updateUserInfo() {
+        startWorking();
 
         GDXFacebookGraphRequest request = new GDXFacebookGraphRequest().setNode("me").useCurrentAccessToken();
         fbHandle.graph(request, new GDXFacebookCallback<JsonResult>() {
@@ -140,64 +183,68 @@ public class FBManager {
             public void onSuccess(JsonResult result) {
                 // Success
                 JsonValue root = result.getJsonValue();
-                this2.userID = root.getString("id");
-                this2.username = root.getString("name");
+                userID = root.getString("id");
+                username = root.getString("name");
+                lastActionResult = Result.SUCCESS;
             }
 
             @Override
             public void onError(GDXFacebookError error) {
                 // Error
-                MessageBox.alert("Facebook Login Error", "Error reading user info");
-                this2.logout();
+                lastActionResult = Result.FAILED;
+                logout();
             }
 
             @Override
             public void onFail(Throwable t) {
                 // Fail
-                Gdx.app.error(TouchWave.TAG, "Exception occured while trying to post to user wall.");
-                this2.logout();
+                lastActionResult = Result.FAILED;
+                logout();
             }
 
             @Override
             public void onCancel() {
                 // Cancel
-                this2.logout();
+                lastActionResult = Result.CANCELED;
+                logout();
             }
-
         });
     }
+
 
     /**
      * Post message to user wall
      */
-    private void postToUserWall(String caption, String message, String link) {
-        GDXFacebookGraphRequest request = new GDXFacebookGraphRequest().setNode("me/feed").useCurrentAccessToken();
+    public void postToUserWall(String caption, String message, String link, FileHandle imgFile) {
+        startWorking();
+
+        GDXFacebookMultiPartRequest request = new GDXFacebookMultiPartRequest().setNode("me/feed").useCurrentAccessToken();
         request.setMethod(Net.HttpMethods.POST);
         request.putField("message", message);
         request.putField("link", link);
         request.putField("caption", caption);
+        request.setFileHandle(imgFile, "image/png");
+
         fbHandle.graph(request, new GDXFacebookCallback<JsonResult>() {
             @Override
             public void onFail(Throwable t) {
-                Gdx.app.error(TouchWave.TAG, "Exception occured while trying to post to user wall.");
-                MessageBox.alert("Error", "Error trying to post to user wall\n" + t.getMessage());
-                t.printStackTrace();
+                lastActionResult = Result.FAILED;
             }
 
             @Override
             public void onCancel() {
+                lastActionResult = Result.CANCELED;
             }
 
             @Override
             public void onSuccess(JsonResult result) {
-                MessageBox.alert("Shared", "Result shared");
+                lastActionResult = Result.SUCCESS;
             }
 
             @Override
             public void onError(GDXFacebookError error) {
-                MessageBox.alert("Error", "Error trying to post to user wall\n" + error.getErrorMessage());
+                lastActionResult = Result.FAILED;
             }
-
         });
     }
 }
