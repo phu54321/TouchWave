@@ -39,6 +39,7 @@ public class GameLogger {
     public long installTime;
     public long totalPlayTime;
     public long lastAccessTime;
+    public int maxScore;
     public long lastPlayTime;
 
     static GameLogger instance;
@@ -67,12 +68,14 @@ public class GameLogger {
             totalPlayTime = content.getLong("totalPlayTime", 0);
             lastAccessTime = content.getLong("lastAccessTime", currentTime);
             lastPlayTime = content.getLong("lastPlayTime", -1);
+            maxScore = content.getInt("maxScore", 0);
         }
         else {
             installTime = currentTime;
             totalPlayTime = 0;
             lastAccessTime = currentTime;
             lastPlayTime = -1;
+            maxScore = 0;
         }
 
         saveGameLog();
@@ -94,16 +97,19 @@ public class GameLogger {
         JsonValue totalPlayTimeValue = new JsonValue(totalPlayTime);
         JsonValue lastAccessTimeValue = new JsonValue(currentTime);
         JsonValue lastPlayTimeValue = new JsonValue(lastPlayTime);
+        JsonValue maxScoreValue = new JsonValue(maxScore);
 
         installTimeValue.setName("installTime");
         totalPlayTimeValue.setName("totalPlayTime");
         lastAccessTimeValue.setName("lastAccessTime");
         lastPlayTimeValue.setName("lastPlayTime");
+        maxScoreValue.setName("maxScore");
 
         value.child = installTimeValue;
         installTimeValue.setNext(totalPlayTimeValue);
         totalPlayTimeValue.setNext(lastAccessTimeValue);
         lastAccessTimeValue.setNext(lastPlayTimeValue);
+        lastPlayTimeValue.setNext(maxScoreValue);
 
         gamelog.writeString(value.toJson(JsonWriter.OutputType.json), false);
     }
@@ -111,10 +117,11 @@ public class GameLogger {
 
     // ------
 
-    public void addPlayTime(long newPlaytime) {
+    public void updatePlay(long newPlaytime, int score) {
         long currentTime = getCurrentTime();
         totalPlayTime += newPlaytime;
         lastPlayTime = currentTime;
+        if(score > maxScore) maxScore = score;
         saveGameLog();
     }
 

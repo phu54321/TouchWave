@@ -50,11 +50,6 @@ public class FBShareResult extends TGPopupScene {
     }
 
     @Override
-    public void draw() {
-        super.draw();
-    }
-
-    @Override
     public void act(float dt) {
         super.act(dt);
 
@@ -97,6 +92,7 @@ public class FBShareResult extends TGPopupScene {
         if(currentState == 4) {
             fb.logout();
             gotoParent();
+            currentState = 5;
         }
     }
 }

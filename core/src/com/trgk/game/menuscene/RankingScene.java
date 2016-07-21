@@ -30,11 +30,12 @@
 package com.trgk.game.menuscene;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.trgk.game.GameLogger;
-import com.trgk.game.gamescene.GameScene;
 import com.trgk.game.tgengine.TGScene;
 import com.trgk.game.tgengine.TransitScene;
 import com.trgk.game.tgengine.ui.TGButton;
@@ -42,61 +43,69 @@ import com.trgk.game.tgengine.ui.TGText;
 import com.trgk.game.tgengine.ui.TGWindow;
 import com.trgk.game.utils.ScreenFillingGroup;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+public class RankingScene extends TGScene {
 
-public class MenuScene extends TGScene {
-    public MenuScene() {
+    public RankingScene() {
         super(new Stage(new ScreenViewport()));
-
         ScreenFillingGroup group = new ScreenFillingGroup(150, 100);
         this.getStage().addActor(group);
-
         group.addActor(buildWindow());
     }
 
+    TGWindow rankingWindow;
+
     /**
-     * Generate window
+     * Build basic ui
+     * @return UI
      */
     public TGWindow buildWindow() {
-        TGWindow wnd = new TGWindow(46);
+        final RankingScene this2 = this;
+
+        TGWindow wnd = new TGWindow(90);
         wnd.setPosition(75, 50, Align.center);
-        wnd.setOrigin(Align.center);
-        wnd.setScale(1.6f);
 
+        wnd.addActor(new TGText("Rankings", 7, 45, 81, Color.BLACK));
 
-        wnd.addActor(new TGText("TouchWave", 7, 23, 37, Color.BLACK));
-
-        final MenuScene this2 = this;
-
-        wnd.addActor((
-                new TGButton("플레이", 6f, 23, 25, new Color(.40f, .67f, .93f, 1)) {
-                    @Override
-                    public void clicked() {
-                        getSceneManager().setCurrentScene(new TransitScene(this2, new GameScene(), 0.2f));
-                    }
-                }
-        ));
+        rankingWindow = new TGWindow(62);
+        rankingWindow.setPosition(45, 43, Align.center);
+        wnd.addActor(rankingWindow);
 
         wnd.addActor((
-                new TGButton("랭킹 확인", 6f, 23, 16, new Color(.40f, .67f, .93f, 1)) {
+                new TGButton("돌아가기", 6f, 45, 7, new Color(.40f, .67f, .93f, 1)) {
                     @Override
                     public void clicked() {
-                        getSceneManager().setCurrentScene(new TransitScene(this2, new RankingScene(), 0.2f));
-                    }
-                }
-        ));
-
-        wnd.addActor((
-                new TGButton("기록 보기", 6f, 23, 7, new Color(.40f, .67f, .93f, 1)) {
-                    @Override
-                    public void clicked() {
-                        getSceneManager().setCurrentScene(new TransitScene(this2, new StatsScene(), 0.2f));
+                        getSceneManager().setCurrentScene(new TransitScene(this2, new MenuScene(), 0.2f));
                     }
                 }
         ));
 
         return wnd;
+    }
+
+
+    // ---
+
+    public static class RankingEntry extends Group {
+        public RankingEntry(int rank, String fbNickname, int maxScore, Color color, int pos) {
+            this.addActor(new TGText(Integer.toString(rank), 2.8f, 3, 1.5f, color));
+            this.addActor(new TGText(fbNickname, 2.8f, 23, 1.5f, color));
+            this.addActor(new TGText(Integer.toString(maxScore), 2.8f, 50, 1.5f, color));
+            this.setSize(60, 3);
+            this.setOrigin(Align.topLeft);
+            this.setPosition(1, 61 - 3 * pos, Align.topLeft);
+        }
+    }
+
+
+    boolean inited  = false;
+
+    @Override
+    public void act(float dt) {
+        super.act(dt);
+
+        if(!inited) {
+            getSceneManager().setCurrentScene(new RankingLoadScene(this));
+            inited = true;
+        }
     }
 }

@@ -79,7 +79,7 @@ public class FBService {
         SUCCESS,
         FAILED,
         CANCELED
-    };
+    }
 
     Result lastActionResult = Result.SUCCESS;
     boolean isLogonReadPermission = false, isLogonPublishPermission = false;
@@ -111,7 +111,8 @@ public class FBService {
 
     ////////
 
-    public String username = null, userID = null;
+    public String username = null;
+    public Long userID = null;
 
     /**
      * Lock service for working.
@@ -130,7 +131,7 @@ public class FBService {
         Array<String> fbReadPermissions = new Array<String>();
         fbReadPermissions.add("public_profile");
         fbReadPermissions.add("user_friends");
-        fbReadPermissions.add("email");;
+        fbReadPermissions.add("email");
 
         fbHandle.signIn(SignInMode.READ, fbReadPermissions, new GDXFacebookCallback<SignInResult>() {
             @Override
@@ -215,7 +216,7 @@ public class FBService {
             public void onSuccess(JsonResult result) {
                 // Success
                 JsonValue root = result.getJsonValue();
-                userID = root.getString("id");
+                userID = root.getLong("id");
                 username = root.getString("name");
                 lastActionResult = Result.SUCCESS;
             }

@@ -85,7 +85,7 @@ public class GameScene extends TGScene {
         if(gameCompleted) return;
         gameCompleted = true;
 
-        GameLogger.getInstance().addPlayTime((long)(elapsedTime * 1000));
+        GameLogger.getInstance().updatePlay((long)(elapsedTime * 1000), getScore());
         this.getSceneManager().setCurrentScene(new GameoverScene(this));
         this.logicGroup.remove();
         this.frameGroup.setTouchable(Touchable.disabled);
