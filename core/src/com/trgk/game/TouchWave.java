@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.GL20;
 
 public class TouchWave extends ApplicationAdapter {
 	TGSceneManager sceneManager;
-	FPSLogger logger;
 	public static final String TAG = TouchWave.class.getSimpleName();
 
 	public TouchWave() {
@@ -19,9 +18,6 @@ public class TouchWave extends ApplicationAdapter {
 
 	@Override
 	public void create () {
-		Gdx.app.setLogLevel(Application.LOG_DEBUG);
-
-		logger = new FPSLogger();
 		sceneManager.setCurrentScene(new TestScene());
 	}
 
@@ -74,7 +70,5 @@ public class TouchWave extends ApplicationAdapter {
         Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         currentScene.draw();
-
-		logger.log();
-	}
+    }
 }

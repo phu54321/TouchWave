@@ -2,19 +2,13 @@ package com.trgk.game.menuscene;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.trgk.game.TGPopupScene;
 import com.trgk.game.TGScene;
 import com.trgk.game.facebook.FBService;
 import com.trgk.game.gamescene.GameScene;
-import com.trgk.game.utils.PrimitiveImage;
 
 public class FBShareResult extends TGPopupScene {
     GameScene gameScene;
@@ -54,7 +48,7 @@ public class FBShareResult extends TGPopupScene {
 
         // Stage 2: post to wall
         if(currentState == 2) {
-            fb.postToUserWall("Test", "Test", "http://www.naver.com", Gdx.files.local("screenshot.png"));
+            fb.postPhotoToUserWall("Test", "Test", "http://www.naver.com", Gdx.files.local("screenshot.png"));
             currentState = 3;
         }
 

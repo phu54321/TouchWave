@@ -53,8 +53,13 @@ public class GameoverScene extends TGPopupScene {
             pixels.get(lines, i * numBytesPerLine, numBytesPerLine);
         }
         pixels.clear();
-        pixels.put(lines);
 
+        // Force set  alpha channel to 255
+        for(int i = 3 ; i < numBytes ; i += 4) {
+            lines[i] = (byte)255;
+        }
+
+        pixels.put(lines);
         PixmapIO.writePNG(Gdx.files.local("screenshot.png"), pixmap);
     }
 

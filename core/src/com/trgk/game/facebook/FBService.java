@@ -6,6 +6,9 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.JsonValue;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import de.tomgrill.gdxfacebook.core.GDXFacebook;
 import de.tomgrill.gdxfacebook.core.GDXFacebookCallback;
 import de.tomgrill.gdxfacebook.core.GDXFacebookConfig;
@@ -213,17 +216,17 @@ public class FBService {
 
 
     /**
-     * Post message to user wall
+     * Post photo to user wall
      */
-    public void postToUserWall(String caption, String message, String link, FileHandle imgFile) {
+    public void postPhotoToUserWall(String caption, String message, String link, FileHandle imgFile) {
         startWorking();
 
-        GDXFacebookMultiPartRequest request = new GDXFacebookMultiPartRequest().setNode("me/feed").useCurrentAccessToken();
+        GDXFacebookMultiPartRequest request = new GDXFacebookMultiPartRequest().setNode("me/photos").useCurrentAccessToken();
         request.setMethod(Net.HttpMethods.POST);
         request.putField("message", message);
         request.putField("link", link);
         request.putField("caption", caption);
-        request.setFileHandle(imgFile, "image/png");
+        request.setFileHandle(imgFile, "multipart/form-data");
 
         fbHandle.graph(request, new GDXFacebookCallback<JsonResult>() {
             @Override
