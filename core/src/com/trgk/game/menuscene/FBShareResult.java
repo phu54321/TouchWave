@@ -10,6 +10,8 @@ import com.trgk.game.TGScene;
 import com.trgk.game.facebook.FBService;
 import com.trgk.game.gamescene.GameScene;
 
+import java.util.Locale;
+
 public class FBShareResult extends TGPopupScene {
     GameScene gameScene;
     int currentState = 0;
@@ -48,7 +50,10 @@ public class FBShareResult extends TGPopupScene {
 
         // Stage 2: post to wall
         if(currentState == 2) {
-            fb.postPhotoToUserWall("Test", "Test", "http://www.naver.com", Gdx.files.local("screenshot.png"));
+            String username = fb.username;
+            String shareString = String.format(Locale.ENGLISH,
+                    "%s has scored %d at TouchWave!", username, gameScene.getScore());
+            fb.postPhotoToUserWall("TouchWave", shareString, null, Gdx.files.local("screenshot.png"));
             currentState = 3;
         }
 

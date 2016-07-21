@@ -223,8 +223,8 @@ public class FBService {
 
         GDXFacebookMultiPartRequest request = new GDXFacebookMultiPartRequest().setNode("me/photos").useCurrentAccessToken();
         request.setMethod(Net.HttpMethods.POST);
-        request.putField("message", message);
-        request.putField("link", link);
+        if(message != null) request.putField("message", message);
+        if(link != null) request.putField("link", link);
         request.putField("caption", caption);
         request.setFileHandle(imgFile, "multipart/form-data");
 
