@@ -29,11 +29,9 @@
 
 package com.trgk.game;
 
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.FPSLogger;
-import com.badlogic.gdx.graphics.GL20;
+import com.trgk.game.gamescene.GameScene;
 
 public class TouchWave extends ApplicationAdapter {
 	TGSceneManager sceneManager;
@@ -46,7 +44,8 @@ public class TouchWave extends ApplicationAdapter {
 
 	@Override
 	public void create () {
-		sceneManager.setCurrentScene(new TestScene());
+		GameLogger.getInstance(); // Init game log
+		sceneManager.setCurrentScene(new GameScene());
 	}
 
 	@Override
@@ -59,5 +58,5 @@ public class TouchWave extends ApplicationAdapter {
 	@Override
 	public void render () {
 		if(!sceneManager.render()) Gdx.app.exit();
-    }
+	}
 }

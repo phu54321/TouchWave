@@ -51,7 +51,7 @@ class HitCircleLines extends Actor {
         this.parent = parent;
         float hue = 0.618033988749895f * (2 * parent.size - parent.size / 3);
         hue -= Math.floor(hue);
-        this.lineColor = HSVRGB.hsvToRgb(hue, 0.9f, 0.95f);
+        this.lineColor = HSVRGB.hsvToRgb(hue, 0.9f, 0.95f, 0.7f);
         this.setTouchable(Touchable.disabled);
     }
 

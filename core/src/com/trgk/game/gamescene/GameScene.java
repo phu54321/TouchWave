@@ -38,6 +38,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.trgk.game.GameLogger;
 import com.trgk.game.TGScene;
 import com.trgk.game.menuscene.GameoverScene;
 import com.trgk.game.ui.TGText;
@@ -85,12 +86,12 @@ public class GameScene extends TGScene {
     public void issueGameComplete() {
         if(gameCompleted) return;
         gameCompleted = true;
+
+        GameLogger.getInstance().addPlayTime((long)(elapsedTime * 1000));
         this.getSceneManager().setCurrentScene(new GameoverScene(this));
         this.logicGroup.remove();
         this.frameGroup.setTouchable(Touchable.disabled);
     }
-
-
 
     ///////
 
@@ -103,8 +104,6 @@ public class GameScene extends TGScene {
         String scoreString = String.format(Locale.ENGLISH, "Score : %d    Time : %.2f", getScore(), elapsedTime);
         scoreText.setText(scoreString);
     }
-
-
 
 
     @Override

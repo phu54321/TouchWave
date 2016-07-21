@@ -90,7 +90,7 @@ class FrameGenerator extends Actor {
     float currentHue;
 
     public Color getNextCircleColor() {
-        final Color circleColor = HSVRGB.hsvToRgb(currentHue, 0.5f, 0.95f);
+        final Color circleColor = HSVRGB.hsvToRgb(currentHue, 0.5f, 0.95f, 0.8f);
         currentHue += 0.618033988749895f;
         if(currentHue >= 1) currentHue -= 1;
         return circleColor;
