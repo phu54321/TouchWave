@@ -98,7 +98,7 @@ public class AboutScene extends TGPopupScene {
         // Texts
         addText(wnd, 23, 33, "이 프로그램은 GNU GPL 3.0을 따릅니다.");
         addLink(wnd, 23, 30, "GNU General Public License 3.0", "https://www.gnu.org/licenses/gpl-3.0.html");
-        addLink(wnd, 23, 27, "[프로그램 소스 보기]", "https://github.com/phu54321/TouchWave/l");
+        addLink(wnd, 23, 27, "[프로그램 소스 보기]", "https://github.com/phu54321/TouchWave/");
 
 
         addText(wnd, 23, 22, "이 프로그램은 다음 프로그램을 사용했습니다.");

@@ -49,8 +49,11 @@ import com.trgk.touchwave.tgengine.ui.TGWindow;
 import com.trgk.touchwave.utils.ScreenFillingGroup;
 
 public class MenuScene extends TGScene {
+    final static String versionStr = "TouchWave v1.0";
+
     ScreenFillingGroup uiGroup;
     Image pauseButton;
+    TGText versionString;
 
     public MenuScene() {
         super(new Stage(new ScreenViewport()));
@@ -58,11 +61,13 @@ public class MenuScene extends TGScene {
         uiGroup = new ScreenFillingGroup(150, 100);
         this.getStage().addActor(uiGroup);
 
+        // Window
         uiGroup.addActor(buildWindow());
+
+        // Pause
         pauseButton = new Image(TGResources.getInstance().getAtlasSprite("infobutton"));
         pauseButton.setScale(10 / 128f);
         pauseButton.setOrigin(Align.topRight);
-
         final MenuScene this2 = this;
         pauseButton.addListener(new ClickListener() {
             @Override
@@ -72,6 +77,11 @@ public class MenuScene extends TGScene {
             }
         });
         uiGroup.addActor(pauseButton);
+
+        // Version
+        versionString = new TGText(versionStr, 3, 0, 0, Color.BLACK);
+        uiGroup.addActor(versionString);
+        versionString.setOrigin(Align.topLeft);
     }
 
     /**
@@ -135,6 +145,9 @@ public class MenuScene extends TGScene {
     public void draw() {
         Vector2 topRight = uiGroup.getlogicalScreenTopRight();
         pauseButton.setPosition(topRight.x - 2, topRight.y - 2, Align.topRight);
+
+        Vector2 topLeft = uiGroup.getlogicalScreenTopLeft();
+        versionString.setPosition(topLeft.x + 2, topLeft.y - 2, Align.topLeft);
 
         super.draw();
     }
