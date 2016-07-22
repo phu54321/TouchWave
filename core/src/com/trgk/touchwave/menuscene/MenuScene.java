@@ -36,6 +36,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.trgk.touchwave.gamescene.GameScene;
 import com.trgk.touchwave.tgengine.TGScene;
 import com.trgk.touchwave.tgengine.TransitScene;
+import com.trgk.touchwave.tgengine.ui.TGButton;
 import com.trgk.touchwave.tgengine.ui.TGText;
 
 public class MenuScene extends TGScene {
@@ -52,18 +53,18 @@ public class MenuScene extends TGScene {
      * Generate window
      */
     public com.trgk.touchwave.tgengine.ui.TGWindow buildWindow() {
-        com.trgk.touchwave.tgengine.ui.TGWindow wnd = new com.trgk.touchwave.tgengine.ui.TGWindow(46);
+        com.trgk.touchwave.tgengine.ui.TGWindow wnd = new com.trgk.touchwave.tgengine.ui.TGWindow(50);
         wnd.setPosition(75, 50, Align.center);
         wnd.setOrigin(Align.center);
         wnd.setScale(1.6f);
 
 
-        wnd.addActor(new TGText("TouchWave", 7, 23, 37, Color.BLACK));
+        wnd.addActor(new TGText("TouchWave", 7, 25, 41, Color.BLACK));
 
         final MenuScene this2 = this;
 
         wnd.addActor((
-                new com.trgk.touchwave.tgengine.ui.TGButton("플레이", 6f, 23, 25, new Color(.40f, .67f, .93f, 1)) {
+                new TGButton("플레이", 4.5f, 25, 12, new Color(.40f, .67f, .93f, 1), true) {
                     @Override
                     public void clicked() {
                         getSceneManager().setCurrentScene(new TransitScene(this2, new GameScene(), 0.2f));
@@ -72,7 +73,7 @@ public class MenuScene extends TGScene {
         ));
 
         wnd.addActor((
-                new com.trgk.touchwave.tgengine.ui.TGButton("랭킹 확인", 6f, 23, 16, new Color(.40f, .67f, .93f, 1)) {
+                new TGButton("랭킹 확인", 4.5f, 15, 6, new Color(.40f, .67f, .93f, 1)) {
                     @Override
                     public void clicked() {
                         getSceneManager().setCurrentScene(new TransitScene(this2, new RankingScene(), 0.2f));
@@ -81,10 +82,10 @@ public class MenuScene extends TGScene {
         ));
 
         wnd.addActor((
-                new com.trgk.touchwave.tgengine.ui.TGButton("기록 보기", 6f, 23, 7, new Color(.40f, .67f, .93f, 1)) {
+                new TGButton("기록 보기", 4.5f, 35, 6, new Color(.40f, .67f, .93f, 1)) {
                     @Override
                     public void clicked() {
-                        getSceneManager().setCurrentScene(new TransitScene(this2, new com.trgk.touchwave.menuscene.StatsScene(), 0.2f));
+                        getSceneManager().setCurrentScene(new TransitScene(this2, new StatsScene(), 0.2f));
                     }
                 }
         ));

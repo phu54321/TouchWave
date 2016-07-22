@@ -40,9 +40,13 @@ import com.trgk.touchwave.tgengine.TGResources;
 
 public class TGButton extends Group {
     final Image background;
-    boolean clicked = false;
-    public TGButton(String caption, float size) {
-        background = new Image(TGResources.getInstance().getAtlasSprite("roundbutton"));
+    public TGButton(String caption, float size, boolean wide) {
+        if(wide) {
+            background = new Image(TGResources.getInstance().getAtlasSprite("roundbutton_wide"));
+        }
+        else {
+            background = new Image(TGResources.getInstance().getAtlasSprite("roundbutton"));
+        }
         background.setScale(size / 64f);
         this.addActor(background);
         this.setSize(
@@ -64,7 +68,13 @@ public class TGButton extends Group {
     }
 
     public TGButton(String caption, float size, float x, float y, Color color) {
-        this(caption, size);
+        this(caption, size, false);
+        this.setPosition(x, y, Align.center);
+        this.setColor(color);
+    }
+
+    public TGButton(String caption, float size, float x, float y, Color color, boolean wide) {
+        this(caption, size, wide);
         this.setPosition(x, y, Align.center);
         this.setColor(color);
     }
