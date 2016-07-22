@@ -31,6 +31,7 @@ package com.trgk.touchwave.gamescene;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.trgk.touchwave.tgengine.TGResources;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -50,7 +51,7 @@ public class CountdownAnim {
 
     private CountdownAnim() {
         ArrayList<TextureRegion> countdownImgList = new ArrayList<TextureRegion>();
-        com.trgk.touchwave.tgengine.TGResources res = com.trgk.touchwave.tgengine.TGResources.getInstance();
+        TGResources res = TGResources.getInstance();
 
         for(int i = 360 ; i >= 0 ; i -= 3) {
             String imgPath = String.format(Locale.ENGLISH, "countdown_a%d", i);

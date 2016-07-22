@@ -34,39 +34,44 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.trgk.touchwave.tgengine.TransitScene;
+import com.trgk.touchwave.tgengine.ui.TGButton;
+import com.trgk.touchwave.tgengine.ui.TGText;
+import com.trgk.touchwave.tgengine.ui.TGWindow;
+import com.trgk.touchwave.utils.ScreenFillingGroup;
 
 public class RankingScene extends com.trgk.touchwave.tgengine.TGScene {
 
     public RankingScene() {
         super(new Stage(new ScreenViewport()));
-        com.trgk.touchwave.utils.ScreenFillingGroup group = new com.trgk.touchwave.utils.ScreenFillingGroup(150, 100);
+        com.trgk.touchwave.utils.ScreenFillingGroup group = new ScreenFillingGroup(150, 100);
         this.getStage().addActor(group);
         group.addActor(buildWindow());
     }
 
-    com.trgk.touchwave.tgengine.ui.TGWindow rankingWindow;
+    TGWindow rankingWindow;
 
     /**
      * Build basic ui
      * @return UI
      */
-    public com.trgk.touchwave.tgengine.ui.TGWindow buildWindow() {
+    public TGWindow buildWindow() {
         final RankingScene this2 = this;
 
-        com.trgk.touchwave.tgengine.ui.TGWindow wnd = new com.trgk.touchwave.tgengine.ui.TGWindow(90);
+        com.trgk.touchwave.tgengine.ui.TGWindow wnd = new TGWindow(90);
         wnd.setPosition(75, 50, Align.center);
 
-        wnd.addActor(new com.trgk.touchwave.tgengine.ui.TGText("Rankings", 7, 45, 81, Color.BLACK));
+        wnd.addActor(new TGText("Rankings", 7, 45, 81, Color.BLACK));
 
-        rankingWindow = new com.trgk.touchwave.tgengine.ui.TGWindow(62);
+        rankingWindow = new TGWindow(62);
         rankingWindow.setPosition(45, 45, Align.center);
         wnd.addActor(rankingWindow);
 
         wnd.addActor((
-                new com.trgk.touchwave.tgengine.ui.TGButton("돌아가기", 10f, 45, 7, new Color(.40f, .67f, .93f, 1)) {
+                new TGButton("돌아가기", 10f, 45, 7, new Color(.40f, .67f, .93f, 1)) {
                     @Override
                     public void clicked() {
-                        getSceneManager().setCurrentScene(new com.trgk.touchwave.tgengine.TransitScene(this2, new MenuScene(), 0.2f));
+                        getSceneManager().setCurrentScene(new TransitScene(this2, new MenuScene(), 0.2f));
                     }
                 }
         ));
@@ -79,9 +84,9 @@ public class RankingScene extends com.trgk.touchwave.tgengine.TGScene {
 
     public static class RankingEntry extends Group {
         public RankingEntry(int rank, String fbNickname, int maxScore, Color color, int pos) {
-            this.addActor(new com.trgk.touchwave.tgengine.ui.TGText(Integer.toString(rank), 2.8f, 3, 1.5f, color));
-            this.addActor(new com.trgk.touchwave.tgengine.ui.TGText(fbNickname, 2.8f, 23, 1.5f, color));
-            this.addActor(new com.trgk.touchwave.tgengine.ui.TGText(Integer.toString(maxScore), 2.8f, 50, 1.5f, color));
+            this.addActor(new TGText(Integer.toString(rank), 2.8f, 3, 1.5f, color));
+            this.addActor(new TGText(fbNickname, 2.8f, 23, 1.5f, color));
+            this.addActor(new TGText(Integer.toString(maxScore), 2.8f, 50, 1.5f, color));
             this.setSize(60, 3);
             this.setOrigin(Align.topLeft);
             this.setPosition(1, 61 - 3 * pos, Align.topLeft);

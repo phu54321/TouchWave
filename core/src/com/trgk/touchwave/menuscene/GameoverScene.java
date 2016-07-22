@@ -41,6 +41,10 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.trgk.touchwave.tgengine.TGPopupScene;
 import com.trgk.touchwave.gamescene.GameScene;
 import com.trgk.touchwave.tgengine.TransitScene;
+import com.trgk.touchwave.tgengine.ui.TGButton;
+import com.trgk.touchwave.tgengine.ui.TGText;
+import com.trgk.touchwave.tgengine.ui.TGWindow;
+import com.trgk.touchwave.utils.ScreenFillingGroup;
 
 import java.nio.ByteBuffer;
 import java.util.Locale;
@@ -51,7 +55,7 @@ public class GameoverScene extends TGPopupScene {
 
         takeScreenshot();
 
-        com.trgk.touchwave.utils.ScreenFillingGroup group = new com.trgk.touchwave.utils.ScreenFillingGroup(150, 100);
+        com.trgk.touchwave.utils.ScreenFillingGroup group = new ScreenFillingGroup(150, 100);
         this.getStage().addActor(group);
 
         group.addActor(buildWindow());
@@ -90,29 +94,29 @@ public class GameoverScene extends TGPopupScene {
     /**
      * Generate window
      */
-    public com.trgk.touchwave.tgengine.ui.TGWindow buildWindow() {
+    public TGWindow buildWindow() {
         final GameScene gameScene = (GameScene)getParentScene();
 
-        com.trgk.touchwave.tgengine.ui.TGWindow wnd = new com.trgk.touchwave.tgengine.ui.TGWindow(46);
+        com.trgk.touchwave.tgengine.ui.TGWindow wnd = new TGWindow(46);
         wnd.setPosition(75, 50, Align.center);
         wnd.setOrigin(Align.center);
         wnd.setScale(1.6f);
 
         final GameoverScene this2 = this;
 
-        wnd.addActor(com.trgk.touchwave.tgengine.ui.TGWindow.showAfter(
-                new com.trgk.touchwave.tgengine.ui.TGText("게임 오버", 7, 23, 39, new Color(0, 0, 0, 1)),
+        wnd.addActor(TGWindow.showAfter(
+                new TGText("게임 오버", 7, 23, 39, new Color(0, 0, 0, 1)),
                 0.3f
         ));
 
         String scoreText = String.format(Locale.KOREAN, "점수 : %d", gameScene.getScore());
-        wnd.addActor(com.trgk.touchwave.tgengine.ui.TGWindow.showAfter(
-                new com.trgk.touchwave.tgengine.ui.TGText(scoreText, 4, 23, 28.5f, new Color(0, 0, 0, 1)),
+        wnd.addActor(TGWindow.showAfter(
+                new TGText(scoreText, 4, 23, 28.5f, new Color(0, 0, 0, 1)),
                 0.6f
         ));
 
-        wnd.addActor(com.trgk.touchwave.tgengine.ui.TGWindow.showAfter(
-                new com.trgk.touchwave.tgengine.ui.TGButton("페이스북 공유", 6f, 23, 19,new Color(.40f, .67f, .93f, 1)) {
+        wnd.addActor(TGWindow.showAfter(
+                new TGButton("페이스북 공유", 6f, 23, 19,new Color(.40f, .67f, .93f, 1)) {
                     @Override
                     public void clicked() {
                         this2.getSceneManager().setCurrentScene(new FBShareResult(this2, gameScene));
@@ -121,8 +125,8 @@ public class GameoverScene extends TGPopupScene {
                 0.9f
         ));
 
-        wnd.addActor(com.trgk.touchwave.tgengine.ui.TGWindow.showAfter(
-                new com.trgk.touchwave.tgengine.ui.TGButton("재도전", 6f, 23, 12, new Color(.40f, .67f, .93f, 1)) {
+        wnd.addActor(TGWindow.showAfter(
+                new TGButton("재도전", 6f, 23, 12, new Color(.40f, .67f, .93f, 1)) {
                     @Override
                     public void clicked() {
                         this2.getSceneManager().setCurrentScene(new TransitScene(this2, new GameScene(), 0.2f));
@@ -131,8 +135,8 @@ public class GameoverScene extends TGPopupScene {
                 1.2f
         ));
 
-        wnd.addActor(com.trgk.touchwave.tgengine.ui.TGWindow.showAfter(
-                new com.trgk.touchwave.tgengine.ui.TGButton("돌아가기", 6f, 23, 5, new Color(.40f, .67f, .93f, 1)) {
+        wnd.addActor(TGWindow.showAfter(
+                new TGButton("돌아가기", 6f, 23, 5, new Color(.40f, .67f, .93f, 1)) {
                     @Override
                     public void clicked() {
                         this2.getSceneManager().setCurrentScene(new TransitScene(this2, new MenuScene(), 0.2f));

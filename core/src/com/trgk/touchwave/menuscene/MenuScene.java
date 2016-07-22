@@ -38,12 +38,14 @@ import com.trgk.touchwave.tgengine.TGScene;
 import com.trgk.touchwave.tgengine.TransitScene;
 import com.trgk.touchwave.tgengine.ui.TGButton;
 import com.trgk.touchwave.tgengine.ui.TGText;
+import com.trgk.touchwave.tgengine.ui.TGWindow;
+import com.trgk.touchwave.utils.ScreenFillingGroup;
 
 public class MenuScene extends TGScene {
     public MenuScene() {
         super(new Stage(new ScreenViewport()));
 
-        com.trgk.touchwave.utils.ScreenFillingGroup group = new com.trgk.touchwave.utils.ScreenFillingGroup(150, 100);
+        com.trgk.touchwave.utils.ScreenFillingGroup group = new ScreenFillingGroup(150, 100);
         this.getStage().addActor(group);
 
         group.addActor(buildWindow());
@@ -52,8 +54,8 @@ public class MenuScene extends TGScene {
     /**
      * Generate window
      */
-    public com.trgk.touchwave.tgengine.ui.TGWindow buildWindow() {
-        com.trgk.touchwave.tgengine.ui.TGWindow wnd = new com.trgk.touchwave.tgengine.ui.TGWindow(50);
+    public TGWindow buildWindow() {
+        com.trgk.touchwave.tgengine.ui.TGWindow wnd = new TGWindow(50);
         wnd.setPosition(75, 50, Align.center);
         wnd.setOrigin(Align.center);
         wnd.setScale(1.6f);

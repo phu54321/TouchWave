@@ -35,12 +35,13 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.trgk.touchwave.tgengine.TGResources;
 
 
 public class TGWindow extends Group {
     final Image background;
     public TGWindow(float size) {
-        background = new Image(com.trgk.touchwave.tgengine.TGResources.getInstance().getAtlasSprite("roundbox"));
+        background = new Image(TGResources.getInstance().getAtlasSprite("roundbox"));
         background.setScale(size / 256f);
         this.addActor(background);
         this.setSize(

@@ -45,7 +45,7 @@ import java.util.ArrayList;
 
 
 public class HitFrame extends Group {
-    ArrayList<com.trgk.touchwave.gamescene.HitCircle> circles;
+    ArrayList<HitCircle> circles;
     final int size;
     boolean destroyed = false;
 
@@ -62,11 +62,11 @@ public class HitFrame extends Group {
         this.addActor(bg);
 
         // Add lines
-        this.addActor(new com.trgk.touchwave.gamescene.HitCircleLines(this));
+        this.addActor(new HitCircleLines(this));
 
         // Add circles
         final float desiredMinDist = 30f;  // Minimum distances between circle pairs
-        this.circles = new ArrayList<com.trgk.touchwave.gamescene.HitCircle>();
+        this.circles = new ArrayList<HitCircle>();
 
         for(int i = 0 ; i < count ; i++) {
             float cx, cy;
@@ -77,7 +77,7 @@ public class HitFrame extends Group {
 
                 boolean tooClose = false;
                 for (int j = 0; j < i; j++) {
-                    com.trgk.touchwave.gamescene.HitCircle priorCircle = circles.get(j);
+                    HitCircle priorCircle = circles.get(j);
                     float pcx = priorCircle.getX() + priorCircle.getOriginX();
                     float pcy = priorCircle.getY() + priorCircle.getOriginY();
                     float dx = pcx - cx, dy = pcy - cy;
@@ -90,7 +90,7 @@ public class HitFrame extends Group {
                 minDist -= 0.3f;
             } while(true);
 
-            com.trgk.touchwave.gamescene.HitCircle hitCircle = new com.trgk.touchwave.gamescene.HitCircle(this, cx, cy, circleColor);
+            com.trgk.touchwave.gamescene.HitCircle hitCircle = new HitCircle(this, cx, cy, circleColor);
             circles.add(hitCircle);
             this.addActor(hitCircle);
         }
@@ -124,7 +124,7 @@ public class HitFrame extends Group {
      * Check if all circles are touched.
      */
     public boolean allCirclesTouched() {
-        for(com.trgk.touchwave.gamescene.HitCircle circle: circles) {
+        for(HitCircle circle: circles) {
             if(!circle.isTouched()) return false;
         }
         return true;
@@ -155,7 +155,7 @@ public class HitFrame extends Group {
                     )
             ));
 
-            for(com.trgk.touchwave.gamescene.HitCircle circle: circles) {
+            for(HitCircle circle: circles) {
                 circle.clearActions();
                 circle.addAction(
                         Actions.scaleTo(3f, 3f, 0.3f, Interpolation.circleIn)
@@ -169,7 +169,7 @@ public class HitFrame extends Group {
         if(touchable && getTouchable() != Touchable.enabled) return null;
 
         Vector2 point = new Vector2();
-        for(com.trgk.touchwave.gamescene.HitCircle circle : circles) {
+        for(HitCircle circle : circles) {
             circle.parentToLocalCoordinates(point.set(x, y));
             Actor hit = circle.hit(point.x, point.y, touchable);
             if(hit != null) return hit;

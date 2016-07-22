@@ -37,23 +37,26 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.trgk.touchwave.GameLogger;
+import com.trgk.touchwave.menuscene.GameoverScene;
+import com.trgk.touchwave.tgengine.ui.TGText;
+import com.trgk.touchwave.utils.ScreenFillingGroup;
 
 import java.util.Locale;
 
 
 public class GameScene extends com.trgk.touchwave.tgengine.TGScene {
-    com.trgk.touchwave.utils.ScreenFillingGroup uiGroup;
+    ScreenFillingGroup uiGroup;
     Group logicGroup;
 
     FrameGroup frameGroup;
-    com.trgk.touchwave.tgengine.ui.TGText scoreText;
+    TGText scoreText;
     float elapsedTime = 0;
     public GameScene() {
         super(new Stage(new ScreenViewport()));
 
         // Add ui & logic groups
         Stage stage = getStage();
-        uiGroup = new com.trgk.touchwave.utils.ScreenFillingGroup(150, 100);
+        uiGroup = new ScreenFillingGroup(150, 100);
         stage.addActor(uiGroup);
         logicGroup = new Group();
         stage.addActor(logicGroup);
@@ -62,7 +65,7 @@ public class GameScene extends com.trgk.touchwave.tgengine.TGScene {
         frameGroup = new FrameGroup();
         uiGroup.addActor(frameGroup);
 
-        scoreText = new com.trgk.touchwave.tgengine.ui.TGText("점수 : 0        시간 : 0.00s", 5, 0, 0, Color.BLACK);
+        scoreText = new TGText("점수 : 0        시간 : 0.00s", 5, 0, 0, Color.BLACK);
         uiGroup.addActor(scoreText);
         scoreText.setOrigin(Align.topLeft);
 
@@ -82,7 +85,7 @@ public class GameScene extends com.trgk.touchwave.tgengine.TGScene {
         gameCompleted = true;
 
         GameLogger.getInstance().updatePlay((long)(elapsedTime * 1000), getScore());
-        this.getSceneManager().setCurrentScene(new com.trgk.touchwave.menuscene.GameoverScene(this));
+        this.getSceneManager().setCurrentScene(new GameoverScene(this));
         this.logicGroup.remove();
         this.frameGroup.setTouchable(Touchable.disabled);
     }

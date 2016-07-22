@@ -36,6 +36,11 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.StringBuilder;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.trgk.touchwave.GameLogger;
+import com.trgk.touchwave.tgengine.TransitScene;
+import com.trgk.touchwave.tgengine.ui.TGButton;
+import com.trgk.touchwave.tgengine.ui.TGText;
+import com.trgk.touchwave.tgengine.ui.TGWindow;
+import com.trgk.touchwave.utils.ScreenFillingGroup;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -45,7 +50,7 @@ public class StatsScene extends com.trgk.touchwave.tgengine.TGScene {
     public StatsScene() {
         super(new Stage(new ScreenViewport()));
 
-        com.trgk.touchwave.utils.ScreenFillingGroup group = new com.trgk.touchwave.utils.ScreenFillingGroup(150, 100);
+        com.trgk.touchwave.utils.ScreenFillingGroup group = new ScreenFillingGroup(150, 100);
         this.getStage().addActor(group);
 
         group.addActor(buildWindow());
@@ -83,9 +88,9 @@ public class StatsScene extends com.trgk.touchwave.tgengine.TGScene {
     /**
      * Generate window
      */
-    public com.trgk.touchwave.tgengine.ui.TGWindow buildWindow() {
-        com.trgk.touchwave.tgengine.ui.TGWindow wnd = new com.trgk.touchwave.tgengine.ui.TGWindow(46);
-        com.trgk.touchwave.tgengine.ui.TGText text;
+    public TGWindow buildWindow() {
+        com.trgk.touchwave.tgengine.ui.TGWindow wnd = new TGWindow(46);
+        TGText text;
         GameLogger inst = GameLogger.getInstance();
 
         wnd.setPosition(75, 50, Align.center);
@@ -93,33 +98,33 @@ public class StatsScene extends com.trgk.touchwave.tgengine.TGScene {
         wnd.setScale(1.6f);
 
 
-        wnd.addActor(new com.trgk.touchwave.tgengine.ui.TGText("Statistics", 4, 23, 39, Color.BLACK));
+        wnd.addActor(new TGText("Statistics", 4, 23, 39, Color.BLACK));
 
         // Texts
         SimpleDateFormat dayTime = new SimpleDateFormat("yyyy/MM/dd  hh:mm", Locale.KOREAN);
 
-        text = new com.trgk.touchwave.tgengine.ui.TGText(
+        text = new TGText(
                 String.format(Locale.KOREAN, "최초 실행 시각 : %s", dayTime.format(new Date(inst.installTime))),
                 2.2f, 23, 28, Color.BLACK);
         text.setPosition(4, 31, Align.left);
         text.setOrigin(Align.left);
         wnd.addActor(text);
 
-        text = new com.trgk.touchwave.tgengine.ui.TGText(
+        text = new TGText(
                 String.format(Locale.KOREAN, "총 플레이 시간 : %s", encodePlaytime(inst.totalPlayTime / 1000f)),
                 2.2f, 23, 28, Color.BLACK);
         text.setPosition(4, 26f, Align.left);
         text.setOrigin(Align.left);
         wnd.addActor(text);
 
-        text = new com.trgk.touchwave.tgengine.ui.TGText(
+        text = new TGText(
                 String.format(Locale.KOREAN, "최고 획득 점수 : %d", inst.maxScore),
                 2.2f, 23, 28, Color.BLACK);
         text.setPosition(4, 21, Align.left);
         text.setOrigin(Align.left);
         wnd.addActor(text);
 
-        text = new com.trgk.touchwave.tgengine.ui.TGText(
+        text = new TGText(
                 String.format("마지막 플레이 시각 : %s",
                         (inst.lastPlayTime == -1) ? "플레이 기록 없음"
                         : dayTime.format(new Date(inst.lastPlayTime))),
@@ -131,10 +136,10 @@ public class StatsScene extends com.trgk.touchwave.tgengine.TGScene {
 
         final StatsScene this2 = this;
         wnd.addActor((
-                new com.trgk.touchwave.tgengine.ui.TGButton("돌아가기", 5f, 23, 7, new Color(.40f, .67f, .93f, 1)) {
+                new TGButton("돌아가기", 5f, 23, 7, new Color(.40f, .67f, .93f, 1)) {
                     @Override
                     public void clicked() {
-                        getSceneManager().setCurrentScene(new com.trgk.touchwave.tgengine.TransitScene(this2, new MenuScene(), 0.2f));
+                        getSceneManager().setCurrentScene(new TransitScene(this2, new MenuScene(), 0.2f));
                     }
                 }
         ));

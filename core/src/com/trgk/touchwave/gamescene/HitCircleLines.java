@@ -34,6 +34,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.trgk.touchwave.tgengine.ui.TGPrimitive;
+import com.trgk.touchwave.utils.HSVRGB;
 
 import java.util.ArrayList;
 
@@ -46,7 +47,7 @@ class HitCircleLines extends Actor {
         this.parent = parent;
         float hue = 0.618033988749895f * (2 * parent.size - parent.size / 3);
         hue -= Math.floor(hue);
-        this.lineColor = com.trgk.touchwave.utils.HSVRGB.hsvToRgb(hue, 0.9f, 0.95f, 0.7f);
+        this.lineColor = HSVRGB.hsvToRgb(hue, 0.9f, 0.95f, 0.7f);
         this.setTouchable(Touchable.disabled);
     }
 

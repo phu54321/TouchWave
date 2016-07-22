@@ -34,13 +34,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.trgk.touchwave.facebook.FBService;
+import com.trgk.touchwave.gamescene.GameScene;
 
 import java.util.Locale;
 
 public class FBShareResult extends com.trgk.touchwave.tgengine.TGPopupScene {
-    com.trgk.touchwave.gamescene.GameScene gameScene;
+    GameScene gameScene;
     int currentState = 0;
-    public FBShareResult(com.trgk.touchwave.tgengine.TGScene parent, com.trgk.touchwave.gamescene.GameScene gameScene) {
+    public FBShareResult(com.trgk.touchwave.tgengine.TGScene parent, GameScene gameScene) {
         super(parent, new Stage(new ScreenViewport()), new Color(0, 0, 0, 0.8f));
         this.gameScene = gameScene;
     }
@@ -49,12 +51,12 @@ public class FBShareResult extends com.trgk.touchwave.tgengine.TGPopupScene {
     public void act(float dt) {
         super.act(dt);
 
-        com.trgk.touchwave.facebook.FBService fb = com.trgk.touchwave.facebook.FBService.getInstance();
+        FBService fb = FBService.getInstance();
 
         // State 0: issue fb login
         if(currentState == 0) {
-            if (!com.trgk.touchwave.facebook.FBService.getInstance().isLogonPublish()) {
-                com.trgk.touchwave.facebook.FBService.getInstance().loginPublish();
+            if (!fb.isLogonPublish()) {
+                fb.loginPublish();
                 currentState = 1;
             } else currentState = 2;
         }
@@ -62,8 +64,8 @@ public class FBShareResult extends com.trgk.touchwave.tgengine.TGPopupScene {
         // State 1: wait for login
         if(currentState == 1) {
             if(!fb.isBusy()) {
-                com.trgk.touchwave.facebook.FBService.Result result = fb.getLastActionResult();
-                if(result == com.trgk.touchwave.facebook.FBService.Result.SUCCESS) currentState = 2;
+                FBService.Result result = fb.getLastActionResult();
+                if(result == FBService.Result.SUCCESS) currentState = 2;
                 else currentState = 4;
             }
         }

@@ -44,6 +44,7 @@ import com.trgk.touchwave.GameLogger;
 import com.trgk.touchwave.facebook.FBService;
 import com.trgk.touchwave.tgengine.TGPopupScene;
 import com.trgk.touchwave.tgengine.ui.TGText;
+import com.trgk.touchwave.tgengine.ui.TGWindow;
 
 import java.util.Locale;
 
@@ -51,10 +52,10 @@ import java.util.Locale;
 public class RankingLoadScene extends TGPopupScene {
     final static String serverDomain = "https://phu54321.pythonanywhere.com/";
 
-    final com.trgk.touchwave.menuscene.RankingScene parent;
+    final RankingScene parent;
     int currentState = 0;
 
-    public RankingLoadScene(com.trgk.touchwave.menuscene.RankingScene parent) {
+    public RankingLoadScene(RankingScene parent) {
         super(parent, new Stage(new ScreenViewport()), new Color(0, 0, 0, 0.8f));
         this.parent = parent;
     }
@@ -70,7 +71,7 @@ public class RankingLoadScene extends TGPopupScene {
     public void act(float dt) {
         super.act(dt);
 
-        final com.trgk.touchwave.tgengine.ui.TGWindow rankingWindow = parent.rankingWindow;
+        final TGWindow rankingWindow = parent.rankingWindow;
         final FBService fb = FBService.getInstance();
         final GameLogger logger = GameLogger.getInstance();
 
@@ -157,11 +158,11 @@ public class RankingLoadScene extends TGPopupScene {
                     JsonReader reader = new JsonReader();
                     JsonValue result = reader.parse(httpResponse.getResultAsString());
 
-                    if(result.isObject() && result.get("myRank") != null) {
+                    if(result.isObject() && result.get("userRank") != null) {
                         int userRank = result.getInt("userRank");
                         int maxScore = result.getInt("maxScore");
                         rankingWindow.addActor(
-                                new com.trgk.touchwave.menuscene.RankingScene.RankingEntry(userRank, fb.username, maxScore, Color.BLUE, 0)
+                                new RankingScene.RankingEntry(userRank, fb.username, maxScore, Color.BLUE, 0)
                         );
                         currentState = 6;
                     }
@@ -204,7 +205,7 @@ public class RankingLoadScene extends TGPopupScene {
                         int entryID = 1;
                         while(rankingEntry != null) {
                             rankingWindow.addActor(
-                                    new com.trgk.touchwave.menuscene.RankingScene.RankingEntry(
+                                    new RankingScene.RankingEntry(
                                             entryID,
                                             rankingEntry.getString("fbNickname"),
                                             rankingEntry.getInt("maxScore"),

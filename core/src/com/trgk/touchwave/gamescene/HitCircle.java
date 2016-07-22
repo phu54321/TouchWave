@@ -43,6 +43,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.trgk.touchwave.tgengine.ui.TGPrimitive;
 import com.trgk.touchwave.utils.AnimatedImage;
 
 import java.util.HashSet;
@@ -68,7 +69,7 @@ public class HitCircle  extends Group {
         setPosition(x, y, Align.center);
 
         // Create color core
-        Image inner = com.trgk.touchwave.tgengine.ui.TGPrimitive.circleImage(5, innerColor);
+        Image inner = TGPrimitive.circleImage(5, innerColor);
         this.innerImage = inner;
         addActor(inner);
         inner.setPosition(5, 5, Align.center);

@@ -100,7 +100,7 @@ class FrameGenerator extends Actor {
     public void act(float dt) {
         super.act(dt);
 
-        com.trgk.touchwave.gamescene.FrameGroup frameGroup = parent.frameGroup;
+        FrameGroup frameGroup = parent.frameGroup;
 
         remainingTime -= dt;
         // To few frames -> Add more.
@@ -113,7 +113,7 @@ class FrameGenerator extends Actor {
 
             int circleNum = getRandomCircleNum();
 
-            com.trgk.touchwave.gamescene.HitFrame frame = new com.trgk.touchwave.gamescene.HitFrame(parent, circleNum, getNextCircleColor());
+            com.trgk.touchwave.gamescene.HitFrame frame = new HitFrame(parent, circleNum, getNextCircleColor());
             frameGroup.addFrame(frame);
             frame.act(-remainingTime);
 
