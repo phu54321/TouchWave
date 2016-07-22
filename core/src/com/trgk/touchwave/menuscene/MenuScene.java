@@ -30,10 +30,17 @@
 package com.trgk.touchwave.menuscene;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.RepeatAction;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.trgk.touchwave.gamescene.GameScene;
+import com.trgk.touchwave.tgengine.TGResources;
 import com.trgk.touchwave.tgengine.TGScene;
 import com.trgk.touchwave.tgengine.TransitScene;
 import com.trgk.touchwave.tgengine.ui.TGButton;
@@ -42,13 +49,29 @@ import com.trgk.touchwave.tgengine.ui.TGWindow;
 import com.trgk.touchwave.utils.ScreenFillingGroup;
 
 public class MenuScene extends TGScene {
+    ScreenFillingGroup uiGroup;
+    Image pauseButton;
+
     public MenuScene() {
         super(new Stage(new ScreenViewport()));
 
-        com.trgk.touchwave.utils.ScreenFillingGroup group = new ScreenFillingGroup(150, 100);
-        this.getStage().addActor(group);
+        uiGroup = new ScreenFillingGroup(150, 100);
+        this.getStage().addActor(uiGroup);
 
-        group.addActor(buildWindow());
+        uiGroup.addActor(buildWindow());
+        pauseButton = new Image(TGResources.getInstance().getAtlasSprite("infobutton"));
+        pauseButton.setScale(10 / 128f);
+        pauseButton.setOrigin(Align.topRight);
+
+        final MenuScene this2 = this;
+        pauseButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                getSceneManager().setCurrentScene(new AboutScene(this2));
+                super.clicked(event, x, y);
+            }
+        });
+        uiGroup.addActor(pauseButton);
     }
 
     /**
@@ -64,6 +87,19 @@ public class MenuScene extends TGScene {
         wnd.addActor(new TGText("TouchWave", 7, 25, 41, Color.BLACK));
 
         final MenuScene this2 = this;
+
+        Image logo = new Image(TGResources.getInstance().getAtlasSprite("icon"));
+        logo.setScale(18 / 256f);
+        logo.setOrigin(Align.center);
+        logo.setPosition(25, 25, Align.center);
+        logo.setColor(1, 1, 1, 0.5f);
+        logo.addAction(
+                Actions.repeat(RepeatAction.FOREVER, Actions.sequence(
+                        Actions.alpha(1, 1),
+                        Actions.alpha(0.5f, 1)
+                ))
+        );
+        wnd.addActor(logo);
 
         wnd.addActor((
                 new TGButton("플레이", 4.5f, 25, 12, new Color(.40f, .67f, .93f, 1), true) {
@@ -93,5 +129,13 @@ public class MenuScene extends TGScene {
         ));
 
         return wnd;
+    }
+
+    @Override
+    public void draw() {
+        Vector2 topRight = uiGroup.getlogicalScreenTopRight();
+        pauseButton.setPosition(topRight.x - 2, topRight.y - 2, Align.topRight);
+
+        super.draw();
     }
 }

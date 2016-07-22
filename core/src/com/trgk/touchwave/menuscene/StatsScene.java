@@ -50,7 +50,7 @@ public class StatsScene extends com.trgk.touchwave.tgengine.TGScene {
     public StatsScene() {
         super(new Stage(new ScreenViewport()));
 
-        com.trgk.touchwave.utils.ScreenFillingGroup group = new ScreenFillingGroup(150, 100);
+        ScreenFillingGroup group = new ScreenFillingGroup(150, 100);
         this.getStage().addActor(group);
 
         group.addActor(buildWindow());

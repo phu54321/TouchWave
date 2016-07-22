@@ -6,609 +6,567 @@ filter: MipMapLinearLinear,Linear
 repeat: none
 circle_general
   rotate: false
-  xy: 800, 884
+  xy: 0, 522
   size: 128, 128
   orig: 128, 128
   offset: 0, 0
   index: -1
 countdown_a0
   rotate: false
-  xy: 258, 850
+  xy: 260, 492
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a102
   rotate: false
-  xy: 588, 462
+  xy: 824, 686
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a105
   rotate: false
-  xy: 686, 462
+  xy: 750, 490
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a108
   rotate: false
-  xy: 196, 458
+  xy: 784, 392
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a111
   rotate: false
-  xy: 294, 458
+  xy: 848, 588
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a114
   rotate: false
-  xy: 392, 458
+  xy: 848, 490
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a117
   rotate: false
-  xy: 784, 394
+  xy: 922, 784
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a12
   rotate: false
-  xy: 0, 784
+  xy: 456, 492
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a120
   rotate: false
-  xy: 882, 394
+  xy: 922, 686
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a123
   rotate: false
-  xy: 0, 392
+  xy: 882, 392
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a126
   rotate: false
-  xy: 98, 392
+  xy: 490, 294
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a129
   rotate: false
-  xy: 490, 364
+  xy: 196, 198
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a132
   rotate: false
-  xy: 588, 364
+  xy: 0, 130
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a135
   rotate: false
-  xy: 686, 364
+  xy: 98, 130
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a138
   rotate: false
-  xy: 196, 360
+  xy: 294, 198
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a141
   rotate: false
-  xy: 294, 360
+  xy: 392, 198
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a144
   rotate: false
-  xy: 392, 360
+  xy: 588, 294
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a147
   rotate: false
-  xy: 784, 296
+  xy: 686, 294
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a15
   rotate: false
-  xy: 98, 784
+  xy: 542, 882
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a150
   rotate: false
-  xy: 882, 296
+  xy: 784, 294
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a153
   rotate: false
-  xy: 0, 294
+  xy: 882, 294
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a156
   rotate: false
-  xy: 98, 294
+  xy: 490, 196
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a159
   rotate: false
-  xy: 490, 266
+  xy: 196, 100
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a162
   rotate: false
-  xy: 588, 266
+  xy: 0, 32
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a165
   rotate: false
-  xy: 686, 266
+  xy: 98, 32
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a168
   rotate: false
-  xy: 196, 262
+  xy: 294, 100
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a171
   rotate: false
-  xy: 294, 262
+  xy: 392, 100
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a174
   rotate: false
-  xy: 392, 262
+  xy: 588, 196
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a177
   rotate: false
-  xy: 784, 198
+  xy: 686, 196
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a18
   rotate: false
-  xy: 196, 752
+  xy: 530, 784
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a180
   rotate: false
-  xy: 882, 198
+  xy: 784, 196
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a183
   rotate: false
-  xy: 0, 196
+  xy: 882, 196
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a186
   rotate: false
-  xy: 98, 196
+  xy: 490, 98
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a189
   rotate: false
-  xy: 490, 168
+  xy: 196, 2
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a192
   rotate: false
-  xy: 588, 168
+  xy: 294, 2
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a195
   rotate: false
-  xy: 686, 168
+  xy: 392, 2
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a198
   rotate: false
-  xy: 196, 164
+  xy: 588, 98
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a201
   rotate: false
-  xy: 294, 164
+  xy: 686, 98
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a204
   rotate: false
-  xy: 392, 164
+  xy: 784, 98
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a207
   rotate: false
-  xy: 784, 100
+  xy: 882, 98
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a21
   rotate: false
-  xy: 294, 752
+  xy: 530, 686
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a210
   rotate: false
-  xy: 882, 100
+  xy: 490, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a213
   rotate: false
-  xy: 0, 98
+  xy: 588, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a216
   rotate: false
-  xy: 98, 98
+  xy: 686, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a219
   rotate: false
-  xy: 490, 70
+  xy: 784, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a222
   rotate: false
-  xy: 588, 70
-  size: 96, 96
-  orig: 96, 96
-  offset: 0, 0
-  index: -1
-countdown_a225
-  rotate: false
-  xy: 686, 70
-  size: 96, 96
-  orig: 96, 96
-  offset: 0, 0
-  index: -1
-countdown_a228
-  rotate: false
-  xy: 196, 66
-  size: 96, 96
-  orig: 96, 96
-  offset: 0, 0
-  index: -1
-countdown_a231
-  rotate: false
-  xy: 294, 66
-  size: 96, 96
-  orig: 96, 96
-  offset: 0, 0
-  index: -1
-countdown_a234
-  rotate: false
-  xy: 392, 66
-  size: 96, 96
-  orig: 96, 96
-  offset: 0, 0
-  index: -1
-countdown_a237
-  rotate: false
-  xy: 784, 2
+  xy: 882, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a24
   rotate: false
-  xy: 392, 752
-  size: 96, 96
-  orig: 96, 96
-  offset: 0, 0
-  index: -1
-countdown_a240
-  rotate: false
-  xy: 882, 2
-  size: 96, 96
-  orig: 96, 96
-  offset: 0, 0
-  index: -1
-countdown_a243
-  rotate: false
-  xy: 0, 0
-  size: 96, 96
-  orig: 96, 96
-  offset: 0, 0
-  index: -1
-countdown_a246
-  rotate: false
-  xy: 98, 0
+  xy: 554, 588
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a27
   rotate: false
-  xy: 800, 688
+  xy: 640, 882
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a3
   rotate: false
-  xy: 356, 850
+  xy: 0, 424
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a30
   rotate: false
-  xy: 898, 688
+  xy: 628, 784
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a33
   rotate: false
-  xy: 0, 686
+  xy: 628, 686
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a36
   rotate: false
-  xy: 98, 686
+  xy: 554, 490
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a39
   rotate: false
-  xy: 490, 658
+  xy: 196, 394
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a42
   rotate: false
-  xy: 588, 658
+  xy: 0, 326
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a45
   rotate: false
-  xy: 686, 658
+  xy: 98, 326
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a48
   rotate: false
-  xy: 196, 654
+  xy: 294, 394
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a51
   rotate: false
-  xy: 294, 654
+  xy: 392, 394
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a54
   rotate: false
-  xy: 392, 654
+  xy: 490, 392
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a57
   rotate: false
-  xy: 784, 590
+  xy: 196, 296
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a6
   rotate: false
-  xy: 800, 786
+  xy: 98, 424
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a60
   rotate: false
-  xy: 882, 590
+  xy: 0, 228
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a63
   rotate: false
-  xy: 0, 588
+  xy: 98, 228
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a66
   rotate: false
-  xy: 98, 588
+  xy: 294, 296
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a69
   rotate: false
-  xy: 490, 560
+  xy: 392, 296
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a72
   rotate: false
-  xy: 588, 560
+  xy: 588, 392
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a75
   rotate: false
-  xy: 686, 560
+  xy: 652, 588
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a78
   rotate: false
-  xy: 196, 556
+  xy: 738, 882
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a81
   rotate: false
-  xy: 294, 556
+  xy: 726, 784
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a84
   rotate: false
-  xy: 392, 556
+  xy: 726, 686
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a87
   rotate: false
-  xy: 784, 492
+  xy: 652, 490
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a9
   rotate: false
-  xy: 898, 786
+  xy: 358, 492
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a90
   rotate: false
-  xy: 882, 492
+  xy: 686, 392
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a93
   rotate: false
-  xy: 0, 490
+  xy: 750, 588
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a96
   rotate: false
-  xy: 98, 490
+  xy: 824, 784
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
 countdown_a99
   rotate: false
-  xy: 490, 462
+  xy: 836, 882
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
+icon
+  rotate: false
+  xy: 0, 652
+  size: 270, 260
+  orig: 270, 260
+  offset: 0, 0
+  index: -1
+infobutton
+  rotate: false
+  xy: 130, 522
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
 roundbox
   rotate: false
-  xy: 542, 756
+  xy: 272, 656
   size: 256, 256
   orig: 256, 256
   offset: 0, 0
   index: -1
 roundbutton
   rotate: false
-  xy: 0, 882
+  xy: 272, 590
   size: 256, 64
   orig: 256, 64
   offset: 0, 0
   index: -1
 roundbutton_wide
   rotate: false
-  xy: 0, 948
+  xy: 0, 914
   size: 540, 64
   orig: 540, 64
   offset: 0, 0
@@ -619,268 +577,324 @@ size: 1024,512
 format: RGBA8888
 filter: MipMapLinearLinear,Linear
 repeat: none
-countdown_a249
+countdown_a225
   rotate: false
   xy: 0, 392
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a252
+countdown_a228
   rotate: false
   xy: 0, 294
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a255
+countdown_a231
   rotate: false
   xy: 98, 392
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a258
+countdown_a234
   rotate: false
   xy: 0, 196
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a261
+countdown_a237
   rotate: false
   xy: 98, 294
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a264
+countdown_a240
   rotate: false
   xy: 196, 392
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a267
+countdown_a243
   rotate: false
   xy: 0, 98
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a270
+countdown_a246
   rotate: false
   xy: 98, 196
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a273
+countdown_a249
   rotate: false
   xy: 196, 294
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a276
+countdown_a252
   rotate: false
   xy: 294, 392
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a279
+countdown_a255
   rotate: false
   xy: 0, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a282
+countdown_a258
   rotate: false
   xy: 98, 98
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a285
+countdown_a261
   rotate: false
   xy: 196, 196
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a288
+countdown_a264
   rotate: false
   xy: 294, 294
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a291
+countdown_a267
   rotate: false
   xy: 392, 392
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a294
+countdown_a270
   rotate: false
   xy: 98, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a297
+countdown_a273
   rotate: false
   xy: 196, 98
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a300
+countdown_a276
   rotate: false
   xy: 294, 196
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a303
+countdown_a279
   rotate: false
   xy: 392, 294
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a306
+countdown_a282
   rotate: false
   xy: 490, 392
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a309
+countdown_a285
   rotate: false
   xy: 196, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a312
+countdown_a288
   rotate: false
   xy: 294, 98
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a315
+countdown_a291
   rotate: false
   xy: 392, 196
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a318
+countdown_a294
   rotate: false
   xy: 490, 294
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a321
+countdown_a297
   rotate: false
   xy: 588, 392
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a324
+countdown_a300
   rotate: false
   xy: 294, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a327
+countdown_a303
   rotate: false
   xy: 392, 98
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a330
+countdown_a306
   rotate: false
   xy: 490, 196
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a333
+countdown_a309
   rotate: false
   xy: 588, 294
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a336
+countdown_a312
   rotate: false
   xy: 686, 392
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a339
+countdown_a315
   rotate: false
   xy: 392, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a342
+countdown_a318
   rotate: false
   xy: 490, 98
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a345
+countdown_a321
   rotate: false
   xy: 588, 196
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a348
+countdown_a324
   rotate: false
   xy: 686, 294
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a351
+countdown_a327
   rotate: false
   xy: 784, 392
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a354
+countdown_a330
   rotate: false
   xy: 490, 0
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a357
+countdown_a333
   rotate: false
   xy: 588, 98
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-countdown_a360
+countdown_a336
   rotate: false
   xy: 686, 196
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+countdown_a339
+  rotate: false
+  xy: 784, 294
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+countdown_a342
+  rotate: false
+  xy: 882, 392
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+countdown_a345
+  rotate: false
+  xy: 588, 0
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+countdown_a348
+  rotate: false
+  xy: 686, 98
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+countdown_a351
+  rotate: false
+  xy: 784, 196
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+countdown_a354
+  rotate: false
+  xy: 882, 294
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+countdown_a357
+  rotate: false
+  xy: 686, 0
+  size: 96, 96
+  orig: 96, 96
+  offset: 0, 0
+  index: -1
+countdown_a360
+  rotate: false
+  xy: 784, 98
   size: 96, 96
   orig: 96, 96
   offset: 0, 0

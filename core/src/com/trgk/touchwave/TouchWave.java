@@ -33,12 +33,14 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.trgk.touchwave.menuscene.MenuScene;
 import com.trgk.touchwave.tgengine.TGScene;
+import com.trgk.touchwave.tgengine.TGSceneManager;
+import com.trgk.touchwave.tgengine.TransitScene;
 
 public class TouchWave extends ApplicationAdapter {
 	com.trgk.touchwave.tgengine.TGSceneManager sceneManager;
 
 	public TouchWave() {
-		sceneManager = new com.trgk.touchwave.tgengine.TGSceneManager();
+		sceneManager = new TGSceneManager();
 	}
 
 	////////
@@ -46,7 +48,7 @@ public class TouchWave extends ApplicationAdapter {
 	@Override
 	public void create () {
 		GameLogger.getInstance(); // Init game log
-		sceneManager.setCurrentScene(new MenuScene());
+		sceneManager.setCurrentScene(new TransitScene(null, new MenuScene(), 0.2f));
 	}
 
 	@Override

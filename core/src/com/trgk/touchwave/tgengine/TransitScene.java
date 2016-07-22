@@ -49,40 +49,59 @@ public class TransitScene extends TGScene {
         this.before = before;
         this.after = after;
 
-        before.ref();
-        after.ref();
-
-        backgroundScene = before;
+        if(before != null) before.ref();
+        if(after != null) after.ref();
 
         // Add background image
         background = TGPrimitive.rectImage(0, 0, 1, 1, Color.BLACK);
         background.setColor(0, 0, 0, 0);
         getStage().addActor(background);
 
-        final TransitScene this2 = this;
+        // Transition start
+        if(before != null) {
+            backgroundScene = before;
+            final TransitScene this2 = this;
+            background.addAction(Actions.sequence(
+                    Actions.fadeIn(transitTime / 2),
+                    new Action() {
+                        @Override
+                        public boolean act(float delta) {
+                            this2.backgroundScene = after;
+                            this2.before = null;
+                            before.unref();
+                            return true;
+                        }
+                    },
+                    Actions.fadeOut(transitTime),
+                    new Action() {
+                        @Override
+                        public boolean act(float delta) {
+                            getSceneManager().setCurrentScene(after);
+                            this2.after = null;
+                            if (after != null) after.unref();
+                            return true;
+                        }
+                    }
+            ));
+        }
+        else {
+            backgroundScene = after;
+            background.setColor(0, 0, 0, 1);
 
-        background.addAction(Actions.sequence(
-                Actions.fadeIn(transitTime / 2),
-                new Action() {
-                    @Override
-                    public boolean act(float delta) {
-                        this2.backgroundScene = after;
-                        this2.before = null;
-                        before.unref();
-                        return true;
+            final TransitScene this2 = this;
+            background.addAction(Actions.sequence(
+                    Actions.fadeOut(transitTime),
+                    new Action() {
+                        @Override
+                        public boolean act(float delta) {
+                            getSceneManager().setCurrentScene(after);
+                            this2.after = null;
+                            if (after != null) after.unref();
+                            return true;
+                        }
                     }
-                },
-                Actions.fadeOut(transitTime),
-                new Action() {
-                    @Override
-                    public boolean act(float delta) {
-                        getSceneManager().setCurrentScene(after);
-                        this2.after = null;
-                        after.unref();
-                        return true;
-                    }
-                }
-        ));
+            ));
+        }
     }
 
     @Override

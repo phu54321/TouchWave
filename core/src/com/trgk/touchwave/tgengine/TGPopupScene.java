@@ -32,6 +32,7 @@ package com.trgk.touchwave.tgengine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -44,9 +45,9 @@ public class TGPopupScene extends TGScene {
 
 
     public void gotoParent() {
-        background.clearActions();
-        background.addAction(Actions.sequence(
-                Actions.alpha(0f, 0.3f),
+        getStage().getRoot().clearActions();
+        getStage().addAction(Actions.sequence(
+                Actions.alpha(0f, 0.2f),
                 new Action() {
                     @Override
                     public boolean act(float delta) {
@@ -61,6 +62,7 @@ public class TGPopupScene extends TGScene {
 
     public TGPopupScene(TGScene parent, Stage stage, Color backgroundColor) {
         super(stage);
+        Group root = stage.getRoot();
 
         // Set parent
         parent.ref();
@@ -69,9 +71,10 @@ public class TGPopupScene extends TGScene {
 
         // Add background image
         background = TGPrimitive.rectImage(0, 0, 1, 1, Color.BLACK);
-        background.setColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, 0);
-        getStage().addActor(background);
-        background.addAction(Actions.alpha(backgroundColor.a, 0.3f));
+        background.setColor(backgroundColor.r, backgroundColor.g, backgroundColor.b, backgroundColor.a);
+        root.addActor(background);
+        root.setColor(1, 1, 1, 0);
+        root.addAction(Actions.alpha(1, 0.2f));
     }
 
     public TGScene getParentScene() {
