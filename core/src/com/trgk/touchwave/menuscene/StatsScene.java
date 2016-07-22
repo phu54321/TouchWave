@@ -101,7 +101,7 @@ public class StatsScene extends com.trgk.touchwave.tgengine.TGScene {
         wnd.addActor(new TGText("게임 기록", 4, 23, 39, Color.BLACK));
 
         // Texts
-        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy/MM/dd a hh:mm", Locale.KOREAN);
+        SimpleDateFormat dayTime = new SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.KOREAN);
 
         text = new TGText(
                 String.format(Locale.KOREAN, "최초 실행 시각 : %s", dayTime.format(new Date(inst.installTime))),

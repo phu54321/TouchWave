@@ -91,12 +91,13 @@ public class GameScene extends com.trgk.touchwave.tgengine.TGScene {
     }
 
     ///////
-
+    boolean tutorialShown = false;
     @Override
     public void act(float dt) {
         // Open tutorial on first play
-        if(GameLogger.getInstance().lastPlayTime == -1) {
+        if(!tutorialShown && GameLogger.getInstance().lastPlayTime == -1) {
             getSceneManager().setCurrentScene(new TutorialScene(this));
+            tutorialShown = true;
             return;
         }
 
