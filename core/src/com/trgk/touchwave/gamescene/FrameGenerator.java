@@ -49,7 +49,7 @@ class FrameGenerator extends Actor {
     float nextRemainingTime() {
         float circlePerSec = (float)Math.sqrt(currentFrameIndex + 36) / 6f;
         float decFactor = currentFrameIndex / (currentFrameIndex + 200f);
-        return 1.0f + 0.7f / circlePerSec - 0.9f * decFactor;
+        return 1.0f + 0.7f / circlePerSec - 0.7f * decFactor;
     }
 
 

@@ -42,6 +42,7 @@ import com.trgk.touchwave.tgengine.ui.TGPrimitive;
 public class TGPopupScene extends TGScene {
     final TGScene parent;
     Image background;
+    boolean isModal = false;
 
 
     public void gotoParent() {
@@ -77,6 +78,10 @@ public class TGPopupScene extends TGScene {
         root.addAction(Actions.alpha(1, 0.2f));
     }
 
+    public void setModal(boolean modal) {
+        isModal = modal;
+    }
+
     public TGScene getParentScene() {
         return parent;
     }
@@ -92,7 +97,7 @@ public class TGPopupScene extends TGScene {
     @Override
     public void act(float dt) {
         super.act(dt);
-        parent.act(dt);
+        if(!isModal) parent.act(dt);
     }
 
     @Override

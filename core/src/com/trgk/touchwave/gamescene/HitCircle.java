@@ -103,7 +103,14 @@ public class HitCircle  extends Group {
         this.addListener(new ClickListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                touchedSet.add(pointer);
+                // Allow only up to 5 touches
+                int touchIndex = 0;
+                for(int i = 0 ; i < 20 ; i++) {
+                    if (Gdx.input.isTouched(i)) touchIndex++;
+                    if(i == pointer) break;
+                }
+                if(touchIndex <= 5) touchedSet.add(pointer);
+
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
@@ -117,7 +124,9 @@ public class HitCircle  extends Group {
 
     public void updateTouchStatus() {
         Vector2 touchCoord = new Vector2();
+        int processedTouchNum = 0;
         for(int pointer = 0 ; pointer < 20 ; pointer++) {
+            if(Gdx.input.isTouched(pointer)) processedTouchNum++;
             if (touchedSet.contains(pointer)) {
                 boolean currentlyTouching = false;
                 if(Gdx.input.isTouched(pointer)) {
@@ -133,6 +142,9 @@ public class HitCircle  extends Group {
                     touchedSet.remove(pointer);
                 }
             }
+
+            // Allow only up to 5 touches
+            if(processedTouchNum == 5) break;
         }
     }
 
