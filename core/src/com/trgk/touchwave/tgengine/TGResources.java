@@ -46,13 +46,9 @@ public class TGResources {
     // -------
 
     public TextureAtlas textureAtlas;
-    public Skin skin;
-    public BitmapFont font;
 
     TGResources() {
         textureAtlas = new TextureAtlas(Gdx.files.internal("img/dptextures.atlas"));
-        skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
-        font = skin.getFont("default-font");
     }
 
     /**
