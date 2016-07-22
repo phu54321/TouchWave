@@ -65,7 +65,7 @@ public class GameScene extends com.trgk.touchwave.tgengine.TGScene {
         frameGroup = new FrameGroup();
         uiGroup.addActor(frameGroup);
 
-        scoreText = new TGText("점수 : 0        시간 : 0.00s", 5, 0, 0, Color.BLACK);
+        scoreText = new TGText("점수 : 0    시간 : 0.00s", 5, 0, 0, Color.BLACK);
         uiGroup.addActor(scoreText);
         scoreText.setOrigin(Align.topLeft);
 
@@ -92,13 +92,12 @@ public class GameScene extends com.trgk.touchwave.tgengine.TGScene {
 
     ///////
 
-    boolean a = false;
     @Override
     public void act(float dt) {
         // Open tutorial on first play
-        if(!a || GameLogger.getInstance().lastPlayTime == -1) {
-            a = true;
+        if(GameLogger.getInstance().lastPlayTime == -1) {
             getSceneManager().setCurrentScene(new TutorialScene(this));
+            return;
         }
 
         super.act(dt);
