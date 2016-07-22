@@ -130,8 +130,6 @@ public class FBService {
 
         Array<String> fbReadPermissions = new Array<String>();
         fbReadPermissions.add("public_profile");
-        fbReadPermissions.add("user_friends");
-        fbReadPermissions.add("email");
 
         fbHandle.signIn(SignInMode.READ, fbReadPermissions, new GDXFacebookCallback<SignInResult>() {
             @Override

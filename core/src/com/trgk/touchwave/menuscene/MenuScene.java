@@ -49,7 +49,7 @@ import com.trgk.touchwave.tgengine.ui.TGWindow;
 import com.trgk.touchwave.utils.ScreenFillingGroup;
 
 public class MenuScene extends TGScene {
-    final static String versionStr = "TouchWave v1.0";
+    final static String versionStr = "TouchWave v1.1";
 
     ScreenFillingGroup uiGroup;
     Image pauseButton;
