@@ -14,7 +14,7 @@
         android:theme="@style/GdxTheme" >
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id" />
         <activity
-            android:name="com.trgk.game.AndroidLauncher"
+            android:name="com.trgk.touchwave.AndroidLauncher"
             android:label="@string/app_name" 
             android:screenOrientation="landscape"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
