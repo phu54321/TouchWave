@@ -31,16 +31,21 @@ package com.trgk.touchwave;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.JsonWriter;
+import com.trgk.touchwave.utils.MessageBox;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 public class GameLogger {
-    public long installTime;
-    public long totalPlayTime;
-    public long lastAccessTime;
-    public int maxScore;
-    public long lastPlayTime;
+    public long installTime = getCurrentTime();
+    public long totalPlayTime = 0;
+    public long lastAccessTime = getCurrentTime();
+    public int maxScore = 0;
+    public long lastPlayTime = -1;
 
     static GameLogger instance;
     public static GameLogger getInstance() {
@@ -60,22 +65,32 @@ public class GameLogger {
     private GameLogger() {
         // Try parsing existing file
         FileHandle gamelog = Gdx.files.local("gamelog.json");
-        long currentTime = getCurrentTime();
+
         if(gamelog.exists()) {
             JsonReader reader = new JsonReader();
             JsonValue content = reader.parse(gamelog);
-            installTime = content.getLong("installTime", currentTime);
-            totalPlayTime = content.getLong("totalPlayTime", 0);
-            lastAccessTime = content.getLong("lastAccessTime", currentTime);
-            lastPlayTime = content.getLong("lastPlayTime", -1);
-            maxScore = content.getInt("maxScore", 0);
-        }
-        else {
-            installTime = currentTime;
-            totalPlayTime = 0;
-            lastAccessTime = currentTime;
-            lastPlayTime = -1;
-            maxScore = 0;
+            try {
+                for (Field field : GameLogger.class.getFields()) {
+                    String fieldName = field.getName();
+                    if (content.has(fieldName)) {
+                        try {
+                            if (field.getType() == boolean.class)
+                                field.setBoolean(this, content.getBoolean(fieldName));
+                            else if (field.getType() == int.class)
+                                field.setInt(this, content.getInt(fieldName));
+                            else if (field.getType() == long.class)
+                                field.setLong(this, content.getLong(fieldName));
+                        } catch (IllegalStateException e) {
+                            MessageBox.alert("GameLogger", "IllegalStateException : " + e.getMessage());
+                        } catch (IllegalArgumentException e) {
+                            MessageBox.alert("GameLogger", "IllegalArgumentException : " + e.getMessage());
+                        }
+                    }
+                }
+            } catch (IllegalAccessException e) {
+                MessageBox.alert("Error", "IllegalAccessException : " + e.getMessage());
+                throw new RuntimeException("Unexpected exception", e);
+            }
         }
 
         saveGameLog();
@@ -85,31 +100,39 @@ public class GameLogger {
      * Save game data
      */
     public void saveGameLog() {
-        long currentTime = getCurrentTime();
-
         FileHandle gamelog = Gdx.files.local("gamelog.json");
-
-        // TODO : Refactor using addChild method when libgdx is updated.
-        // addChild method was not present at time of this code.
         JsonValue value = new JsonValue(JsonValue.ValueType.object);
+        ArrayList<JsonValue> fields = new ArrayList<JsonValue>();
 
-        JsonValue installTimeValue = new JsonValue(installTime);
-        JsonValue totalPlayTimeValue = new JsonValue(totalPlayTime);
-        JsonValue lastAccessTimeValue = new JsonValue(currentTime);
-        JsonValue lastPlayTimeValue = new JsonValue(lastPlayTime);
-        JsonValue maxScoreValue = new JsonValue(maxScore);
+        // Add values to fields
+        for (Field field : GameLogger.class.getFields()) {
+            try {
+                String fieldName = field.getName();
+                JsonValue v;
+                if (field.getType() == boolean.class)
+                    v = new JsonValue(field.getBoolean(this));
+                else if (field.getType() == int.class)
+                    v = new JsonValue(field.getInt(this));
+                else if (field.getType() == long.class)
+                    v = new JsonValue(field.getLong(this));
+                else {
+                    MessageBox.alert("GameLogger", "Reflection error for type " + fieldName);
+                    return;
+                }
+                v.setName(fieldName);
+                fields.add(v);
+            }
+            catch(IllegalAccessException e) {
+                MessageBox.alert("GameLogger", "IllegalAccessException : " + e.getMessage());
+                return;  // Save failed
+            }
+        }
 
-        installTimeValue.setName("installTime");
-        totalPlayTimeValue.setName("totalPlayTime");
-        lastAccessTimeValue.setName("lastAccessTime");
-        lastPlayTimeValue.setName("lastPlayTime");
-        maxScoreValue.setName("maxScore");
-
-        value.child = installTimeValue;
-        installTimeValue.setNext(totalPlayTimeValue);
-        totalPlayTimeValue.setNext(lastAccessTimeValue);
-        lastAccessTimeValue.setNext(lastPlayTimeValue);
-        lastPlayTimeValue.setNext(maxScoreValue);
+        // Link
+        value.child = fields.get(0);
+        for(int i = 0 ; i < fields.size() - 1 ; i++) {
+            fields.get(i).setNext(fields.get(i + 1));
+        }
 
         gamelog.writeString(value.toJson(JsonWriter.OutputType.json), false);
     }
