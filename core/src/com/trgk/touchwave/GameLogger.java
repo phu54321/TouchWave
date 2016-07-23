@@ -46,6 +46,7 @@ public class GameLogger {
     public long lastAccessTime = getCurrentTime();
     public int maxScore = 0;
     public long lastPlayTime = -1;
+    public boolean notifiedRankingRealName = false;
 
     static GameLogger instance;
     public static GameLogger getInstance() {

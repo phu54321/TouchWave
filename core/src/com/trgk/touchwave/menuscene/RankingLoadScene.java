@@ -53,7 +53,7 @@ public class RankingLoadScene extends TGPopupScene {
     final static String serverDomain = "https://phu54321.pythonanywhere.com/";
 
     final RankingScene parent;
-    int currentState = 0;
+    int currentState = -1;
 
     public RankingLoadScene(RankingScene parent) {
         super(parent, new Stage(new ScreenViewport()), new Color(0, 0, 0, 0.8f));
@@ -74,6 +74,17 @@ public class RankingLoadScene extends TGPopupScene {
         final TGWindow rankingWindow = parent.rankingWindow;
         final FBService fb = FBService.getInstance();
         final GameLogger logger = GameLogger.getInstance();
+
+        // Get user permission
+        if(currentState == -1) {
+            currentState = 0;
+            if(!logger.notifiedRankingRealName) {
+                getSceneManager().setCurrentScene(new FBAlertScene(this));
+                logger.notifiedRankingRealName = true;
+                logger.saveGameLog();
+                return;
+            }
+        }
 
         // Get user ID
         if(currentState == 0) {
