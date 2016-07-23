@@ -34,6 +34,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.BitmapFontLoader;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.BitmapFontCache;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -76,6 +77,8 @@ public class TGResources {
 
         textureAtlas = manager.get("img/dptextures.atlas", TextureAtlas.class);
         font = manager.get("font/basefont.fnt", BitmapFont.class);
+
+        Texture.setAssetManager(manager);
     }
 
     public void dispose() {

@@ -35,6 +35,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.PixmapTextureData;
 import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
@@ -57,7 +58,8 @@ public class TGPrimitive {
         Pixmap map = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
         map.setColor(1, 1, 1, 1);
         map.fill();
-        rectTexture = new Texture(map);
+        PixmapTextureData textureData = new PixmapTextureData(map, null, false, false, true);
+        rectTexture = new Texture(textureData);
         rectTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         rectTextureRegion = new TextureRegion(rectTexture);
     }
