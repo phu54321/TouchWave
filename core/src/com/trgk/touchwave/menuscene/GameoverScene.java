@@ -53,8 +53,6 @@ public class GameoverScene extends TGPopupScene {
     public GameoverScene(final GameScene gameScene) {
         super(gameScene, new Stage(new ScreenViewport()), new Color(0.8f, 0.8f, 0.8f, 0.4f));
 
-        takeScreenshot();
-
         com.trgk.touchwave.utils.ScreenFillingGroup group = new ScreenFillingGroup(150, 100);
         this.getStage().addActor(group);
 
@@ -63,32 +61,6 @@ public class GameoverScene extends TGPopupScene {
         group.addAction(Actions.sequence(
                 Actions.fadeIn(.5f)
         ));
-    }
-
-
-    public void takeScreenshot() {
-        final int w = Gdx.graphics.getWidth();
-        final int h = Gdx.graphics.getHeight();
-        Pixmap pixmap = ScreenUtils.getFrameBufferPixmap(0, 0, w, h);
-
-        // Flip the pixmap upside down
-        ByteBuffer pixels = pixmap.getPixels();
-        int numBytes = w * h * 4;
-        byte[] lines = new byte[numBytes];
-        int numBytesPerLine = w * 4;
-        for (int i = 0; i < h; i++) {
-            pixels.position((h - i - 1) * numBytesPerLine);
-            pixels.get(lines, i * numBytesPerLine, numBytesPerLine);
-        }
-        pixels.clear();
-
-        // Force set  alpha channel to 255
-        for(int i = 3 ; i < numBytes ; i += 4) {
-            lines[i] = (byte)255;
-        }
-
-        pixels.put(lines);
-        PixmapIO.writePNG(Gdx.files.local("screenshot.png"), pixmap);
     }
 
     /**
