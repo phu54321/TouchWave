@@ -30,25 +30,56 @@
 package com.trgk.touchwave.tgengine;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.BitmapFontLoader;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.Array;
 
 public class TGResources {
-    static TGResources inst = null;
-    static public TGResources getInstance() {
-        if(inst == null) inst = new TGResources();
+    static volatile TGResources inst;
+    private static final Object lock = new Object();
+
+    public static TGResources getInstance() {
+        if(inst == null) {
+            synchronized (lock) {
+                if(inst == null) {
+                    inst = new TGResources();
+                }
+            }
+        }
         return inst;
     }
 
+
     // -------
 
+    final static public float baseFontSize = 60;
     public TextureAtlas textureAtlas;
+    public BitmapFont font = null;
 
-    TGResources() {
-        textureAtlas = new TextureAtlas(Gdx.files.internal("img/dptextures.atlas"));
+    private AssetManager manager;
+
+    public void init(AssetManager manager) {
+        BitmapFontLoader.BitmapFontParameter parameter = new BitmapFontLoader.BitmapFontParameter();
+        parameter.minFilter = Texture.TextureFilter.Linear;
+        parameter.magFilter = Texture.TextureFilter.Linear;
+
+        this.manager = manager;
+        manager.load("img/dptextures.atlas", TextureAtlas.class);
+        manager.load("font/basefont.fnt", BitmapFont.class, parameter);
+        manager.finishLoading();
+
+        textureAtlas = manager.get("img/dptextures.atlas", TextureAtlas.class);
+        font = manager.get("font/basefont.fnt", BitmapFont.class);
+    }
+
+    public void dispose() {
+        manager.dispose();
     }
 
     /**

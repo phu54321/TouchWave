@@ -29,52 +29,28 @@
 
 package com.trgk.touchwave.tgengine.ui;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.BitmapFontCache;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Array;
+import com.trgk.touchwave.tgengine.TGResources;
 
 public class TGText extends Actor {
+    TGResources tgResources;
     GlyphLayout glyphLayout;
     BitmapFontCache drawCache;
-    final static float baseFontSize = 60;
-    static BitmapFont font = null;
     String text;
 
 
-    static TextureRegion loadFontTexture(String path) {
-        Texture fontTexture = new Texture(Gdx.files.internal(path));
-        fontTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-        return new TextureRegion(fontTexture);
-    }
-    static void initFont() {
-        if(font == null) {
-            Array<TextureRegion> fontTextures = new Array<TextureRegion>();
-            fontTextures.add(loadFontTexture("font/basefont1.png"));
-            fontTextures.add(loadFontTexture("font/basefont2.png"));
-
-            font = new BitmapFont(
-                    new BitmapFont.BitmapFontData(Gdx.files.internal("font/basefont.fnt"), false),
-                    fontTextures,
-                    false
-            );
-            font.setOwnsTexture(true);
-        }
-    }
-
     public TGText(String content, float size) {
-        initFont();
+        tgResources = TGResources.getInstance();
+
         glyphLayout = new GlyphLayout();
-        drawCache = new BitmapFontCache(font);
+        drawCache = new BitmapFontCache(tgResources.font);
         setText(content);
         setScale(size);
         this.setOrigin(Align.center);
@@ -88,9 +64,12 @@ public class TGText extends Actor {
 
 
     public void setText(String text) {
-        glyphLayout.setText(font, text);
+        glyphLayout.setText(tgResources.font, text);
         drawCache.setText(glyphLayout, 0, glyphLayout.height);
-        this.setSize(glyphLayout.width / baseFontSize, glyphLayout.height / baseFontSize);
+        this.setSize(
+                glyphLayout.width / TGResources.baseFontSize,
+                glyphLayout.height / TGResources.baseFontSize
+        );
         this.text = text;
     }
 
@@ -105,7 +84,7 @@ public class TGText extends Actor {
                 getScaleY()
         );
         localTransform.translate(-getOriginX(), -getOriginY());
-        localTransform.scale(1f / baseFontSize, 1f / baseFontSize);
+        localTransform.scale(1f / TGResources.baseFontSize, 1f / TGResources.baseFontSize);
 
         Matrix4 localTransformMatrix = new Matrix4();
         localTransformMatrix.set(localTransform);

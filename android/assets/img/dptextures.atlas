@@ -557,13 +557,6 @@ icon
   orig: 270, 260
   offset: 0, 0
   index: -1
-infobutton
-  rotate: false
-  xy: 0, 690
-  size: 256, 256
-  orig: 256, 256
-  offset: 0, 0
-  index: -1
 roundbox
   rotate: false
   xy: 0, 690
@@ -897,5 +890,12 @@ countdown_a360
   xy: 882, 294
   size: 96, 96
   orig: 96, 96
+  offset: 0, 0
+  index: -1
+infobutton
+  rotate: false
+  xy: 686, 32
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
   index: -1
