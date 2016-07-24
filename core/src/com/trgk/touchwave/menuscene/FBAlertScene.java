@@ -81,14 +81,14 @@ public class FBAlertScene extends TGPopupScene {
         addText(wnd, 20, 21, "전체 랭킹에서 실명이 보여집니다.");
         addText(wnd, 20, 16, "원하지 않으시면 페북 로그인을 하지 마세요.");
 
-        wnd.addActor((
+        wnd.addActor(TGWindow.showAfter(
                 new TGButton("확인", 7f, 20, 8, new Color(.40f, .67f, .93f, 1)) {
                     @Override
                     public void clicked() {
                         gotoParent();
                     }
                 }
-        ));
+        , 2.5f));
 
         return wnd;
     }

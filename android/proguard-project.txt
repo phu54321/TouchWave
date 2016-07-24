@@ -71,6 +71,10 @@
   <methods>;
 }
 
+-keep public class com.trgk.touchwave.GameLogger {
+  <fields>;
+}
+
 -ignorewarnings
 
 -keepclasseswithmembernames class * {

@@ -63,7 +63,7 @@ public class TutorialScene extends TGPopupScene {
      * Helper for adding link
      */
     void addText(TGWindow wnd, float x, float y, String str) {
-        TGText text = new TGText(str, 2.3f, x, y, Color.BLACK);
+        TGText text = new TGText(str, 2.0f, x, y, Color.BLACK);
         wnd.addActor(text);
     }
 
@@ -80,7 +80,7 @@ public class TutorialScene extends TGPopupScene {
 
         // Texts
         addText(wnd, 20, 25, "같은 색의 원을 동시에 터치!");
-        addText(wnd, 20, 19, "원이 많으면 빠르게 차례대로 터치!");
+        addText(wnd, 20, 19, "6개 이상의 원은 4개씩 나눠 터치!");
 
         wnd.addActor((
                 new TGButton("돌아가기", 7f, 20, 8, new Color(.40f, .67f, .93f, 1)) {
