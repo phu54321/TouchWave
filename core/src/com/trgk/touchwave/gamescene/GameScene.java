@@ -29,7 +29,11 @@
 
 package com.trgk.touchwave.gamescene;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -38,6 +42,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.trgk.touchwave.GameLogger;
 import com.trgk.touchwave.menuscene.GameoverScene;
+import com.trgk.touchwave.tgengine.TGResources;
 import com.trgk.touchwave.tgengine.ui.TGText;
 import com.trgk.touchwave.utils.ScreenFillingGroup;
 

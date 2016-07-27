@@ -40,6 +40,7 @@ import com.badlogic.gdx.math.Affine2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 import com.trgk.touchwave.tgengine.TGResources;
+import com.trgk.touchwave.tgengine.TGSingleton;
 
 
 public class TGPrimitive {
@@ -52,21 +53,8 @@ public class TGPrimitive {
     }
 
 
-    static Texture rectTexture = null;
-    static TextureRegion rectTextureRegion = null;
-    static void createRectTexture() {
-        Pixmap map = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
-        map.setColor(1, 1, 1, 1);
-        map.fill();
-        PixmapTextureData textureData = new PixmapTextureData(map, null, false, false, true);
-        rectTexture = new Texture(textureData);
-        rectTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-        rectTextureRegion = new TextureRegion(rectTexture);
-    }
-
     public static Image rectImage(float x0, float y0, float w, float h, Color color) {
-        if(rectTexture == null) createRectTexture();
-        Sprite sprite = new Sprite(rectTexture);
+        Sprite sprite = new Sprite(TGResources.getInstance().rectTexture);
         Image image = new Image(sprite);
         image.setPosition(x0, y0);
         image.setSize(w, h);
@@ -106,8 +94,6 @@ public class TGPrimitive {
     }
 
     public static void drawLine(Batch batch, float x0, float y0, float x1, float y1, float lineWidth, Color color) {
-        if(rectTexture == null) createRectTexture();
-
         batch.setColor(color);
 
         float dv_perp_x = -(y1 - y0);
@@ -123,6 +109,6 @@ public class TGPrimitive {
         transform.m11 = dv_perp_y * lineWidth * 2;
         transform.m02 = x0 - dv_perp_x * lineWidth;
         transform.m12 = y0 - dv_perp_y * lineWidth;
-        batch.draw(rectTextureRegion, 1, 1, transform);
+        batch.draw(TGResources.getInstance().rectTextureRegion, 1, 1, transform);
     }
 }

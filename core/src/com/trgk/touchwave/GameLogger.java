@@ -35,6 +35,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.JsonWriter;
+import com.trgk.touchwave.tgengine.TGSingleton;
 import com.trgk.touchwave.utils.MessageBox;
 
 import java.lang.reflect.Field;
@@ -48,11 +49,11 @@ public class GameLogger {
     public long lastPlayTime = -1;
     public boolean notifiedRankingRealName = false;
 
-    static GameLogger instance;
+    static private TGSingleton<GameLogger> inst = new TGSingleton<GameLogger>();
     public static GameLogger getInstance() {
-        if(instance == null) instance = new GameLogger();
-        return instance;
+        return inst.getInstance(GameLogger.class);
     }
+
 
     // -------
 
@@ -63,7 +64,7 @@ public class GameLogger {
     /**
      * Load game data!
      */
-    private GameLogger() {
+    public GameLogger() {
         // Try parsing existing file
         FileHandle gamelog = Gdx.files.local("gamelog.json");
 
@@ -109,6 +110,9 @@ public class GameLogger {
         for (Field field : GameLogger.class.getFields()) {
             try {
                 String fieldName = field.getName();
+                // Support for android incremental build
+                if(fieldName.equals("$change")) continue;
+
                 JsonValue v;
                 if (field.getType() == boolean.class)
                     v = new JsonValue(field.getBoolean(this));
@@ -117,7 +121,7 @@ public class GameLogger {
                 else if (field.getType() == long.class)
                     v = new JsonValue(field.getLong(this));
                 else {
-                    MessageBox.alert("GameLogger", "Reflection error for type " + fieldName);
+                    MessageBox.alert("GameLogger", "Reflection error for member \"" + fieldName + "\" (type " + field.getType().toString() + ")");
                     return;
                 }
                 v.setName(fieldName);

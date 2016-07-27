@@ -29,6 +29,7 @@
 
 package com.trgk.touchwave.tgengine;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 

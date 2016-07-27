@@ -27,60 +27,34 @@
  * from your version.
  */
 
-package com.trgk.touchwave;
+package com.trgk.touchwave.tgengine;
 
-import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Texture;
-import com.trgk.touchwave.menuscene.MenuScene;
-import com.trgk.touchwave.tgengine.TGResources;
-import com.trgk.touchwave.tgengine.TGScene;
-import com.trgk.touchwave.tgengine.TGSceneManager;
-import com.trgk.touchwave.tgengine.TransitScene;
-import com.trgk.touchwave.utils.MessageBox;
 
-public class TouchWave extends ApplicationAdapter {
-	com.trgk.touchwave.tgengine.TGSceneManager sceneManager;
+import java.util.WeakHashMap;
 
-	public TouchWave() {
-		sceneManager = new TGSceneManager();
-	}
+public class TGSingleton<T> {
+    final WeakHashMap<Application, T> instanceMap;
 
-	////////
+    public TGSingleton() {
+        instanceMap = new WeakHashMap<Application, T>();
+    }
 
-	@Override
-	public void create () {
-		TGResources.getInstance().init(new AssetManager());
-		GameLogger.getInstance(); // Init game log
-		sceneManager.setCurrentScene(new TransitScene(null, new MenuScene(), 0.2f));
-	}
+    public T getInstance(Class<T> cls) {
+        Application app = Gdx.app;
 
-	@Override
-	public void resize(int w, int h) {
-		TGScene scene = sceneManager.getCurrentScene();
-		scene.resize(w, h);
-	}
-
-	@Override
-	public void resume() {
-		super.resume();
-	}
-
-	@Override
-	public void pause() {
-		GameLogger.getInstance().saveGameLog();
-		super.pause();
-	}
-
-	@Override
-	public void dispose() {
-		super.dispose();
-		TGResources.getInstance().dispose();
-	}
-
-	@Override
-	public void render () {
-		if(!sceneManager.render()) Gdx.app.exit();
-	}
+        if(!instanceMap.containsKey(app)) {
+            synchronized (instanceMap) {
+                if(!instanceMap.containsKey(app)) {
+                    try {
+                        instanceMap.put(app, cls.newInstance());
+                    } catch(Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }
+        return instanceMap.get(app);
+    }
 }

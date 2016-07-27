@@ -29,56 +29,72 @@
 
 package com.trgk.touchwave.tgengine;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.BitmapFontLoader;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.BitmapFontCache;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.graphics.glutils.PixmapTextureData;
+import com.trgk.touchwave.utils.MessageBox;
 
 public class TGResources {
-    static volatile TGResources inst;
-    private static final Object lock = new Object();
-
+    static TGSingleton<TGResources> inst = new TGSingleton<TGResources>();
     public static TGResources getInstance() {
-        if(inst == null) {
-            synchronized (lock) {
-                if(inst == null) {
-                    inst = new TGResources();
-                }
-            }
-        }
-        return inst;
+        return inst.getInstance(TGResources.class);
     }
 
+    public AssetManager manager;
 
     // -------
-
-    final static public float baseFontSize = 60;
     public TextureAtlas textureAtlas;
+
+    void initTextureAtlas() {
+        manager.load("img/dptextures.atlas", TextureAtlas.class);
+        waitResourceLoad();
+        textureAtlas = manager.get("img/dptextures.atlas", TextureAtlas.class);
+    }
+
+    // -------
+    final static public float baseFontSize = 60;
     public BitmapFont font = null;
 
-    private AssetManager manager;
-
-    public void init(AssetManager manager) {
+    void initFont() {
         BitmapFontLoader.BitmapFontParameter parameter = new BitmapFontLoader.BitmapFontParameter();
         parameter.minFilter = Texture.TextureFilter.Linear;
         parameter.magFilter = Texture.TextureFilter.Linear;
-
-        this.manager = manager;
-        manager.load("img/dptextures.atlas", TextureAtlas.class);
         manager.load("font/basefont.fnt", BitmapFont.class, parameter);
-        manager.finishLoading();
-
-        textureAtlas = manager.get("img/dptextures.atlas", TextureAtlas.class);
+        waitResourceLoad();
         font = manager.get("font/basefont.fnt", BitmapFont.class);
 
+    }
+
+    public Texture rectTexture = null;
+    public TextureRegion rectTextureRegion = null;
+
+    void initRectTexture() {
+        Pixmap map = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+        map.setColor(1, 1, 1, 1);
+        map.fill();
+        PixmapTextureData textureData = new PixmapTextureData(map, null, false, false, true);
+        rectTexture = new Texture(textureData);
+        rectTexture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        rectTextureRegion = new TextureRegion(rectTexture);
+    }
+
+    public void init(AssetManager manager) {
+
+        this.manager = manager;
+        initTextureAtlas();
+        initFont();
+        initRectTexture();
         Texture.setAssetManager(manager);
+    }
+
+    public void waitResourceLoad() {
+        manager.finishLoading();
     }
 
     public void dispose() {
